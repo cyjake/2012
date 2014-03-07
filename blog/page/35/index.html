@@ -1,0 +1,837 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="jQuery 在特效里头提供了一些函数用以产生滑动效果，例如
+slideDown()/slideToggle()。实现的方法是变化 height 或者 weight 的值。
+然而这些函数在 IE 中将会产生问题，在被操作的区块即将从 height 大于零到
+display:none 的时候， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/35">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/18/jquery-flashing-content-on-slide-effects-in-ie-67/">[jQuery] Flashing Content on Slide Effects in IE 6/7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-18T00:00:00+08:00" pubdate data-updated="true">Nov 18<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/18/jquery-flashing-content-on-slide-effects-in-ie-67/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>jQuery 在特效里头提供了一些函数用以产生滑动效果，例如
+slideDown()/slideToggle()。实现的方法是变化 height 或者 weight 的值。
+然而这些函数在 IE 中将会产生问题，在被操作的区块即将从 height 大于零到
+<code>display:none</code> 的时候，区块的内容会闪一下。这算是 jQuery 的一个
+<a href="http://dev.jquery.com/ticket/1726">bug</a>，在 jQuery dev 的
+<a href="http://groups.google.com/group/jquery-dev">消息群组</a>中，有人给出了除虫代码。
+不过使用的页面显示模式是 <a href="http://en.wikipedia.org/wiki/Quirks_mode">quirk mode</a>。
+所以尽管这一除虫代码在一年前就已贴上去了，也未能添加到正式发布版本中去。
+如果实在讨厌这一 bug，并且懒得区分浏览器的话，
+可以去 <a href="http://dev.jquery.com/attachment/ticket/1726/1726.diff">patch</a>。</p>
+
+<p>还有一种与滑动特效有关的 bug 存在与各种浏览器中，
+就是当你给被操作的区块加 padding 的时候，同样在区块即将隐藏的一刻，区块会跳一下。
+这应该不属于 jQuery 的 bug，
+可以参考<a href="http://jqueryfordesigners.com/demo/animation-jump.html">这一臭虫的原理与除虫方法</a>。</p>
+
+<p>今日名言：“是 IE 让我们的生活如此多彩”。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/18/apache-ftp-in-commonsnet/">[Apache] FTP in commons.net</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-18T00:00:00+08:00" pubdate data-updated="true">Nov 18<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/18/apache-ftp-in-commonsnet/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.apache.org/net/">commons.net</a> 是 apache 基金会的众多开源好东西之一，
+为用户提供了许多流行网络协议的 Java 实现。我最近要用到 FTPClient。
+结果通过 getModificationTime(&#8220;path/to/file&#8221;) 方法获取文件更改时间的时候出了问题，
+抛出个很神奇的异常 ArrayIndexOutofBound。看了源文件才发现问题所在。</p>
+
+<p><code>getModification()</code> 通过 MDTM 命令获取文件更改时间，在 commons.net 中命令有个索引的机制，
+在 FTPCommands.java 中定义。到该文件里头一看，MDTM 被索引到 33，而里头的
+<code>_commands\[\]</code> 数组只有 33 个元素，即索引 33 刚好越界了。<code>_commands\[\]</code> 并没有将
+MDTM 放到里头去。手动添加进去就好了。该命令本身其实在 commons.net-2.0 版本中已经实现。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/17/got-a-guitar/">买了把吉他</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-17T00:00:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/17/got-a-guitar/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>目标如下：</p>
+
+<object width="400" height="340"><param name="movie" value="http://www.tudou.com/v/EhLdYPfJsLc" /><param name="allowScriptAccess" value="always" /><param name="wmode" value="transparent" /><embed src="http://www.tudou.com/v/EhLdYPfJsLc" type="application/x-shockwave-flash" width="400" height="340" allowfullscreen="true" wmode="transparent" allowscriptaccess="always"></embed></object>
+
+
+<p>ps，优酷的视频在 chrome 里头只能到优酷主页打开才能播放。据说 chrome 的新版本已经 fix 掉这个 bug 了。下面这个属于梦想，意即做白日梦的时候想想。</p>
+
+<object width="400" height="340"><param name="movie" value="http://www.tudou.com/v/lRLg5TuPmPA" /><param name="allowScriptAccess" value="always" /><param name="wmode" value="transparent" /><embed src="http://www.tudou.com/v/lRLg5TuPmPA" type="application/x-shockwave-flash" width="400" height="340" allowfullscreen="true" wmode="transparent" allowscriptaccess="always"></embed></object>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/16/use-google-com-as-the-default-search-engine-in-chrome/">在 Chrome 里头用 google.com 而不是 google.cn 作为默认搜索引擎</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-16T00:00:00+08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/16/use-google-com-as-the-default-search-engine-in-chrome/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>标题用来引导搜索此条目的童鞋……</p>
+
+<p>其实很简单，我们都知道访问 http://google.com/ncr 就不会跳转了。所以我们可以在 chrome 的基础选项里头添加一个 google.com 作为默认引擎，而 URL 一栏则复制粘贴 google.cn 的内容并在后面加上 <code>&amp;ncr</code> 即可。如下：</p>
+
+<blockquote><p>{google:baseURL}search?{google:RLZ}{google:acceptedSuggestion}{google:originalQueryForSuggestion}sourceid=chrome&amp;ie={inputEncoding}&amp;q=%s&amp;ncr</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/16/lately-6/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-16T00:00:00+08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/16/lately-6/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有<a href="http://science.slashdot.org/article.pl?sid=08/11/15/192222">调查</a>说怀疑人生的人更容易宅家里看电视。</p>
+
+<blockquote><p>What viewers seem to be saying is that while TV in general is a waste of time and not particularly enjoyable</p></blockquote>
+
+<p>看电视只不过是浪费时间，而且没啥好娱乐的。</p>
+
+<blockquote><p>I&#8217;m single and have no roommate. I find it soothing to have the TV or a movie on when I am home, even if I am reading or doing chores. I don&#8217;t get the same effect with music. My theory is that just having some kind of conversation in the background helps me to feel less lonely when I&#8217;m by myself.</p></blockquote>
+
+<p>我单身而且没有室友。我觉得当我在家的时候开个电视或者放个电影能够使我平静。
+即使我在读书或其他杂事。放音乐不会有这样的效果。我认为当我一个人的时候有些对白作背景我会觉得比较不孤单一些。</p>
+
+<p>这让我想起了我中学时候的大部分的寒暑假的时光，往往都是在按频道中度过的。
+原来我一直过得这么不开心…… 如今有了网络，我想应该说是相较电视而尤甚吧。</p>
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/2E8vsQB4pug&hl=en&fs=1" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/2E8vsQB4pug&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+
+<p>有人利用划墙壁的时候产生的音频定制动作，比如控制 MP3、将手机静音之类。具体的原理食品中已经说的比较清楚了，在墙上划 W、V、O 产生的音频是不一样的。记得 《The Big Bang Theory》里头 Shelly 童鞋曾经想通过打摩斯码跟 Leonard 交流，不过他是为了保密性…… 同样是在 《The Big Bang Theory》里头，Nerd 四人组曾经弄了个本地 ISP，用该 ISP 控制家中电器、电动玩具之类，并开方网络访问，允许世界各地的 Geek 例如中国四川、以色列某地远程胡搞。Penny 问干啥做这个？四人异口同声：“Because we can!”（我居然瞬间想到的是欧巴马）。</p>
+
+<p><a href="http://6109.hezhao.net/">james 同学</a> 在前几天的一篇文章中
+<a href="http://6109.hezhao.net/2008/11/reason-for-loving-europe/">转载了两个视频</a>，
+直接导致我冲动着去买吉他。</p>
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/qKZQXnmbCxk&hl=en&fs=1" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/qKZQXnmbCxk&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/11/two-bugs-of-android-being-found-recently/">Android 最近被曝了俩臭虫</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-11T00:00:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/11/two-bugs-of-android-being-found-recently/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Android 系统开机的时候会启动一个 root 权限的终端，
+虽然看不见但是你的每个按键都会传递到后台被该终端解析，所以当你按下 r-e-b-o-o-t
+的时候<a href="http://mobile.slashdot.org/article.pl?sid=08/11/08/1720246">十有八九就悲惨</a>了。</p>
+
+<p>不过根据<a href="http://android.jim.sh/index.php/ConsoleShell">这篇维基的解释</a>，
+ms是调试代码忘记删除了。加上前几周的通过远程访问获取 root 权限，
+以及可能的已经被发现但是我不知道的，Android 的状况似乎还是不太安定。
+然而大部分的用户对此没啥评价，如果你在担心的话，我只能告诉你你该担心的是另一个手机。</p>
+
+<blockquote><p>Woo! We now have root access! We can hax0r the phone and load our own custom applic&#8230;
+what? Oh. Shit. Wrong phone. I&#8217;ll wait for the next iPhone article.</p></blockquote>
+
+<p>并且这个臭虫在 R29 之后的版本里头已经去除掉了。众 Luser (Linux User) 又开始苦索：</p>
+
+<ul>
+<li>jen: hey bob wats the linux command for clearing the fs agn</li>
+<li>bob: rm -rf /</li>
+<li>jen: thx</li>
+<li>jen: bob, hw do i make a new fs</li>
+<li>jen: bob?</li>
+</ul>
+
+
+<p>和 <a href="http://xkcd.com/327/">Little Bobby Table</a> 有异曲同工之妙。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/11/cc98org-download-pictures-in-batch/">cc98.org 批量图片工具</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-11T00:00:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/11/cc98org-download-pictures-in-batch/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>没装 flashget/thunder/idm 之类的下载工具，然而作为收图狂时常还是需要批量下载，
+于是用 perl 写了一个。只针对 <a href="http://www.zju98.com/">cc98.org</a>，
+因为获取图片 URL 的方式很简单，98帖子正文中的图片都是可以点击在新窗口打开的，
+所以匹配 <code>&lt;a href="blah"&gt;&lt;img src="" /&gt;&lt;/a&gt;</code> 的 href 属性部分就行了。真正做事的代码是这个：</p>
+
+<figure class='code'><figcaption><span>cc98.pl </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nb">system</span> <span class="s">&quot;wget -c --output-file=wget.log --tries=5 --no-clobber --timeout=60 $domain$image&quot;</span>
+</span><span class='line'>      <span class="ow">or</span> <span class="nb">warn</span> <span class="s">&quot;Command not found or file already exists.\n&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>很囧吧？所以就不贴出来了。需要的话，私下交流吧。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/05/colored-health-and-more/">黑人、健康及其他</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-05T00:00:00+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/05/colored-health-and-more/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Obama 童鞋赢得了选举，成为首任黑人总统，创造了历史，有图为证：
+<img src="http://i33.tinypic.com/zx6yi8.jpg" alt="" /></p>
+
+<p>汉密尔顿童鞋再次与对手相差一分，不过这次是冠军，对手也换成了马萨。
+所以今天我很激动地将忙啥呢(msn)的签名换成了“black wins”。
+许多人在今天也都很激动地提到马丁·路德·金著名的“我有一个梦想”。号召选民投票的奥巴马的网站
+<a href="http://www.voteforchange.com/">voteforchange</a>还支持西班牙语。
+英国人奥兰多·布鲁姆都特地学<del datetime="2008-11-05T14:33:15+00:00">宾·拉登</del>陈冠希拍视频，
+给奥巴马做广告。</p>
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/pTJqO7ftRCY&hl=zh_CN&fs=1" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/pTJqO7ftRCY&hl=zh_CN&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+
+<p>歌手 Seal （ms 也是英国人？）和他的名模老婆也戴着奥巴马面具为这位年富力强的
+<del datetime="2008-11-05T14:33:15+00:00">候选人</del>总统造势。</p>
+
+<p>这一切都是为了让一个拥有50%肯尼亚血统、上过穆斯林学校、同父异母同母异父
+兄弟姐妹一箩筐的年仅47岁的黑人成为世界上最有权利的那个人。
+而今天的选举结局也让奥巴马和他支持者们如愿以偿，选票差距之大让人大跌眼镜。
+很多人将麦凯恩的失败归咎于他的年迈，和因为年迈的担心顺带提出来的选举搭档的选择不当。
+萨拉·佩林更像是吉祥物，而非合适的副总统人员。作为一个经历过越战、
+当过<del datetime="2008-11-05T14:33:15+00:00">腐乳</del>俘虏、患过癌症的72岁老人，
+他的选举口号往往隐约唏嘘着过去的荣光与父辈的旗帜。
+他的健康也使得人们担心万一他有个三长两之后该怎么办。让萨拉·佩林当总统（有没有想到越狱）？</p>
+
+<p><img src="http://web.zju98.org/uploadfile/2008/11/5/7295320646.jpg" alt="Palin as the vice president? OMFG!" /></p>
+
+<p>顺便一贴，奥巴马童鞋还很会打波，可以期待一下未来与阿宝 PK 谁是政界第一控卫。
+<embed src="http://player.youku.com/player.php/sid/6390043/v.swf" quality="high" width="480" height="400" align="middle" allowscriptaccess="sameDomain" type="application/x-shockwave-flash"></embed></p>
+
+<p>以下引述霜之哀伤@cc98：</p>
+
+<blockquote><p>巴拉克.侯赛因.奥巴马（Barack Hussein Obama），这可不是一个象约翰.麦凯恩（JOHN MACCAIN）
+那样“标准”的美国名。事实是，奥巴马也不能怪别人老把他和恐怖分子联系在一起，毕竟过去八年来，
+美国最大的两个敌人——萨达姆.侯赛因与本.拉登.奥萨马（OSAMA）都在他的名字中若隐若现，
+以至于好多报纸（甚至选票）时不时也有意无意将奥巴马的名字拼错，
+况且奥巴马年幼即跟随母亲及继父住在印尼（继父老家），其就读的学校有穆斯林背景，
+这不能不让已成惊弓之鸟的美国人有所提防。不过，也正因奥巴马有不同于一般美国人的经历，
+他黑白混血的身份、成长环境的转换及后来所受的美国式精英教育让他具备了较宽阔的视野，
+对种族、宗教、法律等问题有较深刻的见解，他在马拉松式竞选过程中也表现出非凡的自信、
+过人的辩才以及突出的个人魅力，他年轻富有活力、文采斐然，跳舞、打球也很有一手，
+需要的时候还非常有幽默感，难怪好多人认定奥巴马有成为“伟大”总统的潜质。</p>
+
+<p>奥巴马直到十岁才返回美国，在檀香山读中学，期间曾尝试过吸大麻及可卡因，
+他后来将这段经历称作自己人生最失败的时刻。此后，他先后进入哥伦比亚大学和哈佛法学院，
+分别取得文学学士和法学博士学位，在哈佛，他还被选为《哈佛法学评论》（HAWARD LAW REVIEW）
+的首位黑人主编。毕业后，他到芝加哥的一家律师事务所工作，
+在那里遇见了他后来的妻子——毕业于普林斯顿及哈佛大学的米歇尔（黑人/律师），
+他们在1992年结婚，并育有两女（十岁和七岁）。1995年，奥巴马的母亲因癌症去世，
+深受其影响的奥巴马非常伤心。1996年他竞选伊力诺依州议员成功，并在2000年成功连任，
+此后，奥巴马的仕途可谓是一帆风顺，从州议员做到联邦参议员，
+并在04年的民主党全国代表大会上发表令人印象深刻的演讲，一夜成名，直到现在一只脚已迈进白宫，
+他的妻子米歇尔也辞去在芝加哥大学的工作，全力辅助奥巴马竞选，跟她丈夫一样，米歇尔长于说辞，
+言谈举止得体，并有良好的时尚品味，她的穿着经常被拿来与前第一夫人杰奎琳及小布什的老妈芭芭拉相比。</p></blockquote>
+
+<p>麦凯恩年轻的时候还是很帅的：</p>
+
+<p><img src="http://web.zju98.org/uploadfile/2008/11/5/7401070990.jpg" alt="麦凯恩与他的第一任妻子卡罗尔" /></p>
+
+<blockquote><p>麦凯恩是越战英雄，做过五年半战俘（战俘也算英雄？这要在某些地方，不把你打成特务就算客气了），
+可算是老骥伏枥，不过属于他的年代似已渐行渐远：连俺们胡主席都经常上网了，
+你麦爷爷还不会发电子邮件，怎么说也与时代脱了点钩。老麦2000年就参选过总统，
+不过在党内提名阶段，就输给了现在人人都躲着走的小布什，八年后，“老迈”卷土重来，
+天时地利人和却都已站在了民主党这边，不能不说是麦凯恩的悲哀。</p></blockquote>
+
+<p><img src="http://web.zju98.org/uploadfile/2008/11/5/7305396782.jpg" alt="no president for old men" /></p>
+
+<p>当健康成为你必须考虑的因素的时候，你再不服老也不行了。同样的话也适用于史蒂夫·乔布斯。
+几年前他被检查出患有胰腺肿瘤，万幸发现是良性，切除之后他又推出了新的 Mac 新的 iPod 新的 iPhone
+新的 iTunes。然而08年初又开始谣言四起曰乔布斯健康情况江河日下，某网站还摆乌龙发了讣告。
+使得乔布斯引用马克·吐温的话说“The concern about my death is greatly exaggerated”。
+还在 Apple Keynote 上特意展示了一下自己的血压。我的建议是他还可以试用一下心跳指示灯，
+将信号投放到各地的 Apple Store：</p>
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/LphuIub29TY&color1=0xb1b1b1&color2=0xcfcfcf&hl=en&fs=1" /><param name="allowFullScreen" value="true" /><embed src="http://www.youtube.com/v/LphuIub29TY&color1=0xb1b1b1&color2=0xcfcfcf&hl=en&fs=1" type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed></object>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/04/technology-makes-a-better-life-or-not/">科技改变生活？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-04T00:00:00+08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2008</time>
+        
+         | <a href="/2008/11/04/technology-makes-a-better-life-or-not/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>上周末写了些，不过瘾。</p>
+
+<p>英国有些保守分子至今认为工业革命之前的社会才是完美，
+然而绝大部分人都主动或被动地拥抱了改变生活的科技。
+在电影里头发展到了我们所能想象的极致，可能当过 imagineer 的人创意就是不一样吧。
+便捷的交通，全自动化的驾驶，为你理发扔垃圾撑遮人造太阳的伞的24小时待命的机器人，
+和可爱且执拗的清洁机器人小M·O。吃的喝的整到了一瓶饮料里头，一辈子躺在那张神奇的躺椅上。</p>
+
+<p>正如 Buy n&#8217; Large 给 axiom 作的广告说的，即使是你年迈的奶奶都能享受这样的乐趣。
+于是最好这口的人类越来越“进化”，越来越适应这样的角色。没有耳廓、朝天鼻、小嘴、几乎没有腿和脚，
+以及电影后头交代的，骨骼越来越少。John 童鞋被 Wall·E
+不小心弄到地上和船长大人被船舵甩到地上的样子都像一滩烂肉。</p>
+
+<p>而人类最好的朋友，机器人们在这里都做了什么事情呢？我们看船长的饮食起居，
+十足明朝皇帝的派头，刷牙洗脸梳头着装（正装成了披风），和像极了阉党头目的船舵。
+再看育婴的机器人，它们给宝宝们灌输的是什么呢？
+“A for axiom, your home, sweet home; B for Buy n&#8217; Large, your friend, best friend.”
+有没有觉得很熟悉啊？</p>
+
+<p>当然我这样说可能太过阴谋论了。然而 Pixar 在此片中对此的态度诸位应该了然。
+因为本片对船员们的生活的讽刺实在太多太多了。</p>
+
+<p>船长：Now i&#8217;m glad to say that we are doing EXACTLY the same thing our ancestors did.
+镜头：虚拟的网球、虚拟的高尔夫、虚拟的 blah blah</p>
+
+<p>俩男的并骑而行，却在用类似 Skype 的玩意在聊天。</p>
+
+<ul>
+<li>甲：我们去打波吧。</li>
+<li>乙：我昨天去过了。</li>
+<li>甲：那你觉得干啥好？</li>
+<li>乙：不知道，总之干点啥。（很像上自习之前的挣扎吧？）</li>
+</ul>
+
+
+<p>而最大最大的讽刺莫过于船长看到 Wall·E 被压成千层糕之后的壮举：
+配着人猿星球中猩猩变人的伴奏，他站了起来！还向前迈出了一步！
+第二步了！他和那太监干上了！</p>
+
+<p>又是一个版本的“我的一小步 人类的一大步”。哈哈</p>
+
+<p>说了这么多题外话，多说一句无妨。</p>
+
+<p>不知诸位可否玩过 Guitar Hero，最近丫出了 GH4，在这版本里头不仅有吉他，还加入了成立一支乐队的其他要素，架子鼓、贝斯以及麦克风。当然，都是简化版的。玩家能够设计自己的造型，有自己的职业生涯，而且游戏宣传者说：“你不用只呆在一支乐队哦”。</p>
+
+<p>然而很多人的评价都是：“Why couldn&#8217;t those guys throw these garbage away then do something production or just form a real band?”。</p>
+
+<p>所以豆瓣也有这么个小组：<a href="http://www.douban.com/group/guandiannao/">你为什么不关掉电脑做爱做的事</a>？</p>
+
+<p>千万不要说现在在电脑上也能干嘛干嘛了。看过《the big bang theory》的看官可能记得这对白，Leonard 邀请 Penny 去玩 Halo：</p>
+
+<ul>
+<li>Leonard: We could have fun.</li>
+<li>Penny: Or we could just have a life.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/11/02/lately-5/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-02T00:00:00+08:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2008</time>
+        
+         | <a href="/2008/11/02/lately-5/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>周末下雨，在家憋了两天。</p>
+
+<p>昨天看了两部电影，《Jarhead》和《浪潮》。前者讲述的是老布什政府当年的海湾战争中的一位籍籍无名一场战争下来一枪未发的非著名狙击手的故事。呆在沙漠里，训练、喝水、白天打枪晚上打手枪、烧大便、继续喝水，等等，就是没能遇上个敌人。这也让即将退伍的与他搭档的观察员崩溃，等到了千载难逢的时机，却又碰上个不尽情里的有点像王志文演的某皇帝的瘸腿将军，愣是没让扣下扳机。美国人在80年代末90年代初的这场战争赢得确实漂亮，也正如该观察员所说，空军打击力量大，袭击迅速，战线推移太快，海军陆战队连冲上去吃枪子的机会都没有。归国之后经历过越战的退伍老兵兴奋难当，却与男猪脚的满脸落寞对比鲜明。电影侧重的是作为士兵的这群20出头的小伙子，虽然也略有提及所谓为国效力只不过是政治谎言，把他们笼络到沙漠里头也不过是为了保护石油公司的输油管道，但是重要的，是这群鲜活的士兵。</p>
+
+<p>《浪潮》讲述的故事略近残酷，基于现实故事改编。某个米国中学教师被改派去教独裁统治，而他主修的却是无政府主义，于是他拿米国的早晨八九点钟的太阳撒气，利用一周的课程时间过了一把独裁领袖的瘾。现实故事里头闹剧以善终收场。而在由德国人拍的这部 die welle （浪潮）中，则付出了流血的代价。独裁复辟有多难？一个星期的时间。电影里头最让我惊讶的就是他们从课堂到堂口的转变方式。称呼老师为先生，扩大领袖与蝼蚁的阶级差距；要求坐姿、开始讲究纪律、统一着装，消除个性。很多人说这部电影让他们想到6、7十年代那个疯狂的时候，他们忘记了，在我们的学校里头，在我们上学的第一天，我们就是这么被要求的。</p>
+
+<p>今天又看了两部电影，《练习曲》和《瓦力》。两部我给了5☆的电影。《练习曲》与《落叶归根》很像。记得以前在88的影版有个帖子讨论公路电影，回复的多是《末路狂花》之类，《落叶归根》被拿来做包袱逗乐。然而明仔环岛遇到的人和事，与赵本山入蜀遇到人和事，其实也几近一脉相承。虽然老赵遇到好人如午马、宋丹丹、胡军、夏雨、养蜂人，还遇到歹人如那肥仔黑店老板、郭德纲这劫匪和那满车“不仗义”，与明仔的一片阳光遍地海洋有些微差别。言归正传，电影最打动人的应该就是明仔那句“有些事情现在不做，将来就不可能去做了”。一辆破旧的脚踏车、一把吉他、一本速写本、还有片尾写在黑板上的几件物事（睡袋、外套、t恤、短裤、内裤、etc.），独自一个人环绕宝岛台湾。这样的事情，宅男如我，这辈子是不大可能去做的了…… 也许正是因为做不了，才心生向往。</p>
+
+<p>《瓦力》。很多人说盛名之下其实难副，更有甚者认为本片比前一阵的 ratatouille （料理鼠王）要差。对我来说，这部片子差不多是我这辈子目前看过最好看的。电影的大部分时间没有对白，情节的铺设交代大部分都靠配音、动作、神态与音乐。虽然元配早已不知丢弃在何处，wall-e 的那双大眼睛实在太过楚楚可怜。从独自一<del datetime="2008-11-02T13:43:19+00:00">人</del>机器在地球上满世界压缩垃圾，在卡车里头看老片子（那种风格的我就看过雨中曲……），与一直压不扁的小强为伴；到遇到 eve（按她自己的发音应该是 eve 吧？wall-e 叫她 eva，ms还因为发音不准被她笑）之后，世界从垃圾转移到了她身上，担心她没电给她日光浴，闲暇时陪她看日落，落雨时给她打伞。前者的落寞像极了如今城市里头每一个陌路人，至少像极了现在的我，和大学里的同学租住在同一个屋檐下，却几乎没有啥共同语言，更别提那位神奇的室友的表哥；后者，后者几乎是每一个小男生的软肋，或者说内心深处最软的所在，她是如此耀眼，我则如此平凡甚至轻贱，就像 wall-e 为了展示自己匆忙压缩的那一坨垃圾，软趴趴，与那声“tadda”如此不相称，每次偷偷地伸出手，都只能默默地收回来，暗恋一个人，太辛苦。在真理号上的那一段，某妇女连接虚拟世界的窗口被 wall-e 不小心关掉了，她才发现身边原来是这样一个世界。从一个阴谋论者的角度出发，舰长和飞船上的其他人从人到猪的“进化”只花了700年时间，机器人甚至可以无视他的命令，连 wall-e 这种小脚色都有自己的个性，我们不难发现机器人们的金箍在这部电影里头ms没啥用处，“船舵”像极了明清时候的太监，潜伏在每个帝皇身后，潜移默化它们自己喜闻乐见的事情，报喜不报忧（隐藏植株与挡奏折其实没啥区别），最终达到他们的目的（在真理号上继续一人之下万人之上，养猪样养着这群没用的人类）。而那两位幸运的终于看清外边的世界的人也算给我提了个醒，日子还是要过的（还有个版本是，工具是拿来用的，别最终让工具控制了你。这句话可以放到 emacs vs. vim，windows vs non-windows，linux vs. bsd，等等）。</p>
+
+<p>昨晚还找了个98代理买吉他，说是考试周结束之后给我拿货。唉，我都不知道啥时候是考试周了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/36/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/34/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

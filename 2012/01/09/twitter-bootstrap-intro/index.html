@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Twitter Bootstrap 框架介绍 - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="第一次听说 Boostrap 是因为同事的 Ruby China，后来在自己负责的项目 一淘UX，后台部分的界面也用到了这个东东，用得有些束手束脚，因此决定把它的介绍看一遍，也给大家做个分享。 Bootstrap 是 Twitter 搞的一个框架，目的是有个工具可以方便快速搞起一个项目， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2012/01/09/twitter-bootstrap-intro">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Twitter Bootstrap 框架介绍</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-09T00:00:00+08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>第一次听说 <a href="http://twitter.github.com/bootstrap/#overview">Boostrap</a> 是因为同事的 <a href="http://ruby-china.org/topics">Ruby China</a>，后来在自己负责的项目 <a href="http://ux.etao.com/">一淘UX</a>，后台部分的界面也用到了这个东东，用得有些束手束脚，因此决定把它的介绍看一遍，也给大家做个分享。</p>
+
+<p>Bootstrap 是 Twitter 搞的一个框架，目的是有个工具可以方便快速搞起一个项目，样式部分使用 Less 写就，也提供了一些 jQuery 插件形式的扩展。对景德镇居民来说，它比较狠的是直接不支持 IE6，许多特效、属性在 IE7、8 里头也是捉襟见肘；因此，如果你的网站放不下这部分用户，还是先不要用了，或者可以参考着整一个自己的版本。Bootstrap 的代码<a href="https://github.com/twitter/bootstrap">托管在 Github</a>，随时可以 fork。</p>
+
+<p>样式方面，它提供了如下解决方案：</p>
+
+<ul>
+<li>栅格系统</li>
+<li>布局</li>
+<li>字体样式</li>
+<li>多媒体展现</li>
+<li>表格</li>
+<li>导航</li>
+<li>警告与提示</li>
+<li>弹出浮层</li>
+</ul>
+
+
+<p>栅格系统与比较著名的 960 Grid 大同小异，不过丫默认是16栏，940像素宽，此外一个特性是，因为 Less 带来的动态语言特性（变量、函数等），可以通过配置几个参数，自定义自己的栅格。因为抛弃了老旧浏览器支持，可以直接用 :last-child 将最后一栏的 margin-right 去掉，这也是它与 960 Grid 的差别之一。</p>
+
+<p>布局也是老生常谈，一个固定宽度的居中，一个可变宽度的浮动布局。</p>
+
+<p>字体设置里的风格比较明显，标题、em、strong、b、i 以及 address，都配了一些样式。在 blockquote 的样式里头，利用 before 属性，加上了个 &amp;dash;。然后是列表，通过 .unstyled 类，获得样式充值效果；这个方式其实我也比较喜欢，特别是网站是以内容为主的时候。代码块也比较朴素，推荐了 <a href="http://code.google.com/p/google-code-prettify/">Google Code Prettify</a>。</p>
+
+<p>接着这个就比较贴心的了，很常用的 eye candy，内敛标签。</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.35.49-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.35.49-PM.png" title="Screen Shot 2012-01-09 at 9.35.49 PM" alt="" /></a></p>
+
+<p>多媒体列表其实也比较简单，明确了三种缩略图尺寸 330x230、210x150 和 90x90。至于你的网站如何做，可能还是悉听尊便吧。表格的样式也是简约风格。</p>
+
+<p>Bootstrap 对表单做了比较充分的定制，风格上比较明确，label 左浮动，圆角输入框。正确、错误的状态，表单 legend 的字号，前缀字符，输入、复选框等。文件选择的东东比较朴素，基本是老样子，也没有采用一些风骚的解决方案（那些基本需要与 JavaScript 配合搞）。表单的按钮也十分细致。</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.42.59-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.42.59-PM.png" title="Screen Shot 2012-01-09 at 9.42.59 PM" alt="" /></a></p>
+
+<p>网站的全局导航栏，风格一以贯之，使用样式实现背景色渐变，固定在头部；同样，因为不需要考虑老旧浏览器，放心地 position: fixed; 就够了。</p>
+
+<p>此外，还实现了提示、警告：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.46-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.46-PM.png" title="Screen Shot 2012-01-09 at 9.45.46 PM" alt="" /></a></p>
+
+<p>区块风格的消息提示：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.46.05-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.46.05-PM.png" title="Screen Shot 2012-01-09 at 9.46.05 PM" alt="" /></a></p>
+
+<p>面包屑导航：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.34-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.34-PM.png" title="Screen Shot 2012-01-09 at 9.45.34 PM" alt="" /></a></p>
+
+<p>翻页：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.56.10-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.56.10-PM.png" title="Screen Shot 2012-01-09 at 9.56.10 PM" alt="" /></a>
+以上是样式的部分，是 Bootstrap 框架的主打。在代码上，基本把样式重置与定制都做掉了，上述内容，出了比较明显的组件如面包屑、翻页等，基本都是直接用标签做选择器的。不过，框架就该简单直接，对吧？有许多风格是利用较新的样式属性搞出来的，最明显的莫过于背景色渐变与圆角（gradient、border-radius、box-shadow 等）。因此，对于图省事、不介意老浏览器看起来效果差些，IE6 不需要管的开发者，Bootstrap 是个好选择，省时省力，美观大方。</p>
+
+<p>在样式之外，Bootstrap 还提供了几个常用的 JavaScript 实现的效果。模态框、提示浮层、表格的排序等等，jQuery 插件的形式。夜了，按下不表。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-09T00:00:00+08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/computer/'>Computer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2012/01/09/twitter-bootstrap-intro/" data-via="dotnil" data-counturl="http://cyj.me/2012/01/09/twitter-bootstrap-intro/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/01/05/rmagick-minimagick-imagemagick-graphicsmagick-diff/" title="Previous Post: RMagick、MiniMagick、ImageMagick、GraphicsMagick 傻傻分不清楚">&laquo; RMagick、MiniMagick、ImageMagick、GraphicsMagick 傻傻分不清楚</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/02/28/move-onto-octopress/" title="Next Post: 搬家到 Octopress">搬家到 Octopress &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2012/01/09/twitter-bootstrap-intro/';
+        var disqus_url = 'http://cyj.me/2012/01/09/twitter-bootstrap-intro/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

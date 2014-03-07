@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>XHTML 2 介绍 - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="今天是五四青年节，左右无事，翻译 W3C 文章一篇。 via ====翻译的分割线==== 本文是介绍性质的，不属于文档定义的范畴。 1.1 什么是 XHTML 2 XHTML 2 是个为互联网文档展示所设计的通用标记语言。因此，它并不尝试大而全，
+满足每一个可能的标记习语， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2009/05/04/introducing-xhtml-2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">XHTML 2 介绍</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-04T00:00:00+08:00" pubdate data-updated="true">May 4<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>今天是五四青年节，左右无事，翻译 W3C 文章一篇。</p>
+
+<p><a href="http://www.w3.org/TR/xhtml2/introduction.html">via</a></p>
+
+<p>====翻译的分割线====</p>
+
+<p>本文是介绍性质的，不属于文档定义的范畴。</p>
+
+<h3>1.1 什么是 XHTML 2</h3>
+
+<p>XHTML 2 是个为互联网文档展示所设计的通用标记语言。因此，它并不尝试大而全，
+满足每一个可能的标记习语，而是提供一个广为使用的元素集合，
+以及可以通过在<code>span</code>和<code>div</code>元素上使用<code>class</code>和<code>role</code>属性结合样式表单的可扩展性，和自带的初始属性集和。</p>
+
+<h4>1.1.1. 设计目标</h4>
+
+<p>在设计 XHTML 2 的过程中，奉行了一些设计主导思想来指引设计。包括：</p>
+
+<ul>
+<li>尽量通用的 XML：如果 XML 已有，就不再复制，而是使用已有的。</li>
+<li>更少的形式，更多的结构：页面形式交给样式表单去打理。</li>
+<li>更好的可用性：在 XML 的规范下，试着让 XHTML 易于书写，写就的文档易于使用。</li>
+<li>更好的可接入性：有人称之为 “为未来的自己设计” —— 文档设计尽量包容。</li>
+<li>更好的国际化：因为是互联网诶。</li>
+<li>更好的设备独立性：越来越多的新设备能上网了，比如电话、个人数字助理（PDA）、
+桌面电脑、电视等等，意味着有必要存在一个允许你书写一次并在不同设备上分别以不同方式展现的设计，
+而非为每个设备都弄个新的文档版本。</li>
+<li>更少的脚本：通过脚本实现功能对文档作者来说是一大困难，同时限制了可用以阅读该文档的客户端。
+我们试着研究了目前的典型用例，并将它们包括在了标记语言中。</li>
+<li>与语义化网络整合：让 XHTML 2 能被语义化网络工具所处理。</li>
+</ul>
+
+
+<h4>1.1.2 向后兼容</h4>
+
+<p>因为早期的 HTML 版本都是专项语言，所以有必要保证新版本的向后兼容性，使得新的文档依然能够在老浏览器中可用。
+但是，多亏了 XML 和样式表单，如此元素级别的向后兼容已经没有必要了，因为基于 XML 的浏览器
+（在笔者写著此文时，已经意味着95%的在使用的浏览器）都能不更新即可解析新的标记语言。
+许多 XHTML 2 的成果已经在现有的浏览器中存在了；许多，但不是全部：就像当初 <code>form</code>跟<code>table</code>添加到 HTML 里头，
+人们得等到新版本的浏览器出来才能使用这些功能一样，XHTML 的某些部分，主要是 XForms 和 XML 事件，
+依然需要能够处理该功能项的客户端（出现）。</p>
+
+<h4>1.1.3 XHTML 2 与形式表现</h4>
+
+<p>最初的 HTML 是为了展现文档的结构而设计的，而非它的形式表现。
+虽然以形式表现为目的的标签元素后来被浏览器产商加入到该语言中，HTML 依然又一颗结构化文档标记语言的心。
+XHTML 2 将 HTML 带回到它的根本。将所有形式展现的标签去除，归入到样式表单中。
+这带来了更好的弹性、可接入性，更好的设备独立性，以及因为样式表单比元素标签更强而带来的更强大的表现性。</p>
+
+<h4>1.1.4 XHTML 2 与链接</h4>
+
+<p>HTML 的早期版本依赖于客户端和其他文档解析器的自身的认知能力。虽然许多都与文档表现有关（见上文），
+但大部分与处理文档间的关系有关 —— 即所谓的“链接”。</p>
+
+<p>种种 W3C 和其他努力，比如最令人瞩目的 [<a href="http://www.w3.org/TR/xhtml2/references.html#ref_XLINK">XLINK</a>]，
+试着建立一种定义链接文字的语法规范。悲剧的是，这些语法都未能满足 XHTML 的要求。
+大家都还在上下而求索一个综合性的描述链接文意的语法。</p>
+
+<p>HTML 标准指定小组认为如此语法，虽然很有用，但对定义 XHTML 2 来说并非必要。以下不晓得怎么翻译好：</p>
+
+<blockquote><p>Instead, this document is explicit in the characteristics of the elements and attributes
+that are used to connect to other resources. The Working Group has taken this course because 1)
+the problem with XHTML 2 is well bounded, 2) the general solution is slow in coming, and 3)
+it will be easier for implementors to support and users to rely upon.</p></blockquote>
+
+<h3>与 XHTML 1 的主要区别</h3>
+
+<p>XHTML 2 希望被 HTML 和 XHTML 1 的著者们认同，同时更正 HTML 家族中早期版本的错误和不足，并为伺机改进。</p>
+
+<p>最显著的改变有以下：</p>
+
+<ul>
+<li>更多的结构可能性</li>
+<li><code>section</code> 与 heading 不得不说的故事：先前的 HTML 文档结构需要从文档中的 heading 推测出来；
+如果作者为了取得某些视觉效果错用了 heading 标签，那问题就大了。XHTML 2 允许你显式地用
+<a href="http://www.w3.org/TR/xhtml2/mod-structural.html#edef_structural_section"><code>section</code></a>
+和与它相对应的 <a href="http://www.w3.org/TR/xhtml2/mod-structural.html#edef_structural_h"><code>h</code></a> 来标明文档的结构，</li>
+<li>我想做条分割线：在 HTML 的前期版本中，<code>hr</code> 标签被用来分隔文档。回想一下，标签名
+<code>hr</code>（Horizontal rule，水平直线） 非常误导人，因为一个 <code>hr</code> 一并不一定是水平的（在竖版文档中它是纵向的），
+二并不一定是条直线（书籍经常使用其他印刷符例如三个直线排布的星号来作为分隔符，而样式表单也能让你做到这一点）。
+为了突出该标签的结构化的本性，让它更广为使用，并使它不再误导人，
+<code>hr</code> 改名 <a href="http://www.w3.org/TR/xhtml2/mod-structural.html#edef_structural_separator"><code>separator</code></a></li>
+<li>换行符：先前 HTML 版本中，<code>br</code>标签用来让文本换行。在 XHTML 2 里头它将被
+<a href="http://www.w3.org/TR/xhtml2/mod-text.html#edef_text_l"><code>l</code></a> 标签代替。该标签将需要换行的文本括起来。
+除了一些为人熟知的好处之外，该标签还给予了更多的形式表现能力，例如自动显示行号，每行文字交替着色之类。</li>
+<li>段落结构：以前的 HTML 中，<a href="http://www.w3.org/TR/xhtml2/mod-structural.html#edef_structural_p"><code>p</code></a>
+只能包含简单的文本。新版本中它有所增强，允许包含列表和表单，使得它更像人们所数值的“段落”。</li>
+<li>导航列表：XHTML 2 的制定有部分是基于对现有 HTML 的观察而做的拾遗补缺，例如目前通过脚本语言来实现的 HTML 没有的功能。
+一个显著的组件是“导航列表”，由连接到网站其他部分的链接组成，横向、纵向，或者下拉。为了支持这种使用方式，
+XHTML 2 引入了导航列表标签 <a href="http://www.w3.org/TR/xhtml2/mod-list.html#edef_list_nl"><code>nl</code></a>，
+用来标记文档中相应的部分，并提供各种可能的表现风格。一个额外的优点是，辅助技术能够避过这些标签。</li>
+<li>图片：HTML <code>img</code> 标签有许多让人不爽的地方：只允许你指定一张图片资源，而不是提供后备；
+唯一的后备选项就是 <code>alt</code> 文本，而它只是个属性，只能是文本，而不能标记扩展；而 <code>longdesc</code> 属性很麻烦并且很少有浏览器支持。</li>
+</ul>
+
+
+<p>XHTML 2 采用了完全不同的方式。by taking the premise that all images have a long description and treating the image and the text as equivalents.</p>
+
+<p>在 XTHML 2 里头任一标签都有个 <code>src</code> 属性，用以指定一个让浏览器载入的资源（例如图片）。如果该资源不可用（因为网络挂了，因为浏览器不知道怎么搞定该类型的资源，或者因为图片被浏览器关掉了），那么该标签就作为后备而采用。
+ Essentially the longdesc has been moved into the document, though this behavior also mimicks the fallback behavior of the object element. (To achieve the tooltip effect that some browsers gave with the alt attribute, as in HTML 4 you use the title attribute).
+ - 类型：在 HTML 4 里头，<a href="http://www.w3.org/TR/xhtml2/mod-embedding.html#adef_embedding_srctype"><code>srctype</code></a>
+   属性用来提示客户端该资源的类型。在 XHTML 2 里头它不再是提示，而是强制。
+ - 表格：清理了，简化了，功能上还是一样的。
+ - Bi-directional text: rather than use an explicit element to describe bi-directional override,
+   new values have been added to the dir attribute that allow bi-directional override on any element. （这个不懂）
+ - 编辑：与其使用 <code>ins</code> 和 <code>del</code> 来标记文档的更改历史，
+   <a href="http://www.w3.org/TR/xhtml2/mod-edit.html#adef_edit_edit"><code>edit</code></a>
+   属性能够用来标记文档中的任一标签来实现同样的事情。
+ - 链接们：HTML 3 里头，只有 <code>a</code> 标签能够作为超链接的源和目标。在 HTML 4 和 XHTML 1 里头，
+   任何元素可以作为超链接的目标，但是只有 <a href="http://www.w3.org/TR/xhtml2/mod-hypertext.html#edef_hypertext_a"><code>a</code></a> 可以作为源。
+   在 XHTML 2 里头任何标签都可以作为超链接的源，因为 <a href="http://www.w3.org/TR/xhtml2/mod-hyperAttributes.html#adef_hyperAttributes_href"><code>href</code></a>
+   现在可以作为任一元素的属性。所以举个例子，不用再 &lt;li&gt;&lt;a href=&#8221;home.html&#8221;&gt;Home&lt;/a&gt;&lt;/li&gt;，
+   现在可以写 &lt;li href=&#8221;home.html&#8221;&gt;Home&lt;/li&gt;。虽然如此以来 <code>a</code> 显得很多余，但它还是被保留了下来。
+ - Metadata: the meta and link elements have been generalized, and their relationship to RDF [RDF] described. Furthermore, the attributes on these two elements can be more generally applied across the language.
+ -  Role: in order to aid adding semantics to documents, the role attribute has been added, along with an initial set of useful values, in order to classify the use of a particular element. For instance a paragraph may play the role of a note, and so may be marked up &lt;p role=&#8221;note&#8221;&gt;.
+ - Events: event handling in HTML was restricted in several ways: since the event names were hard-wired in the language (such as onclick), the only way to add new events was to change the language; many of the events (such as click) were device-specific, rather than referring to the intent of the event (such as activating a link); you could only handle an event in one scripting language — it was not possible to supply event handlers in the same document for several different scripting languages.</p>
+
+<p>XHTML 2 uses XML Events [XMLEVENTS] to specify event handling, giving greater freedom in the ability to handle events. Along with this, the script element has been renamed handler to indicate its different semantics.</p>
+
+<ul>
+<li>Forms: HTML Forms were introduced in 1993, before the advent of the e-commerce revolution. Now with more than a decade of experience with their use, they have been thoroughly overhauled and updated to meet the needs of modern forms, in the shape of XForms [XFORMS], which are an integral part of XHTML 2.</li>
+<li>Ownership where due: since HTML 4 was a standalone application, it defined many things which no longer need to be defined now that it is an XML application. For instance the definitions of whitespace are given by XML for input, and CSS for output; similarly, the definition of values of the media attribute are relegated to the relevant style sheet language.</li>
+<li>Frames and Framesets: In HTML 4 multi-panel &#8220;pages&#8221; could be described using the frameset and frame elements. The Frames model is no longer defined in XHTML. Instead, if is defined through the separate [XFRAMES] specification.</li>
+</ul>
+
+
+<p>====翻译了一半累了，总结一下====</p>
+
+<p>我果然当不了翻译……</p>
+
+<p>单从标记语言来说最显著的可能是 <code>src</code> 跟 <code>href</code> 属性，从今后的 JavaScript 民工生涯来说最显著的可能是 <a href="http://www.w3.org/TR/xhtml2/references.html#ref_XFORMS">XForms</a> 跟 <a href="http://www.w3.org/TR/xhtml2/references.html#ref_XMLEVENTS">XMLEvents</a>。以上只是对该文的字面理解…… 具体背后标准如何我其实没有深究。</p>
+
+<p>XHTML 2 离我们还很远，有多远？至少比 <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">HTML 5</a> 远。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-04T00:00:00+08:00" pubdate data-updated="true">May 4<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/computer/'>Computer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2009/05/04/introducing-xhtml-2/" data-via="dotnil" data-counturl="http://cyj.me/2009/05/04/introducing-xhtml-2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/05/03/seniors-book-what-makes-you-a-programmer/" title="Previous Post: 学长们的书——《程序员的自我修养》">&laquo; 学长们的书——《程序员的自我修养》</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/05/04/using-mysql/" title="Next Post: MySQL 使用一二">MySQL 使用一二 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2009/05/04/introducing-xhtml-2/';
+        var disqus_url = 'http://cyj.me/2009/05/04/introducing-xhtml-2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

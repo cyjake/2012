@@ -1,0 +1,908 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="要理解 Git 的工作方式，首要大事就是明白它的版本控制方式与 Subversion（SVN）、Perforce 或者其他任何你用过的源码管理工具都是不同的。通常，把原先的理解全部忘掉，反而更容易了解 Git。 让我们从头开始。假设你正要设计一个源码管理系统。在你使用一个版本控制工具之前， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/4">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/27/thinking-in-git/">怎样以 Git 的方式思考</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-27T00:00:00+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2011</time>
+        
+         | <a href="/2011/02/27/thinking-in-git/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>要理解 Git 的工作方式，首要大事就是明白它的版本控制方式与 Subversion（SVN）、Perforce 或者其他任何你用过的源码管理工具都是不同的。通常，把原先的理解全部忘掉，反而更容易了解 Git。</p>
+
+<p>让我们从头开始。假设你正要设计一个源码管理系统。在你使用一个版本控制工具之前，是怎么完成最基本的版本控制工作的呢？很有可能想下边这样，把你的项目文件夹作一份拷贝：</p>
+
+<pre><code>$ cp -R project project.bak 
+</code></pre>
+
+<p>这样，如果接下去对 project 做了坏事，还有备胎（project.bak）可以救火；或者看看最新的项目和作拷贝时的项目的对比，看看做了哪些改动。</p>
+
+<p>如果你是个偏执狂，那么你可能经常这样做，为每个备胎加一个时间戳：</p>
+
+<pre><code>$ cp -R project project.2010-06-01.bak 
+</code></pre>
+
+<p>这样，你就有了一堆项目备胎可以随时查看、比较。你还可以以此模式有效地与人分享项目的改动。如果你给到了一定阶段的项目打个包，丢到网站上，别的开发人员就能下载到它，并把改动的地方打个补丁，发送给你。</p>
+
+<pre><code>$ wget http://sample.com/project.2010-06-01.zip
+$ unzip project.2010-06-01.zip
+$ cp -R project.2010-06-01 project-my-copy
+$ cd project-my-copy
+$ (change something)
+$ diff project-my-copy project.2010-06-01 &gt; change.patch
+$ (email change.patch)
+</code></pre>
+
+<p>现在项目原来的开发者就能收到，并将补丁打到项目里头去了。许多开源项目都曾以这种模式进行过多年时间。</p>
+
+<p>事实上，这模式挺好用，现在我们要做的工作是，把这个模式流程化，弄个工具，让它更快、更容易。与其像 Subversion 那样记录每个文件的版本，我们更乐意有个工具能够不用通过复制文件夹来存储整个项目的快照。</p>
+
+<p>这就是 Git 的关键所在。通过命令 <code>git commit</code> 告诉 Git 记录一下当前的项目快照。而 Git 就会记下当前项目的结构、文件。</p>
+
+<p>所以，只要你把 Git 看成为你的项目提供记录快照，并对这些快照做比较、合并、删除等操作的工具，就能为日后使用打开方便理解之门了。</p>
+
+<hr />
+
+<p>翻译自 <a href="http://gitref.org/">gitref.org</a>，不知道是否有人做过这工作。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/25/activemodle-gotcha/">ActiveModle 的一个小 Gotcha</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00+08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+         | <a href="/2011/02/25/activemodle-gotcha/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>错误信息：</p>
+
+<pre><code>ActiveModel::MissingAttributeError in ComponentsController#update
+missing attribute: name
+</code></pre>
+
+<p>提示错误的源头是 model 里头通过 after_find 注入的方法中，self.name 这句挂掉了。name 属性自然是有定义的，这就让人很摸不着头脑。</p>
+
+<p>tl;dr 的请看：在出错的方法里头加一句判断</p>
+
+<pre><code>return unless self.attribute_present?(:name)
+</code></pre>
+
+<p>就可以了。</p>
+
+<p>第一次碰上这个的时候很无厘头，后来发现是当 model 的 validation 流程挂掉的时候才出现的。一开始向暴力解决问题，便加上一句 <code>self.instance_variable_defined?(:@name)</code> 期待能解决问题，然而这句实实在在的返回的是 false。然后 <code>self.inspect</code> 一下，才晓得 ActiveRecord 类中对数据库中的字段属性并不是直接以类变量定义的，要查看模型中是否有相应的字段，得用 <code>self.attribute_present?(:name)</code>。inspect 的时候，还顺带找到了错误根源，当 model.save 挂掉的时候，rails 不知道搞什么，要去找导致错误的另一个 model （当校验 uniqueness 的时候）。而且该 model 返回的数据里头除了 <code>id</code> 属性神马也没有。但是也会去调 after_find，于是就挂了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe/">IE 6、7 中在 Iframe 中操作父窗口 DOM 的时候的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
+        
+         | <a href="/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>错误信息：<code>Invalid argument error using AppendChild</code></p>
+
+<p>具体情况是，在 iframe 中的页面里头，写：</p>
+
+<pre><code>var node = document.createElement('div');
+parent.document.body.appendChild(node);
+</code></pre>
+
+<p><a href="http://www.workcss.com/Javascript/20100803122.html">解决办法</a>是，使用父窗口的 <code>document</code> 对象创建 HTMLElement：</p>
+
+<pre><code>var doc = parent.document, node = doc.createElement('div');
+doc.appendChild(node);
+</code></pre>
+
+<p>不过我在 IE6 下还是遇到这个问题，实在搞不懂为神马，暂且压着。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/18/using-rails-3/">使用 Rails 3 一二</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-18T00:00:00+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2011</time>
+        
+         | <a href="/2011/02/18/using-rails-3/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天把做的项目发布到测试机，RedHat Linux，出了个小问题。数据读取的时候都好的，插入的时候挂掉了，SQLite 说找不到数据文件。</p>
+
+<pre><code>`SQLite3::SQLException: unable to open database file
+`
+</code></pre>
+
+<p>这个属于比较明显的权限问题。看数据文件的权限是没问题的，都已经是 777 了。后来才晓得是数据文件所在目录也需要加权限，真是土鳖了。看来 UNIX 神马的，要拾起来了。</p>
+
+<p>另一则。</p>
+
+<p>有个 model 储存的时候，希望如果只改了某一个属性的话，就绕过 before_save，Google 一下发现<a href="http://ryandaigle.com/articles/2008/3/31/what-s-new-in-edge-rails-dirty-objects">在 Rails 里头还真是 tmd 简单</a>。有几个很方便的语法糖：</p>
+
+<pre><code>`model.&lt;field&gt;_changed? # true / false
+model.&lt;field&gt;_was # orginal value
+model.&lt;field&gt;_change # ['origin', 'new']
+
+# 有变更的属性的列表
+article.changed  #=&gt; ['title']
+
+# 有变更的属性的 map
+article.changes  #=&gt; { 'title' =&gt; ["Title", "New Title"] }
+article.changed?  #=&gt; true
+article.save  #=&gt; true
+article.changed?  #=&gt; false
+`&lt;/field&gt;&lt;/field&gt;&lt;/field&gt;
+</code></pre>
+
+<p>如果属性变更不是通过 <code>attr=</code> 方式调用，但又想让 model 知道有改动的。还可以调用</p>
+
+<pre><code>`model.&lt;field&gt;_will_change!
+# 如
+article.title_will_change!
+article.title.upcase!
+article.title_change  #=&gt; ['Title', 'TITLE']
+`&lt;/field&gt;
+</code></pre>
+
+<p>Rails 在这方面真是越走越远了。当初第一次看到 <code>6.hours</code> 之类的语法时，直接晕菜的想法都有了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/14/send-mail-via-gmail-in-actionmailer-3/">让 ActionMailer 3 使用 Gmail 发送邮件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-14T00:00:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2011</time>
+        
+         | <a href="/2011/02/14/send-mail-via-gmail-in-actionmailer-3/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>发送邮件的方法很简单，继承 <code>ActionMailer::Base</code>，实现个发送邮件的方法：</p>
+
+<pre><code>`# app/models/notifier.rb  
+class Notifier &lt; ActionMailer::Base  
+  default_url_options[:host] = "authlogic_example.binarylogic.com"  
+
+  def password_reset_instructions(user)  
+    subject       "Password Reset Instructions"  
+    from          "Binary Logic Notifier "  
+    recipients    user.email  
+    sent_on       Time.now  
+    body          :edit_password_reset_url =&gt; edit_password_reset_url(user.perishable_token)  
+  end  
+end
+`
+</code></pre>
+
+<p>然后调用 <code>Notifier.password_reset_instructions(current_user).deliver()</code> 就可以了。以上方法来自 Ben Johnson 的 <a href="http://www.binarylogic.com/2008/11/16/tutorial-reset-passwords-with-authlogic/">Authlogic Password Reset 教程</a>。</p>
+
+<p>看起来很容易，对吧？发送邮件背后的苦工是 ActionMailer，它会找到 Rails 所在的机器上的 <a href="http://en.wikipedia.org/wiki/Sendmail">sendmail</a>，使用该服务把邮件发送出去。而当我们在本地开发的时候，机器上通常都不会有而且也懒得配置复杂的 sendmail 服务。这个时候，不妨用 gmail 来将就一下。</p>
+
+<p><a href="http://lindsaar.net/2010/3/15/how_to_use_mail_and_actionmailer_3_with_gmail_smtp">使用 gmail 的方法</a>也简单，注册个 <a href="http://mail.google.com">gmail</a> 帐号，并告诉 ActionMailer 使用 SMTP 的方式发送邮件，附上 gmail 账户参数，即可。</p>
+
+<pre><code>`# config/enviroments.rb
+ActionMailer::Base.smtp_settings = {
+  :address              =&gt; "smtp.gmail.com",
+  :port                 =&gt; 587,
+  :domain               =&gt; 'your.host.name',
+  :user_name            =&gt; '&lt;username&gt;',
+  :password             =&gt; '&lt;password&gt;',
+  :authentication       =&gt; 'plain',
+  :enable_starttls_auto =&gt; true
+}
+`&lt;/password&gt;&lt;/username&gt;
+</code></pre>
+
+<p>如果还是不成，试试重启服务吧。</p>
+
+<p>除此之外，还有个<a href="http://cowoo.javaeye.com/blog/36627">曲线救国的方法</a>。我们可以告诉 ActionMailer 去找另外的邮件发送服务，再通过该服务调用 gmail 的 SMTP 方式来发送邮件。这个服务名叫 msmtp，我试了下，可能是 ActionMailer 3 的关系，不好使。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue/">在 Rails 3 中使用 Authlogic 的一个小问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-25T00:00:00+08:00" pubdate data-updated="true">Jan 25<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近组里头有个小项目，交给我做。我赶时髦用的 Rails 3，加入 Authlogic 的时候碰到些问题。</p>
+
+<pre><code>`undefined method `to_key' for #&lt;usersession: no credentials provided&gt;
+`&lt;/usersession:&gt;
+</code></pre>
+
+<p>按照 <a href="http://railscasts.com/episodes/160-authlogic">railscasts 的 authlogic 入门</a>，一步步走下来，到创建用户登录表单的时候，在 Rails 3 中会碰到问题，丢出上面这个错误。Google 一看，在 Railsplugins.org 上<a href="http://railsplugins.org/plugins/56-authlogic">碰到这个问题的人</a>还真不少。</p>
+
+<p>有一个比较简单直接的解决办法，修改 Rails 工程中的 Gemfile，把 authlogic 这个 gem 指向另外一个家伙临时 fix 的版本：</p>
+
+<pre><code>`gem 'authlogic', :git =&gt; 'git://github.com/odorcicd/authlogic.git', :branch =&gt; 'rails3'
+`
+</code></pre>
+
+<p>就木有问题了。</p>
+
+<p>然而问题还没有严重到要直接切换分支的程度。有位黑人兄弟<a href="http://techoctave.com/c7/posts/37-authlogic-and-rails-3-0-solution">指出了这么做的坏处</a>：</p>
+
+<ol>
+<li>这并非官方版本，而官方版本也没有老掉牙，作者还在更新。</li>
+<li>这么做并不保险。</li>
+<li>还有个更简单的解决办法。</li>
+</ol>
+
+
+<p>先看问题的起因。Rails 3 的 Routing 机制改变很大，routes.rb 不再像以前那么肥了。然而也引起了 authlogic 的问题。有两件事情它做不了了：</p>
+
+<ol>
+<li>authlogic 不能将 username/password 创建成 <code>:user_session</code>，导致 params[] 获取的时候出问题了</li>
+<li>authlogic 不知道该把哪个方法绑定到表单上去，导致 <code>/app/controllers/user_sessions_controll.rb</code> 里的 <code>create</code> 方法木有被召唤到。</li>
+</ol>
+
+
+<p>所以，相应的也就有了解决办法：把 <code>/app/views/user_session/new.html.erb</code> 修改一下，原先可能是：</p>
+
+<pre><code>`&lt;%= form_for @user_session do |f| %&gt;
+`
+</code></pre>
+
+<p>改成：</p>
+
+<pre><code>`&lt;%= form_for @user_session, :as =&gt; :user_session, :url =&gt; { :action =&gt; "create" } do |f| %&gt;
+`
+</code></pre>
+
+<p>当然，也有个简单直接暴力的办法，给 <code>/app/models/user_session.rb</code> 加上 <code>to_key</code> 方法。不太好，最好别这么做。</p>
+
+<hr />
+
+<p>一知半解，差不多全是翻译自 <a href="http://techoctave.com/c7/posts/37-authlogic-and-rails-3-0-solution">这里</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/01/15/summary-of-works-done-in-recent-3-months/">近三个月工作小结</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-15T00:00:00+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/15/summary-of-works-done-in-recent-3-months/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>接手的第一个项目是热卖搜索的结果页面，切图神马的工作，我考虑的东西太多，做得有些细，动作就慢了些。中间边用边学 <a href="http://docs.kissyui.com/kissy/docs/">Kissy</a>，也纠结了一会。也因为接手比较晚，没参加需求评审的过程，做得过程中也出了许多误会，性子太急，关心则乱。不管怎么说，总算是完成了。</p>
+
+<p>然后是钻石展位的东东。这个项目也有些时间了，也有些积累，然而有许多部分终归是过时了些，尤其是 <code>vm</code> 里头经常出现模版引擎与脚本合写等情况，让页面逻辑独立化的工作碰到许多麻烦。在这个过程中，最终确定要用的 <code>js</code> 框架是 YUI3，也是边用边学，好在文档丰富，比尚显稚嫩的 Kissy 好多了。经手的第一期日常开发，因为积累的东西比较多，又野心比较大，改了许多地方，兼容性的考虑也不够，提交、测试神马的，比原先估计的时间晚了些些。PD 在这方面催的很紧。</p>
+
+<p>之后，陆陆续续开始动手多模块化之类的工作，因为 DRY 是很不错的思想。因为项目规模尚小，使用量还处在逐渐上升的阶段，而我又对公司内部这些流程了解不够，有许多东西都还木有弄好，也将是我后续的主要工作之一。</p>
+
+<p>期间，热卖搜索的东东做了许多小改版，删删改改了许多东西，就顺带把原先丑陋的样式合并掉，<code>js</code> 简化掉。因为 Ajax 部分的功能越来越多，原先的结构显得十分寒碜，后续就要做这一部分的优化、重构。</p>
+
+<p>在这俩事情中间，如今又要开始学一门新语言了，Ruby，和一个新 Web 框架，Ruby on Rails。因为要参与到组里的一个私产项目里头去，而原先的开发正式跑路去别的部门专心作 Mac 开发了。此外，组里还在做组建库整理的工作，我算是自告奋勇，申请去做组建库平台的开发，希望能够边干边学，掌握这颗红钻石。</p>
+
+<p>综上所述，成绩平平，野心还是有的。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/01/14/varieties-of-issues/">各种问题记录一二</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-14T00:00:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/14/varieties-of-issues/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近转去用 Vim，安装了 <code>rails.vim</code>, <code>NERDTree</code> 和 <code>snipMate</code>，感觉足够用了。没有啥特别原因，也没觉得 Emacs 有啥不好。而且说起来，虽然 Emacs 是迄今为止用得最多的，但 Vim 是用的最早的。大二的时候学 C++，当时的老师就一直推荐。</p>
+
+<p>配置的过程中设字体碰到些问题，后来查到正确方式是：</p>
+
+<ol>
+<li>从菜单选择字体</li>
+<li>:set guifont? 查看输出</li>
+<li>把输出写到 .vimrc 里头去，就欧了。如果输出内容含空格，则需要反斜杠 <code>\</code> 转义。</li>
+</ol>
+
+
+<p>组里有个项目，前后端都是自己搞的，后台用的 Ruby on Rails。这东西在 Windows 下不太好使（很多东西在 Windows 下都不好使），尤其是安装一些 gem 的时候。如今看来最妥帖的方式是安装 <a href="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit">DevKit</a>，然后安装 gem 的时候则使用</p>
+
+<pre><code>gem install rdiscount --platform=ruby
+</code></pre>
+
+<p>当然，如果你喜欢淳朴一点的方式，也可以。<code>gem list -r rdiscount</code>，看看 rubyforge 里头有木有 mswin32、mingw 的预编译版本，如果有，指定安装就可以了。比如 <code>bluecloth</code>：</p>
+
+<pre><code>gem list -r bluecloth
+</code></pre>
+
+<p>返回</p>
+
+<pre><code>*** REMOTE GEMS ***
+
+BlueCloth (1.0.1)
+bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
+</code></pre>
+
+<p>因此安装 2.0.7 版本就木有问题了。</p>
+
+<pre><code>gem install blutcloth -v 2.0.7
+</code></pre>
+
+<p>不管怎么说，还是有些麻烦。所以我又整了个虚拟机，在 VirtualBox 里头装了个 Arch Linux。装好之后，照例要装 guest-addtions 神马的，没想到神奇的是默认装好之后就有了。在 <code>/etc/rc.d/</code> 下已经有了 <code>rc.vboxadd</code>，并且不需要人肉将它加到 <code>rc.conf</code> 的 DAEMONS 里头去，只需要在 MODULES 里加上 vboxvideo、vboxsf （如果有用到的话）就可以了。</p>
+
+<p>vboxvideo 用于 X11 的显卡驱动，可以方便添加一些 vesa 不支持的分辨率，比如 1680x1050。vboxsf 则是共享数据空间需要用到的。VirtualBox 支持共享数据空间（那个 VM 平台还不支持呢），可以将宿主机的任意文件夹以共享数据空间的形式加到客户机上去。在我这个例子中，就是 Windows 是宿主机，客户机则是 Arch Linux。我增加了个数据空间，<code>C:\User\yicai.cyj</code> 并给它起别名叫做 yicai.cyj，然后在客户机里头，我只需要</p>
+
+<pre><code>mount -t vboxsf yicai.cyj /media/win7home 
+</code></pre>
+
+<p>就可以了。<code>/media/win7home</code> 是客户机上的挂载点（mount point），如果不存在，<code>mkdir</code> 一下就可以了，名字任取，似乎必须在 /mnt/ 或者 /media/ 目录下。<code>yicai.cyj</code> 就是共享数据空间的别名。</p>
+
+<p>然而有个乱码问题还没有解决。</p>
+
+<p>这篇文章好像火锅，什么都放进去煮，吃出来都是海鲜川崎的味道。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/01/04/experiencing-kindle/">Kindle 使用记录一二</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-04T00:00:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/04/experiencing-kindle/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>去年十一年后入的 <a href="http://amazon.com/kindle">Kindle 3 最朴素版</a>，入手之后一直很朴素地看看英文免费小说、自己放进去的 pdf 神马的。前一阵有同事推荐 <a href="http://calibre-ebook.com/">calibre</a>，转换 epub 神马的灰常方便，新年新气象，就动手装了个。</p>
+
+<p>calibre 设置里头，语言选择中文的话，转换文件的时候会有问题，显示 Value Error: Unsupported format character &#8216;$&#8217; 云云。把软件的语言<a href="http://www.mobileread.com/forums/showthread.php?t=57936">设置改为英文</a>就好了，都用 Kindle 看书了，英文总归会一些的伐？</p>
+
+<p>放了几本书，韩寒想跟这个世界谈谈神马的，有许多中文字体都成了口字。<a href="http://www.wincold.com/archives/112.html">解决办法</a>一 Google 即可知。具体流程是：在 Home 界面按下回车，出现搜索框，依次在其中输入：</p>
+
+<pre><code>;debugOn
+~changeLocale zh-CN
+;debugOff
+</code></pre>
+
+<p>然后重启一下，就可以了。重启 Kindle 的方法是：<code>Home -&gt; Menu -&gt; Settings -&gt; Menu -&gt; Restart Kindle</code></p>
+
+<p>至此，中文小说基本可以看了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/12/31/2010-goes-by/">2010 过去了，五味杂陈</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-31T00:00:00+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2010</time>
+        
+         | <a href="/2010/12/31/2010-goes-by/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>还有 12 个小时。</p>
+
+<p>自小在农村长大，思维方式也比较传统，按老家人的习惯一年之计在于春（节），正月里走亲访友一家人坐在一块，为新年生计相互出谋划策。所以我对元旦没啥特别感情，小长假，出去玩太麻烦，宅家里又太久，倒适合先对这一年总结一下。陈凯歌说最喜欢冯小刚《甲方乙方》里头一句台词：“1995年过去了，我很怀念”，他说心里会咯噔一下。现在 2010 年过去了，我也咯噔一段。</p>
+
+<p>去年元旦的计划是这样的：</p>
+
+<ul>
+<li>学车</li>
+<li>继续练吉他</li>
+<li>继续画画</li>
+<li>积极点 Freelancing</li>
+<li>be nice play fair；不求让每个人高兴，只求自己不因人际关系而憋屈</li>
+<li>搬家</li>
+<li>看书，小说、技术、画册、传记，都行。多写点。</li>
+<li>继续保持博客更新</li>
+</ul>
+
+
+<p>去年就纠结过了，我眼睛色弱，报名不能。所以春节一过回到杭州，就决定走偏门，跑到位于临平的余杭车管所报上了名。身为一个温州人，不会走后门，我感到很可耻。那边对色觉的测试比较容易，不需要辨图，看四个点，看个几轮九成。所以作不作弊到意义不大，有些所托非人，钱打水漂的意思。不过都过去了，按下不提。</p>
+
+<p>报上名之后，上车，练习倒桩。教练姓梅，梅家坞的。每天泡一大“缸”茶，喝得不亦乐乎。</p>
+
+<p>而其后不久，娘亲因为心疼房租钱，催着我把房子装修了，住过去。因此学车中断，开始忙装修了。装修啊、学车啊、买东西啊，都差不多，钱是第一位的。所谓脸皮厚心常黑，在买东西谈价钱的时候也是很有用处的。我吃亏不少，骗自己说吃亏是福。</p>
+
+<p>装修期间天气恶劣，又是下雪又是湿度大，很难得两个月多一些就搞定了。之后便是五一，娘亲又催着我住过去。搬进去那天，姨娘舅舅们都过来了，很热闹。便在客厅放阿凡达，因为木有音频线，就用的高中时候买的小音箱。大电视小音箱，很有喜感。</p>
+
+<p>其后继续学车，场考挂了一次，场考补考很可耻的第一次没过，第二次倒是满分的。考了这么些年，长大了却紧张了。太在意，太想抓住反而容易失去吧。梅师傅都嘲笑我，场地里练练一本正经，上考场就怂，见啊没见过的。</p>
+
+<p>中间还有一个暑假，亲戚们都纷纷去趟上海，感受世博会。小舅舅一家，顺道光临寒舍，令蓬荜生辉。天气炎热，客厅木有空调，我们便出门走走，从杨公堤走到保俶路，也算是暴走了。</p>
+
+<p>奶奶在某天去烧香拜佛，不小心摔了一跤，动了个大手术，盆骨换掉了。妈妈因此搁置暑假到我这的计划，在家照顾老人。</p>
+
+<p>其间<a href="http://jakeslomoo.appspot.com/album/31001">偶尔下厨</a>，做做蝤蠓、梭子蟹神马的，一般炒青菜。和女朋友一块清粥小菜，感觉很好。</p>
+
+<p>8月份还有一件事情，我注册了 <a href="http://cyj.me/">cyj.me</a>，正式搬迁，算是安顿下来了。</p>
+
+<p>9月份，中秋节晚上，我在三墩西湖科技园路考。良辰佳节，考官很和气，提醒我开大灯，开雨刮，终于一次过了。拿到驾照内心鸡冻。那时候妹妹也从金华过来了，找我吃月饼。</p>
+
+<p>再之后，我就来到淘宝了，在前身是阿里妈妈的搜索与广告部做事。这部门从产品、技术到客服一应俱全，跟共和国的铁道部似的，有自己的生态环境。我在的项目组叫做 <a href="http://ued.alimama.com/">MED</a>，做的便是 UED 的事，但是和淘宝主站 UED 相距甚远，离得远、人也少。但不代表哥几个木有战斗力。</p>
+
+<p>离开原公司的时候，项目组的老板跟我说，挺可惜的。</p>
+
+<p>刚<a href="http://blog.cyj.me/archives/84541">入职的时候</a>，还有个事情，就是百淘。有前贤说，让自己被积极正面包围起来，是个很美好的事情。淘宝的童鞋们，都十分 positive，与有荣焉。当然，保持冷静也很重要，积极正面过了头，会变得盲目。</p>
+
+<p>之后是项目的事情，做着两件事，<a href="http://zuanshi.simba.taobao.com/ecpm/index.htm">钻石展位</a>与<a href="http://re.taobao.com/search">淘宝热卖</a>，但是这俩目前都看不到。前者只面向掌柜，后者测试、开发频繁，不一定能看到我做的新版本。因为不是双核，进程间切换得有点累。</p>
+
+<p>十一回了趟家，有同学订婚，<a href="http://www.flickr.com/photos/dotnil/sets/72157625083434568/">有同学结婚</a>，有同学在家待产。<a href="http://blog.cyj.me/archives/84536">开着亲戚的车</a>，<a href="http://blog.cyj.me/archives/84538">去了瑞安仨地方</a>，感觉很不错。</p>
+
+<p>外公生病了，到上海中山医院治疗。因此跑了<a href="http://blog.cyj.me/archives/84548">两趟上海</a>。去外滩，看看陆家嘴，感受被高楼围观。高铁速度很快，声音很大，短途旅行，动车也就足够了。前些日子抽空看了看杭州到南京的高铁票价，跟打折机票相去不远，有些犹豫还要不要去。</p>
+
+<p>之后，<a href="http://blog.cyj.me/archives/84554">出差去北京</a>参加 O&#8217;Reilly 与淘宝网合办的 Velocity 大会，见到了活的 Douglas Crockford，见识到了不少技术，觉得以后工作中还很有搞头。第一次去北京，不能免俗，去了趟敏感词。和上海一样，有路人让我帮忙拍照，估计是看我手里拿着的大家伙的面子。此外还有西单、三里屯神马的。总共两天，基本呆在会场。没能去看看清华园，有些可惜。飞机爬上高空的时候耳鼓很疼。</p>
+
+<p>再后面，定了辆车，克鲁兹 1.8L 标配，到底是没能在年底拿到。路越修越宽，人越住越远，车越来越多。</p>
+
+<p>现在回头看看自己的目标，学车、搬家完成，其余凌乱。2011 还有 11 个小时，要做什么，就在这 11 个小时里头好好想想。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/5/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

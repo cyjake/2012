@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="via 動畫 輕舞飛揚 效果很不錯，回歸原始了。 以上所有特效都與 Flash 無關，原理都是 HTML + JavaScript，即 CSS Sprite 和 JavaScript 的 setInterval()。 離我們最近的例子是 Google.cn，可惜即將關閉了。g.cn（G 點處[男女 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/12">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/17/css-sprite-demonstrated-perfectly/">CSS Sprite 的完美演示</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-17T00:00:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/17/css-sprite-demonstrated-perfectly/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.spritely.net/gallery/">via</a></p>
+
+<p>動畫 <a href="http://spritely.net/filipealcada/">輕舞飛揚</a> 效果很不錯，回歸原始了。</p>
+
+<p>以上所有特效都與 Flash 無關，原理都是 HTML + JavaScript，即 <a href="http://css-tricks.com/css-sprites/">CSS Sprite</a> 和 JavaScript 的 <code>setInterval()</code>。</p>
+
+<p>離我們最近的例子是 <a href="http://www.google.cn/">Google.cn</a>，可惜即將關閉了。g.cn（G 點處[男女]） 的導航特效最早出現在 Google.kr 和 Google.jp。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/17/canon-wants-top-level-domain-suffix-canon/">佳能要注冊自己的通用頂級域名 .canon（gTLD）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-17T00:00:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/17/canon-wants-top-level-domain-suffix-canon/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.canon.com/news/2010/mar16e.html">via</a></p>
+
+<p>囧 據說注冊費用大約<a href="http://arstechnica.com/old/content/2008/06/confusion-icann-opens-up-pandoras-box-of-new-tlds.ars">在 10 到 50 萬刀</a>。</p>
+
+<p>以後有了錢我去注冊一堆動詞 TLD，頭一個就得是 <a href="http://www.icann.org/">ICANN.sucks</a>（Internet Corporation for Assigned Names and Numbers）。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/15/oarfish/">皇帶魚</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/15/oarfish/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://theworldsbestever.com/2010/03/10/oarfish-are-huge-and-according-to-japnese-folklore-harbingers-of-earthquakes/">via</a></p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2010/03/oarfish-500x281.jpg"><img src="http://blog.cyj.me/wp-content/uploads/2010/03/oarfish-500x281-300x168.jpg" title="oarfish-500x281" alt="" /></a></p>
+
+<blockquote><p><a href="http://zh.wikipedia.org/wiki/%E7%9A%87%E5%B8%B6%E9%AD%9A">皇帶魚</a>生活在深海的中、上層，作波浪式的蛇行運動。由於數量稀小，習性幾乎未被研究過。關於皇帶魚的傳說很多，歐洲漁民稱它為「海魔王」。</p>
+
+<p>歷史上有關捕獲皇帶魚（Oarfish）的記載甚少，坊間更流傳著生活在深海水域的皇帶魚除非因為地質出現大變動，例如發生地震，否則鮮有海到淺水的海域而改變棲息環境，因此被捕獲的機會極微，亦因為這樣的生活特性，才會被稱為「地震魚」，相傳皇帶魚會因地震而受驚游至淺水避難，所以牠的出現即預示了會有大地震的發生。</p></blockquote>
+
+<p>同志們，船票是買不起了，自己移民四川造船吧。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/12/recommend-a-javascript-micro-template/">推荐个 JavaScript Micro-Template</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-12T00:00:00+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/12/recommend-a-javascript-micro-template/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://ejohn.org/blog/javascript-micro-templating/">出自大牛 ejohn 之手</a>：</p>
+
+<pre><code>// Simple JavaScript Templating
+// John Resig - http://ejohn.org/ - MIT Licensed
+(function(){
+  var cache = {};
+
+  this.tmpl = function tmpl(str, data){
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
+    var fn = !/\W/.test(str) ?
+      cache[str] = cache[str] ||
+        tmpl(document.getElementById(str).innerHTML) :
+
+      // Generate a reusable function that will serve as a template
+      // generator (and which will be cached).
+      new Function("obj",
+        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+
+        // Introduce the data as local variables using with(){}
+        "with(obj){p.push('" +
+
+        // Convert the template into pure JavaScript
+        str
+          .replace(/[\r\t\n]/g, " ")
+          .split("&lt;%").join("\t")
+          .replace(/((^|%&gt;)[^\t]*)'/g, "$1\r")
+          .replace(/\t=(.*?)%&gt;/g, "',$1,'")
+          .split("\t").join("');")
+          .split("%&gt;").join("p.push('")
+          .split("\r").join("\\'")
+      + "');}return p.join('');");
+
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+  };
+})();
+</code></pre>
+
+<p>模板代码（HTML）则巧妙地藏在 HTML 文件里头去，搜索引擎不可见，普通用户也瞧不着。</p>
+
+<pre><code>&lt;script type="text/html" id="item_tmpl"&gt;
+  &lt;div id="&lt;%=id%&gt;" class="&lt;%=(i % 2 == 1 ? " even" : "")%&gt;"&gt;
+    &lt;div class="grid_1 alpha right"&gt;
+      &lt;img class="righted" src="&lt;%=profile_image_url%&gt;"/&gt;
+    &lt;/div&gt;
+    &lt;div class="grid_6 omega contents"&gt;
+      &lt;p&gt;&lt;b&gt;&lt;a href="/&lt;%=from_user%&gt;"&gt;&lt;%=from_user%&gt;&lt;/a&gt;:&lt;/b&gt; &lt;%=text%&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>原理是，直接解析模板，替换占位符为 JavaScript 取值代码，動態生成個函數，执行掉。詳情還得等他的書 JavaScript Ninja 吧……</p>
+
+<p>真的很趁手。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/07/updates-on-jakeslomoo/">杰克的鹿木·更新</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-07T00:00:00+08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2010</time>
+        
+         | <a href="/2010/03/07/updates-on-jakeslomoo/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>删删改改，去掉了一些东西，添加了<a href="http://jakeslomoo.appspot.com/album/4001">许多内容</a>，
+还加了 <a href="http://jakeslomoo.appspot.com/feed">RSS</a>。下一步希望做的，应该是 sluggish URL。</p>
+
+<p>yo2.cn 挂掉，我搬家之后，博客的订阅量掉到了个位数，好不凄惨。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/02/young-sergey-brin/">Sergey Brin 年轻时</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-02T00:00:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2010</time>
+        
+         | <a href="/2010/03/02/young-sergey-brin/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sergey Brin 和 Larry Page 创立了 Google，剩下的你也都知道了。喜欢打破砂锅的，不妨看看在他<a href="http://infolab.stanford.edu/~sergey/resume.html?">创立 Google 之前的简历</a>。</p>
+
+<p>有趣的地方有很多，比如他也参与过 <a href="http://www.wolfram.com/">Wolfram Research</a>。比如他的隐藏关：</p>
+
+<blockquote><p>Objective:
+A large office, good pay, and very little work.
+Frequent expense-account trips to exotic lands would be a plus.</p></blockquote>
+
+<p>他的爸爸，<a href="http://www-users.math.umd.edu/~mib/">Michael Brin</a>，的主页也很有意思。隐藏了这么一首诗。</p>
+
+<pre><code>Sergey is a grad student at Stanford (computer science). He does data
+mining
+and (with his friend Larry) developed a search engine GOOGLE which
+he claims is the
+best. He turned 25 this August (1998). On that occasion I wrote the
+following poem.
+
+You are growing stronger
+In body, spirit and mind.
+I am getting older
+Leaving decades behind.
+
+You are tough, you mine data,
+You surf first and think later,
+And your crawler fast as light
+Wanders madly in the night.
+
+You work hard to squeeze a thesis
+From the world wide web of feces.
+You live abroad on the sunny coast
+To you, my son I propose a toast.
+
+In the stately oval office
+Clinton grimly counts his losses,
+Plumpy interns taking turns,
+Many wonderful returns!
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/02/javascript-version-of-brainfuck/">JavaScript 版 Brainfuck</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-02T00:00:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2010</time>
+        
+         | <a href="/2010/03/02/javascript-version-of-brainfuck/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前些天在 est 的博客上看到 <a href="http://blog.est.im/archives/1505">《仅用 []()+! 就足以实现几乎任意Javascript代码》</a> 一文，很是震惊。</p>
+
+<pre><code>([][(![]+[])[!+[]+!+[]+!+[]]+(!![]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!![]+[])[+...
+</code></pre>
+
+<p>让人想到 <a href="http://en.wikipedia.org/wiki/Brainfuck">Brainfuck</a>。</p>
+
+<pre><code>++++++++++[&gt;+++++++&gt;++++++++++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;++.&gt;+.+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;.
+</code></pre>
+
+<p>然而 Brainfuck 是个 Turing Tarpit （极简化的 Turing-complete 机器），而上面这个 <a href="http://www.slideshare.net/x00mario/javascript-from-hell-confidence-20-2009#stats-bottom">JavaScript From Hell</a>，则是一门脚本语言的 hack （类型强制转换、字符串 == 字符数组、first class function 和几个 JavaScript 漏洞的把握）。</p>
+
+<p>我们从最简单的 <code>[]</code> 开始。</p>
+
+<pre><code>[];    // []，空数组
++[];   // 0，空数组视为 null，类型转换为 0
+!+[];   // true
++!+[];   // 1
+</code></pre>
+
+<p>整形可以搞出来了，字符串也是如此。<code>false + []</code>，返回的是 <code>"false"</code>。比如要取到 &#8220;s&#8221;，就可以，(&#8220;false&#8221;)[3]：</p>
+
+<pre><code>(![]+[])[+!+[]+!+[]+!+[]];     // 3
+</code></pre>
+
+<p>完整的码表可以参考 <a href="http://blog.est.im/archives/1505">est 的博客</a>。还有一个，window 对象的取得。Array 对象的方法 <code>[].sort.call()</code> 返回的是 window 对象。也就是说，我们可以试着拼出 <code>[]["sort"]["call"]()[
+"eval"]("alert('hi there')")</code></p>
+
+<p>理解了原理之后是体力活，<a href="http://sla.ckers.org/forum/read.php?24,33349,33405">大牛们</a> 已经做好了一个<a href="http://discogscounter.getfreehosting.co.uk/js-noalnum.php?txt=alert(%22hi+there%22">自动转换的工具</a>)。</p>
+
+<p>所以说这玩意看着很像 Brainfuck，其实是不一样的。最后隆重推荐 <a href="http://www.slideshare.net/x00mario/javascript-from-hell-confidence-20-2009#stats-bottom">JavaScript From Hell</a>，十足劲爆。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/23/wacom-sence-plate/">去年买的手绘板</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-23T00:00:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2010</time>
+        
+         | <a href="/2010/02/23/wacom-sence-plate/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blog.cyj.me/wp-content/uploads/2010/02/wukong.jpg"><img src="http://blog.cyj.me/wp-content/uploads/2010/02/wukong-267x300.jpg" title="wukong" alt="" /></a></p>
+
+<p>WACOM 影拓3 PTZ630</p>
+
+<p>翔仔告诉的我 98 上有人卖，于是跑去收了来。今年从家里回来，便摸出来练习。Windows 7 自带的驱动不好用，不会认笔势的轻重缓急，只能当铅笔。装了随板附带的驱动之后一切安好了。上色是门技术活，加上我辨色能力差劲，就不献丑了。</p>
+
+<p>习惯了之后基本上可以像平时盯着纸面那样盯着屏幕画，不需要找笔在哪里。有兴趣的筒子们，不妨也入一个。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/23/life-gaming/">人生如戏</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-23T00:00:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2010</time>
+        
+         | <a href="/2010/02/23/life-gaming/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://artofgamedesign.com/bio/">Jesse Schell 童鞋</a>对<a href="http://fury.com/2010/02/jesse-shells-mindblowing-talk-on-the-future-of-games-dice-2010/">未来游戏开发方向的想象</a>令我当时就震惊了。</p>
+
+<p>他是卡耐基·梅隆大学的讲师，曾经当过迪斯尼的 Imagineer，有个公司叫做 <a href="http://www.schellgames.com/">Schell Games</a> 60 来个人专门做各种各样各色平台的游戏。对于 2009 年在北美风光无限的游戏们，Wii、Wii Fit、 Guitar Hero 等，他的总结是，游戏已经从原先的极想象之能事，脱离现实越远越好，改变为贴近现实。我们周遭充斥着伪装与掩饰，便越来越追求 authentic 的东西（所以人们喜欢原木）。</p>
+
+<p>而对于游戏开发中琳琅满目的技术，Jesse 说，在过去技术的发展都是在分化，我们已经开始需要集大成的东西。但是不可以是大而全，他以 iPhone 与 iPad 举例。iPhone 啥事都能做，游戏、视频、音乐、手机、上网，是个瑞士军刀，大家都喜欢；iPad 是放大的 iTouch，除了不能电话跟 iPhone 没啥区别，为啥人们不喜欢？因为 iPad 太大，毕竟我们不需要一把几十斤重的瑞士军刀，即便他能宰牛都不行。</p>
+
+<p>所以他憧憬的未来游戏是，它们无处不在。我们的电视机、手机、汽车已经是电脑了，以后我们的餐具、杯具、鞋子、交通工具都将配备 CPU、存储设备、无线网卡、摄像头、话筒，它们随时随刻可以感知到你的行为。我们的一天就是一次游戏。早晨刷牙的时候，刷满 3 分钟，牙刷就会给你加分。晚上看电视的时候，看广告不转台，电视机同样给你加分。分数的作用是，可以作为减税的有利条件，可以作为商家发放优惠券的依据，等等。</p>
+
+<p>在萝卜面前人和驴没什么区别。</p>
+
+<p>为了引出上面这句话，Jesse 还提到他的一个朋友，在某大学教游戏开发。他的看法就是，游戏俯拾皆是，我们的学校就是个游戏。所以在他的班上，考分并不是重点，而是各种各样依据出勤率、作业等评定出来的经验值。经验值攒够，基本就可以升级出去打怪了。</p>
+
+<p>这让我想到《How I Met Your Mother》不久前的一集。Robin 主持一个凌晨的早间新闻节目，没想到观众如云。这班家伙都是些泡吧的年轻人，耗到后半夜，刚好看到 Robin 的节目，注意到她老是“But um&#8230;”，便以此为游戏。她一说，就饮胜。</p>
+
+<p>Jesse 的看法，把科技与游戏人生结合了起来。我们参与的不再是四到十个人的三国杀，不再是四人围坐哗啦啦的麻将，而是一个巨大的网络，它注视着你的一举一动，再依据它对你的设定作赏罚。很熟悉把？Matrix 和巴普洛夫。</p>
+
+<p>Sheldon 可以调教 Penny，我们这群玩着各色游戏长大的人恐怕也不能逃避那样的诱惑。只是，这样的人生，也不大有意思把？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/20/back-to-hangzhou/">回杭了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-20T00:00:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2010</time>
+        
+         | <a href="/2010/02/20/back-to-hangzhou/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>8 天长假，以后过年要求休假的话，还是请在正月里比较好。</p>
+
+<p>去了次温州乐园，喝了一些酒，吃了许多东西，给爷爷等祖宗们点岁灯，玩了几通三国杀。</p>
+
+<p>离开网络八天，木啥特别耸动的新鲜事。有 <a href="http://blog.est.im/archives/1259">nc 宣称要废除农历</a>；火箭终于换走了麦迪；我们<a href="http://wxf.marila.net/?p=4800">终于不恐韩</a>了……</p>
+
+<p>祝大家新年愉快，莫要被亚克西。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/13/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/11/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

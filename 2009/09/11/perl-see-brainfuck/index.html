@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Perl: see brainfuck - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="前些天，有好事者号召大家说说什么编程语言最适合做什么：let&#8217;s see what languages are best for what.（很不错，推荐一看） 不幸的是 Perl 的评论是这样的： Perl - see brainfuck Perl - when you need &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2009/09/11/perl-see-brainfuck">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Perl: See Brainfuck</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-11T00:00:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>前些天，有好事者号召大家说说什么编程语言最适合做什么：<a href="http://www.reddit.com/r/programming/comments/9fs6o/hey_reddit_lets_make_a_guide_on_what_programming/">let&#8217;s see what languages are best for what.</a>（很不错，推荐一看）</p>
+
+<p>不幸的是 Perl 的<a href="http://www.reddit.com/r/programming/comments/9fs6o/hey_reddit_lets_make_a_guide_on_what_programming/c0clwg5">评论</a>是这样的：</p>
+
+<blockquote><p><strong>Perl</strong> - see <a href="http://www.reddit.com/r/programming/comments/9fs6o/hey_reddit_lets_make_a_guide_on_what_programming/c0cm95a">brainfuck</a></p>
+
+<p><strong>Perl</strong> - when you need something to start working ASAP and don&#8217;t want any lip from the compiler.  &#8230;and want a slew of silent runtime bugs instead.</p></blockquote>
+
+<p>时隔多日，今天老大突然又让我解析一些存储过程（Stored Procedure），不过都是些轻活，不需要解析 SQL，只要把文件头的注释和某几句话去去掉，就是了。麻烦的是需要把原先的文件划分重新搞，按 schema 归类。自然就像用散列来做，弄个类似</p>
+
+<pre><code>('schema_one' =&gt; ('sp1', 'sp2'), 'schema_two' =&gt; ('sp3', 'sp4'))
+</code></pre>
+
+<p>的结构。这才发现 Perl 的散列的值只能是 scalar。介绍到 <a href="http://perldoc.perl.org/perlreftut.html">a hash of lists</a> 的 perldoc 自己也笑了：</p>
+
+<blockquote><p>One of the most important new features in Perl 5 was the capability to manage complicated data structures like multidimensional arrays and nested hashes. To enable these, Perl 5 introduced a feature called `references&#8217;, and using references is the key to managing complicated, structured data in Perl. <strong>Unfortunately, there&#8217;s a lot of funny syntax to learn</strong>, and the main manual page can be hard to follow.</p></blockquote>
+
+<p>Perl 的语法确实太乱了…… 括号可以省略；条件语句可以倒置；continue 叫做 next；else if 不好好写，写成 elsif；还有两个万恶的变量叫做 $<em> 和 @</em>；string 的比较（eq, ne, lt, &#8230;）跟整形的比较操作符（==, !=, &lt;, &#8230;）居然是不一样的，如果不小心用了，连个错误信息都没有；最离谱的是，函数的参数与返回值是不需要显式说明的（当然，这不确切，准确说是，参数是需要写到函数体当中，而返回值则是函数体最后一句的返回值，如果不幸那一句没有返回值，那就得显式得在末尾写上变量。折腾来折腾去，省了一个 return）。</p>
+
+<p>用不着这么标新立异吧？</p>
+
+<p>再说回到如何在 perl 里头实现复杂数据结构。一般情况下，知道如何取地址（\%, \@, \$）和根据地址取值（%{}, @{}, ${}）也就够了。如下：</p>
+
+<pre><code>$aref = \@array; # $aref now holds a reference to @array
+@list = @{$aref}; # @array now restores the value of @array.
+</code></pre>
+
+<p>Larry Wall 觉得这样不够好玩，同时他还觉得 [] 和 {} 不能只用来做索引操作符（定义数组和散列时，默认用得是括号），-> 操作符他也没有用上。于是就有了这样的代码：</p>
+
+<pre><code>$aref = [1, 2, 3];
+print $aref-&gt;[2]; # 3
+</code></pre>
+
+<p>头大了没有？</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-11T00:00:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/complang/'>Complang</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2009/09/11/perl-see-brainfuck/" data-via="dotnil" data-counturl="http://cyj.me/2009/09/11/perl-see-brainfuck/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/09/11/google-app-engine-continues/" title="Previous Post: Google App Engine 继续">&laquo; Google App Engine 继续</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/09/17/gainorspend-update/" title="Next Post: 记账小应用更新">记账小应用更新 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2009/09/11/perl-see-brainfuck/';
+        var disqus_url = 'http://cyj.me/2009/09/11/perl-see-brainfuck/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

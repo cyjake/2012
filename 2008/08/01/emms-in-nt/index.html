@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>EMMS in NT - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="学达芬奇把研究写成食谱，以下是需要的主料： Emacs 推荐使用 NTEmacs
+EMMS 推荐使用开发版，还是蛮稳定的。
+Mplayer 或者其他
+EMMS 目前支持的并且有移植到 NT 的媒体播放程序，如 MPG321 先准备 Emacs，拆封之后基本就可以使用了， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2008/08/01/emms-in-nt">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">EMMS in NT</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-01T00:00:00+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>学达芬奇把研究写成食谱，以下是需要的主料：</p>
+
+<ul>
+<li>Emacs 推荐使用 <a href="http://ntemacs.sourceforge.net/">NTEmacs</a></li>
+<li>EMMS 推荐使用开发版，还是蛮稳定的。</li>
+<li><a href="http://www.mplayerhq.hu/design7/dload.html">Mplayer</a> 或者其他
+EMMS 目前支持的并且有移植到 NT 的媒体播放程序，如 MPG321</li>
+</ul>
+
+
+<p>先准备 Emacs，拆封之后基本就可以使用了，需要进行的配置就是注册表里头写一下
+<code>HOME</code>。当然，如果你无所谓，可以直接把 .emacs 丢到 C:\ 里面。
+设置主目录有两种方法：新建一个名字叫 HOME 的环境变量。
+变量值就是你的想要的目录路径名称，其一；</p>
+
+<p>如果你觉得第一种方法不过瘾，想让 Windowz 最强大的注册表发挥一下功能，也可以。
+新建一个数据项：<code>HKEY_CURRENT_USER/Software/GNU/Emacs</code>。
+在里面添加一个 REG_SZ 类型的字符串，名字就叫 HOME, 值就是你想要的目录路径名，
+想要所有人都这样的话就 <code>HKEY_LOCAL_MACHINE/Software/GNU/Emacs</code>。</p>
+
+<p>此外关于 Emacs in NT 有许多文章可以参考，最主要的自然就是官方的
+<a href="http://www.gnu.org/software/emacs/windows/ntemacs.html">Manual</a></p>
+
+<p>然后找份 EMMS 包，拿来直接用就行，Mplayer 也是一样，推荐使用没有图形界面版本的。
+因为这样比较酷…… 顺便提一下，如果已经有 Cygwin 作为佐料的话就更加劲暴了。
+<a href="http://www.khngai.com/emacs/cygwin.php">配置好 Cygwin</a>之后，
+应该可以自行烹饪 EMMS 解析 MP3 标签用的 MP3info，不过我还没弄。</p>
+
+<p>看到这里你可能已经发现了，这和 Linux 下配置没啥子区别嘛，区别就在下面这点。让
+Emacs 找到 Mplayer 在边度：</p>
+
+<ul>
+<li>NTEmacs 继承了环境变量中的可执行文件路径，<code>C:\Windows\System32\</code>还是啥的，
+可以选择把 Mplayer 的路径加到该环境变量后边。</li>
+<li>或者这样：<code>(add-to-list 'exec-path "C:/mplayer/")</code>。和上面一个意思，
+区别是只对 Emacs 有效，足够了。</li>
+</ul>
+
+
+<p>如此应该就可以啦~ 不过使用过程中肯定会碰到问题，比如前面说到的标签解析程序不存在阿什么的，
+真的得闲，就在 Cygwin 里头慢慢编译把。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-01T00:00:00+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/computer/'>Computer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2008/08/01/emms-in-nt/" data-via="dotnil" data-counturl="http://cyj.me/2008/08/01/emms-in-nt/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/07/18/moment-in-peking/" title="Previous Post: 《京华烟云》摘抄">&laquo; 《京华烟云》摘抄</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/08/01/to-jz/" title="Next Post: To Jz">To Jz &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2008/08/01/emms-in-nt/';
+        var disqus_url = 'http://cyj.me/2008/08/01/emms-in-nt/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

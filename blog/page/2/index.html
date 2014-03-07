@@ -1,0 +1,837 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="项目里头有文件上传的功能，测试的时候，上传大文件都没有问题的，结果发布到测试环境和线上，就都挂掉了。很奇怪，Rails log 里头 POST 请求都木有，第一反应是 Flash 上传组件的问题，或者是 crossdomain.xml 的缘故。前者因为开发环境木有问题，排除；后者也因为 swf &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/12/19/nginx-request-size-limit/">Nginx 的请求大小限制</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-19T00:00:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2011</time>
+        
+         | <a href="/2011/12/19/nginx-request-size-limit/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>项目里头有文件上传的功能，测试的时候，上传大文件都没有问题的，结果发布到测试环境和线上，就都挂掉了。很奇怪，Rails log 里头 POST 请求都木有，第一反应是 Flash 上传组件的问题，或者是 crossdomain.xml 的缘故。前者因为开发环境木有问题，排除；后者也因为 swf 文件、请求地址、页面地址都是在 / 下，也排除。</p>
+
+<p>排除这俩，自然就觉得整个世界崩溃了，出了人品与长相还有别的原因么？</p>
+
+<p>结果晚饭的时候顺便跟同事提起，他讲到 nginx 可能会限制请求大小，恍然大悟，于是给<a href="http://forum.slicehost.com/comments.php?DiscussionID=1714">配置文件</a>加上：</p>
+
+<pre><code>client_max_body_size 4M;
+</code></pre>
+
+<p>或者你需要的更大的尺寸。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/12/17/lately-27/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-17T00:00:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2011</time>
+        
+         | <a href="/2011/12/17/lately-27/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>来了淘宝之后生活变忙乱了，应付工作之余很难有闲情逸致自省，也没有收拾心情的想法，骚文写得自然也少了。今天难得来到贝塔咖啡小坐，变摸出电脑扮文青，叨叨一点想法，记一些近况。</p>
+
+<p>2011年很忙，开头是第一次接手已有项目钻石展位，中间是学习新技术 Ruby on Rails，结尾则是各种学晓的前、后端技术运用，做了俩项目。单枪匹马做项目的感觉很独特，有些时候可以自作主张，有些时候需要屈从产品经理或者老板的想法，无论如何，看到最终页面从浏览器里打开的样子，心里都是有成就感的。心里想到的却是一句话，成功就是机会遇到准备。老板已经给了机会，而我想我做的准备还算不错。</p>
+
+<p>然而这一年遇到的事情是之前所未曾预料的，2009年我做的最多的事情，是用 Python、Django 和 jQuery 制作各种玩具网站，而2010年的上半年，却是用 Flex 开发一个在线报表定制工具。或许真的如大牛们所说，技术是相通的，我学晓的，其实更多的是 DOM 结构、网站开发的各种最佳实践、ECMAScript 的精粹，和各种开发、除虫思路。Linus 大大说过的一句话我记忆犹新，这种随便乱调，不停刷新，以期解决问题的做法是极不可取的，我们更需要的，是从根本上厘清思路，找到原由，再去解决问题。按这个标准，我做的还远未足够。</p>
+
+<p>貌似总结过头了，先说写近况吧。有个新项目上了，<a href="http://ux.etao.com/">一淘UX规范平台</a>，是个展示同事们工作成果的地方，做得仓促，连浏览器兼容都还木有做。所以如果围观的时候遇到疑难，请务必在此留言，或者私信我，可别利用漏洞做坏事。</p>
+
+<p>车子开了9个月，居然已经1w多公里了，跟人刮擦有过、被人追尾有过，自己开得奔放有过、超速有过，甚至还有一次被人溜坡顶到车头，被动地爆了前车的菊花，所以总体还算精彩，不枉此1w公里。</p>
+
+<p>前些天，是女友生日，花了些心思，想来点惊喜，最终还是没能完成，希望可以在农历新年之前做好，聊表心意。</p>
+
+<p>啊，这文章写得虎头蛇尾了，另起一篇，小结一下毕业这三年余。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/12/17/javascript-get-the-contentHeight-of-iframe/">JavaScript 获取 Iframe 内容高度</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-17T00:00:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2011</time>
+        
+         | <a href="/2011/12/17/javascript-get-the-contentHeight-of-iframe/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>页面中，有需要 iframe 嵌入的内容，因为是同源的内容，所以可以使用 JavaScript 操作起来，希望可以获取它需要的高度，修改 iframe 标签的 height，以去掉滚动条，让嵌入看起来更自然一点。</p>
+
+<p>stackoverflow 上果然已经有了不少<a href="http://stackoverflow.com/questions/819416/adjust-width-height-of-iframe-to-fit-with-content-in-it">关于这个问题的问答</a>，翻看一遍，总结解决办法如下：</p>
+
+<figure class='code'><figcaption><span>iframe.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">frame</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;#frame&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 在 iframe onload 事件触发之后再执行：</span>
+</span><span class='line'><span class="nx">frame</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">win</span> <span class="o">=</span> <span class="nx">frame</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">doc</span> <span class="o">=</span> <span class="nx">win</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">html</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">body</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// [获取高度](http://stackoverflow.com/questions/1145850/get-height-of-entire-document-with-javascript)</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span> <span class="nx">body</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">,</span> <span class="nx">body</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">,</span>
+</span><span class='line'>                           <span class="nx">html</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">,</span> <span class="nx">html</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">,</span> <span class="nx">html</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">frame</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="nx">frame</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span> <span class="nx">frame</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;data-src&#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这俩结合起来，就是我最终采取的方式啦。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/12/17/custom-authlogic-error-message/">定制 Authlogic 的错误信息</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-17T00:00:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2011</time>
+        
+         | <a href="/2011/12/17/custom-authlogic-error-message/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Authlogic 是 Rails 项目中比较常用的 Gem，用来方便添加账户系统，登陆校验、密码哈希，都一并做掉了，Redmine 似乎也用的它。有个不足处是，HTTPS 的方式比较麻烦，还需要许多额外的工作。</p>
+
+<p>另一个经常需要改动的是它的<a href="http://rubydoc.info/github/binarylogic/authlogic/master/Authlogic/I18n">错误提示信息</a>，其实可以在 locale 中很方便地定制，在 config/locales/zh.yml 里头复制进</p>
+
+<figure class='code'><figcaption><span>en.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">authlogic</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">error_messages</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">login_blank</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">can not be blank</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">login_not_found</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">is not valid</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">login_invalid</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">should use only letters, numbers, spaces, and .-_@ please.</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">consecutive_failed_logins_limit_exceeded</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Consecutive failed logins limit exceeded, account is disabled.</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">email_invalid</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">should look like an email address.</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">password_blank</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">can not be blank</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">password_invalid</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">is not valid</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">not_active</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Your account is not active</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">not_confirmed</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Your account is not confirmed</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">not_approved</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Your account is not approved</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">no_authentication_details</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">You did not provide any details for authentication.</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">general_credentials_error</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Login/Password combination is not valid</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">models</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">user_session</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">UserSession (or whatever name you are using)</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">attributes</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">user_session</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">(or whatever name you are using)</span>
+</span><span class='line'>        <span class="l-Scalar-Plain">login</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">login</span>
+</span><span class='line'>        <span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">email</span>
+</span><span class='line'>        <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">password</span>
+</span><span class='line'>        <span class="l-Scalar-Plain">remember_me</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">remember me</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后提供你自己的翻译就成了。记得项目的 locale 设成 zh 吧。其他语言，自然照搬即可。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/12/17/been-graduated-for-more-than-3-years-now/">毕业三年余</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-17T00:00:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2011</time>
+        
+         | <a href="/2011/12/17/been-graduated-for-more-than-3-years-now/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>离开学校已经三年半了。今天坐到贝塔咖啡，看到 BetaCafe.GFW，不禁想到08年闹运的时候每天回家看看 youtube 的日子。那会儿抱个300块的吉他，看着各路大神玩那六根弦，日子过得简单纯粹。</p>
+
+<p>毕业的时候选公司，并没有做足够的考量，仓促签了一家给外企做外包的公司，做大学里学过的 J2EE 的东东，有点无可无不可混碗饭吃的意思。去了之后，接触了些其他的，做财务报表，学了点 Actuate Basic，又勉强应用上了一些大学时学过的 Perl，又突然要开始学 Flex 开发。恰逢经济危机，资本主义人人自危，母公司不招新人了，于是有什么新项目要人，便把我们这些最后进去的，调来调去，写过样式，又改过 C 写的项目，也写过 Perl，做 SQL 的批处理。</p>
+
+<p>如果木头看到我描述的这段经历，可能会说，讲技术名称太过枯燥乏味，真要说明问题，得说具体项目。然而我的记忆里头，竟然只剩这些苍白的名头了，对实际项目，我并未着意，并且实情如此，做得多的，只是技术运用，许多细枝末节、架构模式之类，并没有轮到我辈研究。</p>
+
+<p>09年的时候，我开始学 Python 和 Django，同时接触 Google App Engine。那个时候天天看 Reddit 和 YCombinator，是个很潮很追新然而实际经验了了的土鳖程序猿。后来又开始看国内的各大公司的 UED，自然也包括我的现东家，淘宝网，的 UED 博客。那会的任务是修改 SQL，前东家有许多财务报表要跑，有许多 SQL 查询语句是专人维护的，它们有个共同点是都很长，同时长得都差不多。因为其格式还算正规，而需求往往是找出有区别的字段，或者添加 schema 等小调整，但又需要大量人力的工作，我终于劝自己用 Perl，贯彻懒人追求一劳永逸的程序猿美德。</p>
+
+<p>后来此间事了，回到吴老板手下，做的是一个 Flex 项目，那时候觉得这玩意的 API 真有点浩如烟海，各种控件，傻傻分不清楚。现在看来，眼界有点小了，同时也觉得，封装得太多，牺牲了太多效率。尤其是在当时我们那个项目，需要构建、重绘的控件太多，很难保证效率。也难怪现在的 <a href="http://banner.taobao.com/">BannerMaker</a>，使用纯 ActionScript 开发。</p>
+
+<p>总体来说，在前东家，是个努力做好眼前事，有空便学习新技术的阶段，然而因为广而不专，反而觉得在前东家前途渺茫，不合自己脾胃了。其实，说到底是自己心浮，不愿专精一门罢了。</p>
+
+<p>所以，在此感谢李老板、吴老板和陈老板，也感谢宙贻、小麦、克凡、标哥、Tracy、ZP、豪哥、瞎抖哥、自敏、焕焕、飞哥等等等等同事们，还有我没写出来的诸位，能与你们公事是我的幸运，我学到了许多。</p>
+
+<p>觉得对前端、对 Web 更感兴趣之后，我开始找新东家，在杭州的阿里系，尤其是在城西的两家自然是我的最大选择。我先给淘宝 UED 投了份简历，有了次电话面试的机会，然而彼时我对所谓前端技术，并没有太多深究，用过 jQuery，学过语言精粹，而运用场景却是 ActionScript 的开发，不太给力。那时候电话面试官问我觉得淘宝首页怎么样，我的回答是，那个大类目好烦。牛头不对马嘴，自然悲剧。后来是支付宝，过了技术面，有个主管面我，扯点七七八八，似乎在对我当时的东家是不是外包公司上起了分歧。彼时的我对这些不太关注，而他的说法是对的，可能由此被鄙视吧。</p>
+
+<p>然而后来我还是来了，不是淘宝 UED，而是 <a href="http://ued.alimama.com/">MED</a>，现在的<a href="http://ux.etao.com/">一淘 UX</a> 广告组。按先后顺序，面我的是克良、亮亮、小banner，和超凡大大，还有个闻味官，她说我是个小愤青。</p>
+
+<p>以上是工作，再说点生活上的事情吧。</p>
+
+<p>毕业后，我突发奇想开始学吉他，学晓了一些基础知识，然而认识妹纸+来到淘宝之后，不自觉的就荒废了；我画了一些画，然而很难花精力专注在一个作品上面去，大多潦草，不够精致成熟；我住到了五常，成了郊区人士，不过我也从来木有城里过，并无所谓。</p>
+
+<p>三年里头，凭着08年底跟妹纸的一句戏言，“从望月吃到上城区”，我们吃了许多地方，可能是街边的小面馆（忠儿面馆），也可能是景区的死贵死贵茶楼（大兜路的三润居），有好吃的有不好吃的，但凭着易满足的性格，大部分还是满意的。有了自己的家之后，也开始自己做菜，有烧焦的也有没烧焦的，基本按菜谱来的都画虎不成反类犬，但也能凑合吃。今天看到张公子的文章，《<a href="http://blog.tianya.cn/blogger/post_read.asp?BlogID=38484&amp;PostID=37574796">爸妈与我们耗费的时光，有意义吗？</a>》，让我想到了跟妹纸在一起度过的每个周末，可能并没有所谓的成就感、或者生产力补充，然而这些时光，才是人生真正重要的所在。</p>
+
+<p>所以这三年半，我觉得自己找到了适合自己的工作，也找到了一个觉得共度此生也不坏的妹纸；社会这所大学，很不赖。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/24/lately-26/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-24T00:00:00+08:00" pubdate data-updated="true">Nov 24<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/24/lately-26/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近结婚的同事、同学很多，两个月包了5个红包，囊中原本就局促，于是变得愈发羞涩。在有足够能力之前，过着超出承受范围的日子，自然会觉得累。房贷+车子带来的消耗，确实让我有些吃不消了。或者可以换个说法：匹夫！自己孬就孬，把麻烦推给周遭作甚！钱不够？去赚不就是了！</p>
+
+<p>这或者就是天秤座的性格，一边埋怨时间不够，一遍仍不管不顾想要尽善尽美。生活如此，工作也不外如是。新近有个项目，<a href="http://ued.alimama.com/lib">MED 规范库</a>的升级版，原本一直预订着就是我来做，但是因为我的<a href="http://chuangyi.taobao.com/p4p">主打项目</a>东西太多，已经牵扯进来两位同事一起开发了。就在这当口，我还是希望东西可以更完美一些，选择放弃已有项目中一些可行但令我觉得十分不爽的做法。</p>
+
+<p>例如，老项目中有个文章历史记录的功能，实现方式是每次都在数据库里头保存新一份数据；而趁着新版开发，想要做的事情是，通过 Grit，直接把后端换成 git，避免重复造轮子（并且肯定不会有 git 好）。然而这样做很难。</p>
+
+<p>这周一，是我高中两位同学订婚，一位同学结婚的日子。订婚的童鞋，一个是同桌两年的姑娘，一个是室友；印象中他们高中就在一起，现在说起来，起码也有七八年了吧。看到各位童鞋们纷纷找到人生伴侣，开始过白天举案齐眉，晚上埋头造人的日子，令我十分唏嘘。我一直贪着比大部分童鞋都小一岁，任由着自己拖沓的性格。</p>
+
+<p>所以上周日我便赶回去，从古荡等出租车，到从南站出发，花了4个小时；从南站出发，到抵达瑞安，也花了四个小时。杭州的交通你还敢再屎一点不？回到家，晚上十点多，小姨还在跳绳，妈妈还在等我。给我煮了碗面。跟我聊七七八八的事情。我说囊中羞涩，她说，童鞋们都结婚了，你看着没感触啊？你跟你女朋友认识也蛮久了摸，有些事情要是想提，得让你自己起头的。她开了这个头，自然不会见好就收，又说，要是年底就像打金给她，我现在就把钱给你吧。</p>
+
+<p>想着这紧赶慢赶的日子，我可不由得有些慌，这要是订了婚，下一步指定又催我结，再下一步就催着生娃。所以我得为订婚赚钱，为结婚赚钱，为娃赚钱。我tm自己也想花点钱的啊⋯⋯</p>
+
+<p>我埋头吃面，在心里咀嚼上边这些话，只好说，是挺久了，我也没有耍流氓的意思，就希望你别催我，再等等好不好？</p>
+
+<p>这是关于结婚的事情。然后还是交代其他吧。有了相机之后，参加婚宴变得有趣了，别人交流房、车、工作，我只管把众生拍成二进制，然后等着回到家，导入电脑，丢到 http://yicai-cyj.yupoo.com/，让诸位能够看看别人眼中的自己。当然，希望是绝无任何褒贬。不过每到拍姑娘我都会落力一点，个人好恶，很难脱离开去吧。</p>
+
+<p>画小画一直在持续，成了我工作之余的调剂，开会的时候、想问题的时候，画几张脸。晚上落班回家之前，找出女朋友的照片，画个几张，也颇有成就感，能够给我工作上可能缺乏的正反馈，让心态平和一点。然而成果良莠不齐，很少会贴到又拍去。</p>
+
+<p>吉他是真的很久没碰了，在淘宝养成了8、9点才回家的烂习惯，回到家自然啥也不相干，要么看小说要么上网要么玩游戏，我要忏悔。或者直接写到来年的 KPI 里头去吧！</p>
+
+<p>接着说婚礼。上上周末，是我本科室友结婚的日子。他是湖州德清人，在杭州的我们仨室友，便相约着开车去湖州，还应邀带上面具，陪他做开场舞。这是我第一次全程参与一场婚礼，从新郎家出发，去接亲，闯关，会新郎家，又去宴会厅，彩排，到最后开场，表演，再看着两位新人款款走到舞台正中。这让我觉得，缺了牧师，关系也不大嘛。</p>
+
+<p>去的时候走的国道，还迟到罚单一张，第一次超速被拍，啊不是，超速第一次被拍。</p>
+
+<p>以上，便是我的近况。nothing fancy, nothing special. just happened to be so.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/10/21/ruby-gems-bundler-and-the-great-wall/">项目发布、Ruby Gems、Bundler 与伟大的墙</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-21T00:00:00+08:00" pubdate data-updated="true">Oct 21<span>st</span>, 2011</time>
+        
+         | <a href="/2011/10/21/ruby-gems-bundler-and-the-great-wall/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>敝人在做的一个小项目，有一些些小改进，经过一番测试，于昨日开始上线。项目用的 Ruby on Rails，并依赖一系列 <a href="http://rubygems.org/">Ruby Gems</a>，为了方便后续的 1.8 -> 1.9 转换，并保证两边不耽误，1.8 的紧急除虫之类的工作能够照常进行，又加了 <a href="http://beginrescueend.com/rvm/install/">RVM</a>（Ruby Version Manager？）。在自己的机器、测试环境里头看看，一切正常，今天 <code>cap production deploy</code> 的时候，挂了无数次，回滚了无数次，到刚刚，可算是成了，现记录血泪史如下。</p>
+
+<p>前几次失败，是自己 naive 了，忘了给产品环境安装 RVM，又忘了在 RVM 里头装需要的 Ruby 版本，以及它的 gemset，1.8.7@my-awesome-project。这导致项目里的 <a href="http://beginrescueend.com/workflow/rvmrc/">.rvmrc</a> 执行出错了。贪图方便，我在项目里配置了 .rvmrc。生成它的方法很简单：</p>
+
+<pre><code>$ rvm --rvmrc --create 1.8.7@my-gemset
+</code></pre>
+
+<p>就可以了。不过这里有个 git 带来的问题。我全局开启了 cr 自动转成 crlf，结果 .rvmrc 在转掉之后，bash 执行出错了，不认得 ^M 字符。因为 bash 脚本实在不熟，只好含泪先把 crlf 关关掉，凑合用一下先。</p>
+
+<p>再说回到产品环境的解决，自然就是安装 RVM，然后安装 bundler。在这个原以为柳暗花明的时候，伟大的墙出现了，<code>gem install bundler -v 1.0.21</code> 一直超时，等了半个早上都装不好。无奈之下，只好在本机翻墙出去，搞到了 bundler-1.0.21.gem，sftp 登到产品机器，放上去，再安装：</p>
+
+<pre><code>$ curl http://rubygems.org/downloads/bundler-1.0.21.gem
+$ sftp foo@hawlscastle.com
+$ &gt; put Downloads/bundler-1.0.21.gem
+$ ssh foo@hawlscastle.com
+$ bundle install --local
+</code></pre>
+
+<p>原本呢，直接从 rubygems.org <code>bundle install</code> 肯定也是不行的；幸好之前做了 <code>bundle package</code>，把所有依赖的 gem 都写到了项目的 vender/cache 目录，如此，总算是在墙内完成了这些事情。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/10/13/bugs-bumped-into-recently/">近期遇到的一些 Bug 汇总</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-13T00:00:00+08:00" pubdate data-updated="true">Oct 13<span>th</span>, 2011</time>
+        
+         | <a href="/2011/10/13/bugs-bumped-into-recently/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>项目里头，用户保存一份设计的时候，会合并多份 JavaScript 文件。这些文件都是 <a href="http://seajs.com/">seajs</a> 模块，过程中，会根据模块中声明的依赖关系，自动添加相应的文件到合并的文件中去。依赖声明的形式是数组，类似：</p>
+
+<pre><code>define('foo', ['a','b','c'], function(require, export){});
+</code></pre>
+
+<p>代码实现得很容易，之前也一直没有问题。然而最近一个模块因为依赖太多，出了麻烦。那个模块被 Closure Compiler 压缩之后，成了这个样子：</p>
+
+<pre><code>define("foo","a,b,c".split(","), function(require, export){});
+</code></pre>
+
+<p>之前根据 [] 寻找依赖数组的，就挂掉了。Closure Compiler 这里的压缩策略是，如果用 &#8220;,&#8221;.split(&#8220;,&#8221;) 这种，能够比之前的语句压缩后要短，就改成这种。算是一个 gotcha，记在这里。</p>
+
+<p>另一个问题，是略有些粗苯的，代码如下：</p>
+
+<figure class='code'><figcaption><span>wrong.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">,</span><span class="nx">exports</span><span class="p">){});</span>
+</span><span class='line'><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">a</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>结果 <a href="https://developer.mozilla.org/en/document.write">document.write</a> 锁住了 DOM 树，seajs 在尝试解决 a 模块的依赖，在 head 中加入 <script src="b.js"></script> 的时候卡住了。比较奇怪的是，即使调用了 document.close(); 也不行。下次 debugger 看一下⋯⋯</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/29/facial-recognition-experiment-brought-by-cmu/">卡内基·梅隆大学（CMU）的脸部识别实验</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-29T00:00:00+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2011</time>
+        
+         | <a href="/2011/09/29/facial-recognition-experiment-brought-by-cmu/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.heinz.cmu.edu/~acquisti/face-recognition-study-FAQ/#Q1.1">CMU 的脸部识别实验</a>，看了 FAQ 的小结部分，我已经后脊背发凉了 >_&lt;</p>
+
+<p>利用 SNS、网络相册等可采集的数据，进行脸部识别、数据挖掘，找出每个人在网络上的各个脚印，又做一个手机应用，拍拍TA的脸，就能找到TA的人人网、豆瓣、又拍、微博，手机号神马的，就手到擒来了</p>
+
+<p>实验一：从红娘网站（用户多用的假名）找图片，到 facebook 找公开的用户（不用登陆到 Facebook 就能访问的）照片，彼此比对，卓有成效（木有说具体成功率）</p>
+
+<p>实验二：线下到线上的识别，拍学生的照片，线上找相应的 Facebook 资料，成功率 1/3</p>
+
+<p>实验三：（概念验证）增强现实，根据之前采集的数据与脸部识别结果，预测实验对象的社保号、兴趣、爱好、婚恋状况</p>
+
+<p>到时候，真的就是龙珠里头那种眼镜的感觉，看见一个美女，一按按钮，哇，36D、刚分手诶，有机会。</p>
+
+<p>当然，目下脸部识别技术还没有牛逼到那种程度，只是应用到社交网站，或者应用程序。Google 收购了 Neven Vision、Riya 和 PittPatt，在 Picasa 里加入了脸部识别；Apple 也收购了 Polar Rose，对 iPhoto 做了相同增强；Facebook.com 则授权了 Face.com 采集、识别它的用户数据。给定足够的时间、资源，相信不久将来，会出现这种增强现实的应用的。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/29/amazon-and-its-new-kindle/">Amazon 与它新发布的 Kindle 们</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-29T00:00:00+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2011</time>
+        
+         | <a href="/2011/09/29/amazon-and-its-new-kindle/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Amazon 真是家<a href="http://en.wikipedia.org/wiki/Amazon.com">有趣的公司</a>哇。在线卖书起家，因为感觉错过互联网淘金热和急火火加入，一路上扩张、收购，不好好做电子商务这份有前途的工作，还非得搞出些七七八八的云服务，什么存储服务（S3）啦，云计算（EC2）啦，最近又搞了亚马逊·擎天柱（Amazon Prime）搞影音流媒体服务。与之搭配的，就是今天要说的<a href="http://www.amazon.com/Kindle-Touch-Wi-Fi-Ink-Display/dp/B005890G8Y">这些 Kindle 们</a>。</p>
+
+<p>我在去年入了一个，6&#8221; 的 Kindle 第三版，无 wifi 版本。拿到手第一感觉是，这货真轻啊，跟地摊货似的，点亮屏幕就马上被 hold 住了，真真确确的在看书的感觉。后来就去下各种 pdf、epub，用 calibre 转了发到 kindle 上去看；也用一些服务例如 <a href="http://www.instapaper.com/">read later</a> 啦，<a href="http://www.readability.com/">readability</a> 啦之类的，将网文发到这台 kindle 上看；也会去 Amazon 上买些版权过期的、免费的书来看。</p>
+
+<p>有“商务人士”指出，买个 Kindle 却不高兴买正版书看的人，都活该被鄙视。唔，确实 not fashion。</p>
+
+<p>然而等不及我悔悟，Amazon 又重磅出击，把产品线更新、扩大了。昨日发布，一下多了好些个版本：去掉主键盘、只保留按键的 Kindle；增加了触屏、也去掉了所有按键的 Kindle Touch，当然，分有无 3G 的版本；老款成了最贵的，改名叫 Kindle Keyboard，这货的主键盘我从来没用过，真心不好用啊，屏幕反馈太慢，打字的乐趣分文没有了；然后就是当当当！Kindle Fire，一个彩屏的 Kindle 诶！</p>
+
+<p>等等，说了这些个，价格多少？把他们都加起来（总共六个 Kindle），唔，差不多比最贵的 iPad（64GB+3G）还要便宜个几十刀的样子。这个公司的思路可真够清晰的，公司创始人 Jeff Bezos 曾说过这么一句话：</p>
+
+<blockquote><p>There are two types of companies: those that work hard to charge customers more, and those that work hard to charge customers less. Both approaches can work. We are firmly in the second camp.</p>
+
+<p>有两种公司：努力让顾客多付钱的其一，努力让顾客少付的其二。两种公司都可以成功。我们坚决待在第二种阵营。</p></blockquote>
+
+<p>内容为王呃。它是如此不遗余力，不惜给产品加入广告以使成本更低。加入广告的版本换做 Special Edition，特别版。好么，人家的特别版都是限量、高价，它这特别版是特别便宜的版本的意思。广告在锁屏的时候出现，什么团购之类的，居然反馈还不错，也绝不影响阅读。而这次新品发布，直接把这特别版当成主推的，想要没广告的呀，可以呀，加钱⋯⋯ 真心想让设备烂大街，人手一只才好吧。另一种烂大街的，就是努力让顾客多掏钱的 Apple，同学几个出去聚会，摸出来的 5/6 是 iPhone，4k 多的手机哇。</p>
+
+<p>而这种竞争，首先搞挂的估计是国内的这些个汉王、盛大 Bambook 这些定位不清楚的吧。要卖设备，做得不如 iPad，要卖内容，又扛不住国内的盗版环境。都只能抱团在那边喊喊国情不一样的咯。</p>
+
+<p>不过，这只是我猜。不管如何，年底，或者明年年初，打算入一个 Kindle Touch。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

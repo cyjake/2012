@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Life | Chen Yangjian's Blog]]></title>
+  <link href="http://cyj.me/categories/life/atom.xml" rel="self"/>
+  <link href="http://cyj.me/"/>
+  <updated>2012-04-08T01:05:42+08:00</updated>
+  <id>http://cyj.me/</id>
+  <author>
+    <name><![CDATA[Chen Yangjian]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[再度搬家]]></title>
+    <link href="http://cyj.me/2012/03/06/yet-another-site-moving/"/>
+    <updated>2012-03-06T20:02:00+08:00</updated>
+    <id>http://cyj.me/2012/03/06/yet-another-site-moving</id>
+    <content type="html"><![CDATA[<p>从练手到如今吃这碗饭，我做了好多个网站，最早的用
+<a href="http://mwolson.org/projects/EmacsMuse.html">Emacs Muse</a> 学习
+<a href="http://lifegoo.pluskid.org/">pluskid</a> 做了个全是静态页的网站，叫过很多域名，
+待过很多地方，但网站的名字一直没变：《采薇采薇》。然而在我就职的首家公司，
+技术以 J2EE 与 Flex 为主，用 Emacs 的机会并不多，于是后来又跟风用
+<a href="http://staceyapp.com/">stacey</a> 制作了新版的个人网站，展示的是自己的画、
+和一点点浅薄的技术积累。</p>
+
+<p>到了 2012年，我的工具包又发生了变化，多了 Ruby，Git，与 Vim，套用句广告词，
+世界每天都在变，于是我再度追新，用上了 jekyll。牵引后果，技术考量，
+在我之前的博客中我已经说过，不赘述。</p>
+
+<p>与过去相比，今年另一个大变化是，我与人合租了个 Linode VPS，
+于是我把篇首提到的俩网站拾掇拾掇，都给放了出来，斗胆贻笑大方。它们分别是
+<a href="http://2008.cyj.me">2008.cyj.me</a> 与 <a href="http://2011.cyj.me">2011.cyj.me</a>。
+VPS 与 Dreamhost 等空间相比的好处是，许多技术细节直接暴露给我，
+使我在搭服务的时候学习到不少东西。如果不是因为 bus.fm 与 luoo.net 要放上来，
+我可能根本用不到 nginx 的任何相对复杂点的配置，也理解不了三层逻辑：
+http - server - location。在此向诸位推荐这两篇入门介绍：
+<a href="http://blog.martinfjordvald.com/2010/07/nginx-primer/">Nginx Primer</a> 与
+<a href="http://blog.martinfjordvald.com/2011/02/nginx-primer-2-from-apache-to-nginx/">Nginx Primer 2 - From Apache to Nginx</a>。</p>
+
+<p>我选的 Linux 发行版是 <a href="http://archlinux.org">Arch Linux</a>，以前有篇推介，
+用到一个词：“滚动发布之美”。意思就是 Arch Linux 是没有固定版本号的，永远最新。
+同时，<a href="https://wiki.archlinux.org/index.php/Main_Page">Arch Wiki</a> 文档翔实，
+让我配置 FTP 与 VPN 等服务时方便许多。</p>
+
+<p>你可能注意到，虽然这个 <a href="http://cyj.me">cyj.me</a> 是个全新的版本，但内容已经很丰富了。
+它们都来自 <a href="http://blog.cyj.me">blog.cyj.me</a>，我从 2008年开始一直都在更新的博客。
+但在导入的过程中，我删掉了其中一些简单的转发、短评文章，并深深自责过去写文的随意。</p>
+
+<p>接下去的日子，就是技术、照片与其他的更新，这里再不会出现速食新闻式的各种转发了。
+而 blog.cyj.me 则不再更新。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[莞尔]]></title>
+    <link href="http://cyj.me/2012/03/04/jokes/"/>
+    <updated>2012-03-04T00:25:00+08:00</updated>
+    <id>http://cyj.me/2012/03/04/jokes</id>
+    <content type="html"><![CDATA[<p>博客从2008年开始写，中间转发了许多幽默、轶闻，如今看来，很可乐，但意义不大。
+今天得闲重读，便将其中篇幅较短的收集起来，统一放到这里，不单独放出了。</p>
+
+<hr />
+
+<p>quote from <a href="http://entertainment.slashdot.org/article.pl?sid=08/10/27/1937220">slashdot</a>.</p>
+
+<ul>
+<li>A stale piece of bread is better than nothing.</li>
+<li>And nothing is better than a big juicy steak.</li>
+<li>Therefore a stale piece of bread is better than a big juicy steak.</li>
+</ul>
+
+
+<hr />
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>bin-laden.sh </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>chmod a+x /bin/laden
+</span><span class='line'><span class="nv">$ </span><span class="c"># Every one is entitled to execute bin laden.</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<hr />
+
+<p>达特茅斯大学计算机科学学院的
+<a href="http://www.cs.dartmouth.edu/farid/research/digitaltampering/">关于王道也不可信的列表</a>。</p>
+
+<hr />
+
+<p>一个bs GPL 和偏执狂 RMS 的<a href="http://kuoi.com/~kamikaze/read.php?id=157">文章</a>。</p>
+
+<p>BSD、MIT、CC 等授权似乎比所谓的 Copyleft 更受欢迎嘛。</p>
+
+<hr />
+
+<p>Everything that is old is new again.</p>
+
+<blockquote><p>Two lions escape from the zoo. They decide to split up and meet back in two months to see how the other is doing.</p>
+
+<p>Two months later, one lion is scrawny and beat up, the other is fat and happy. The scrawny beat up lion says,
+"I went to the park and started eating children. The police and national guard came after me
+and I haven't stopped running since. How are you so well fed?"</p>
+
+<p>The second lion replies, "Easy! I Just hid outside the IBM office and ate a manager every day. Nobody even noticed!"</p></blockquote>
+
+<p>两只狮子从动物园逃了出来。他们决定分开行动，两个月后再在此地见面看看彼此过得如何。</p>
+
+<p>两个月后，其一骨瘦如柴、挨了不少揍，另一个却显得很富态。瘦狮子说：“我跑去公园吃小孩。
+被警察和太保追着打。打那以后就一直疲于奔命。你在哪混的伙食？”</p>
+
+<p>第二只狮子回答说：“简单！我躲在 IBM 办公室外头每天吃一个中层管理人员。根本没有人注意到！”</p>
+
+<p>这是 Slashdot 上对<a href="http://slashdot.org/article.pl?sid=09%2F01%2F22%2F1435250">微软、Intel、IBM 相继裁员的新闻</a>的回复。</p>
+
+<p>也让我想起了老友记里头 Chandler 童鞋的那些办公室笑话。比如当同事抱怨事务繁忙、上级分派任务繁杂的时候，
+他说，为啥不把通知丢到碎纸机里头，如果头头来问就说你从来没收到通知？同事当他说笑，他很严肃地自言自语，
+为啥我说正经的的时候，你们老当我在开玩笑……</p>
+
+<p>ps：该新闻说，微软与 Intel 都将裁员5k余，而 IBM 则尚未通报确切数字，据传将达到 16k。</p>
+
+<hr />
+
+<p>当 Steve Jobs 遇到 Donald Knuth</p>
+
+<p>Steve 童鞋邀请到了高德纳来给 Mac 团队做个小指导。高德纳是斯坦福大学计算机科学系的传奇教授。
+（还有一篇<a href="http://blog.csdn.net/g9yuayon/archive/2008/01/11/2034708.aspx">g9写在高德纳70岁时候</a>的文章也可以看。）</p>
+
+<p>我还坐在 Steve 的办公室里头的时候，Steve 的助手 Lynn Takahashi 童鞋报传高德纳驾临。
+Steve 小盆友从板凳上跳起来，赶紧开了门并伸出了欢迎的手，就差倒着穿鞋子了：</p>
+
+<p>“见到你真高兴。” Steve 说，“你的书我都读了。”</p>
+
+<p>“你放屁。”高德纳回答。</p>
+
+<blockquote><p>Steve had managed to get Don Knuth, the legendary Stanford professor of computer science,
+to give a lunchtime lecture to the Mac team. [...]</p>
+
+<p>I was sitting in Steve's office when Lynn Takahashi, Steve's assistant, announced Knuth's arrival.
+Steve bounced out of his chair, bounded over to the door and extended a welcoming hand.</p>
+
+<p>"It's a pleasure to meet you, Professor Knuth," Steve said. "I've read all of your books."</p>
+
+<p>"You're full of shit," Knuth responded.</p></blockquote>
+
+<p>（此处略去高德纳介绍，详情请见<a href="http://blog.csdn.net/g9yuayon/archive/2004/07/04/33416.aspx">g9对他的介绍</a>）</p>
+
+<hr />
+
+<p>居家旅行杀人越货必备之注释工具</p>
+
+<p><a href="http://www.cenqua.com/commentator/">the commentator</a></p>
+
+<p>通过一些很囧的参数设置，让注释工具了解的你的性格，就可以开始注释了。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>wtf.c </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// avoid using the reverse &quot;i &gt;= 0; i--&quot; style loop here,</span>
+</span><span class='line'><span class="c1">// it would obviously be more efficient, but blows up in gcc</span>
+</span><span class='line'><span class="c1">// under linux and solaris</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><a href="http://en.wikipedia.org/wiki/Fear,_uncertainty_and_doubt">FUD</a> 开太大的话就是这结果……</p>
+
+<hr />
+
+<p>一家大公司的计算机（故事背景在计算机还很巨大的年代）挂掉了，所以他们给维修工打了电话。
+修理工在真空管架子之间走来走去，背着手哼着小曲，左看看右看看，上看看下看看。
+公司经理跟在后面紧张兮兮地探头探脑。</p>
+
+<p>过了一会，他终于在其中一个架子前停了下来。那个架子并没有什么与众不同的地方。
+他拉出真空管的托盘，拿出一个来放进自己的口袋。又从自己的另一个口袋里头掏出一个新的来，
+插回去。他接着把托盘推了回去，同技工说，开起来吧。</p>
+
+<p>计算机又妥妥儿的了。</p>
+
+<p>经理很高兴：“太好了！谢天谢地它又跑起来了！我们要给你多少钱？”
+修理工说：“一千刀。”（在计算机还是真空管的年代，这钱可真不少。）
+“什么？！一千块买个真空管？我要个详细的清单收据！”
+修理工耸耸肩，从兜里掏出个小本，写了一会，递给经理。经理拿来一看：“真空管：一刀；找到要更换的真空管：999刀。”</p>
+
+<p><a href="http://www.reddit.com/r/programming/comments/d10zy/forget_oracle_go_postgresql_the_worlds_most/c0wr3xv">via</a></p>
+
+<p>难得在 proggit 上又看到这则笑话，或者说寓言，翻译一下，聊作记录。小学的时候好像看到过，不过那时候修的是别的生产设备。</p>
+
+<hr />
+
+<p><a href="http://twitter.com/phil_nash/status/21159419598">via</a></p>
+
+<p>Welcome to the new decade: Java is a restricted platform, Google is evil,
+Apple is a monopoly and Microsoft are the underdogs</p>
+
+<hr />
+
+<p>粉絲們為 JavaScript 大神發起了 Twitter hashtag <a href="http://twitter.com/#search?q=crockfordfact">#crockfordfact</a>，
+有愛的“軼聞”都放在 <a href="http://crockfordfacts.com/">Crockfordfacts.com</a>。
+<a href="http://crockfordfacts.com/AD9ozL4y3xGCVSxUAkuh_Q">摘錄一條</a>：</p>
+
+<blockquote><p>Douglas Corckford can have full conversations using only javascript's reserved words.</p></blockquote>
+
+<hr />
+
+<p><a href="http://www.slayerx.org/2008/02/27/linus-torvalds-facts/">Linus Torvalds Facts</a>，很 KUSO，其中一条：</p>
+
+<blockquote><p>Linus Torvalds doesn’t wear glasses anymore not because he had laser eye surgery,
+but because he finally got his xorg.conf properly configured in his head.</p></blockquote>
+
+<hr />
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[忐忑 2012]]></title>
+    <link href="http://cyj.me/2012/01/03/looking-forward-to-2012/"/>
+    <updated>2012-01-03T00:00:00+08:00</updated>
+    <id>http://cyj.me/2012/01/03/looking-forward-to-2012</id>
+    <content type="html"><![CDATA[<p>2012 年开始了，没有船票的我内心忐忑，不管末日与否，还有12个月要过的，给自己定几个目标：</p>
+
+<ol>
+<li>吉他接着搞起</li>
+<li>每天画点小画</li>
+<li>各种 webapp 搞起</li>
+<li>工作上还得再接再厉，NodeJS 有必要搞起</li>
+<li>理论知识得熟络，联系实际能力要加强；看一遍《<a href="http://mitpress.mit.edu/sicp/full-text/book/book.html">SICP</a>》</li>
+<li>和林妹纸一起，去更多更远的地方</li>
+<li>多关心家人一些</li>
+</ol>
+
+
+<p>不敢写具体了，怕食言而肥。努力吧。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[回顾 2011]]></title>
+    <link href="http://cyj.me/2012/01/03/looking-back-to-2011/"/>
+    <updated>2012-01-03T00:00:00+08:00</updated>
+    <id>http://cyj.me/2012/01/03/looking-back-to-2011</id>
+    <content type="html"><![CDATA[<p>去年果然很忙，例行的新年计划都木有，翻了翻历史，只有对 <a href="http://blog.cyj.me/archives/84376">2010 年的展望</a>，笑言希望买单反，如今快门数估计已经过万不止了，以及<a href="http://blog.cyj.me/archives/84558">对这篇展望的回顾</a>。大体上上说，2010 年完成得不错。</p>
+
+<p>2011 年，年初没有定目标；而公司的个人 KPI 设定又略显偏工作内容了，不好提。只好按月份回顾一下罢：</p>
+
+<p><a href="http://blog.cyj.me/archives/date/2011/01">一月份</a>前后，开始学 Ruby on Rails，之前用过的语言与框架是 Python 与 Django，转到了 Ruby 与 Rails，许多技术思想其实相差无几，但语法差别、接口细节之类，也有些恼人，磕磕绊绊，边干边学，还算顺利。一月份看了两部电影，《黑天鹅》与《How To Be》，艺术追求与自我价值的找寻，娜塔莉·波特曼与罗伯特·帕丁森各自过着拧巴的日子。</p>
+
+<p><a href="http://blog.cyj.me/archives/date/2011/02">二月份</a>，博客里记的仍然只有技术文，中间其实有个很生活的片段，就是农历新年。正月里去怕了温州最高的山，<a href="http://www.yupoo.com/photos/yicai-cyj/albums/4813959/">金鸡山（照片）</a>，上山太早，冻了俩小时才看到日出；下山的时候第一次与别人刮擦，是个悍妇，扛不牢。这一年春节，也是大学毕业之后，工作两年多，头一回能在家待超过十天。回杭之后，还提了车，开始每天烦恼停车位。二月份看了一部电影，《非诚勿扰2》，谈恋爱是美好的，婚姻还是得一步一步来，行差踏错，麻烦得很。</p>
+
+<p>三月份，木有记。去了一趟安徽家朋，和新安江上游，看到了许多油菜花田，看到了一棵超大的樟树。那边有个地方叫做磡头，跟我念小学时的镇上十分相似，有种穿越回九十年代的错觉。本月看了三部电影，《Gone Baby Gone》，Affleck 兄弟出品，剧情跌宕，没有了绝对的好人坏人了；《前度》，前男友前女友什么的，都是洪水猛兽；另一部是口水片，不评价。</p>
+
+<p><a href="http://blog.cyj.me/archives/date/2011/04">四月份</a>，翻译完了 <a href="http://gitref.cyj.me/zh/">Git 参考手册</a>，很短的，领到了模样十分美帝国主义的 MacBook Pro，各种努力适应。清明的时候还去了青山湖打酱油，随便兜了兜，仰慕了一番湖边的别墅们。还去了杭州花圃、太子湾。那个时节去这些地方显得比较入时，对吧？四月份的电影十分精彩，《里约大冒险》是个很不错的 3D 动画片；《我是 Sam》是个很可爱的老爹，以及一首很萌的歌，lucy in the sky with diamond. 《将爱情进行到底》也十分有趣，尤其是在五菱里头车震被交警拖走那段。</p>
+
+<p><a href="http://blog.cyj.me/archives/date/2011/05">五月份</a>，记的只有两件事情，喜欢的两个球队都完败，曼联挂了，湖人也挂了。不过我久不打大球，又不喜做个纯球迷，得勉励自己要么索性不看，要么得开始篮球、足球择一恶补了。其间在枫华府第的单身公寓小住了几日，走路去上班的感觉真好，晚上不睡觉，<a href="http://www.yupoo.com/photos/yicai-cyj/archives/date-taken/2011/05/22/">跑去拍夜景</a>。五一的时候，还开车回了趟家，第一次跑告诉，回来的时候一个人，开得有点累，但感觉也不坏。和老鸭、九九去了西溪湿地，还去了老余杭那边的薰衣草园（其实不是薰衣草，学名叫啥忘记了）。车子首保。五月的电影精彩纷呈，《国王的演讲》、《玫瑰人生》、《不一样的天空》、《危情三日》、《速度与激情5》都很值得一看。</p>
+
+<p><a href="http://blog.cyj.me/archives/date/2011/06">六月份</a>是个惊悚的月份，因为<a href="http://blog.cyj.me/archives/84594">女朋友要毕业了</a>，很庆幸现在还在一起。六月份有一部电影很值得看，《打擂台》，很有令我心折的港味。</p>
+
+<p>七月份啥也没记，女朋友返家过最后一个暑假。去参加了 iConference，了解些 iOS 开发相关的东西，但到底没能立马动手开始做起来；回家赴飞腾订婚的宴席，就在我坐 D3115 回家两天之后，这班车与 D315 发生追尾，举国震惊。这月还有个很囧的事情，喝醉酒把自己手机搞挂了。</p>
+
+<p><a href="http://blog.cyj.me/archives/date/2011/08">八月份</a>，小兹兹被刮擦，对方全责，这人是我见过态度最好的车主了。爸爸妈妈和妹妹来杭州小住，陪我过暑假，待了一个星期多些，感觉家里从里到外新了一圈，真正的蓬荜生辉；女朋友也返杭了，送了我一只<a href="http://www.yupoo.com/photos/yicai-cyj/82627305/">摇头狗狗</a>，作七夕礼物。<a href="http://www.yupoo.com/photos/yicai-cyj/archives/date-taken/2011/08/">更多8月照片，在这里</a>。这一月，《哈利·波特》系列完结，变形金刚出到3，还补看了《斯巴达克斯·血与沙》。</p>
+
+<p><a href="http://blog.cyj.me/archives/date/2011/09">9月份</a>，《钢的琴》是一部触动人的电影，亚马逊发布了新版的 Kindle，而我则趁着中秋小长假，和女朋友<a href="http://blog.cyj.me/archives/84607">去了趟南浔和乌镇玩</a>，照片<a href="http://www.yupoo.com/photos/yicai-cyj/archives/date-taken/2011/09/">请看这里</a>。又回了趟家，大林伟订婚；后来还跟老鸭去了趟滨江的垃圾街，烧烤狠不错，偶尔吃一顿，感觉很好。</p>
+
+<p>十月份，又回了趟家，项目发布，<a href="http://www.yupoo.com/photos/yicai-cyj/archives/date-taken/2011/10/23/">烟花节</a>，去了趟之江玩，夜晚的时候遇到一只很萌的猫，后悔没有带回家。部门组织架构调整，成了一淘-UX-广告组的成员，大老板是个有趣的人。这个月，我24岁了。</p>
+
+<p>十一月，<a href="http://blog.cyj.me/archives/date/2011/11">同学们各种婚礼</a>，本科室友，高中同桌、公司同事，都有结婚、订婚，送红包不迭。<a href="http://www.yupoo.com/photos/yicai-cyj/archives/date-taken/2011/11/">拍了许多照片</a>，看到新郎官落泪，致辞的时候哽咽，被触动了。月底的时候，女友的妈妈来杭，接到家小住两日，做司机载着两位女士在杭州各处跑，第一次发现<a href="http://www.yupoo.com/photos/yicai-cyj/archives/date-taken/2011/11/26/">秋天的杭州（照片）</a>这么美。</p>
+
+<p>十二月，刚过去，给女朋友庆生，第一次喝好贵的茶，吃好贵的蛋糕，去许多没去过的店（三润居、21客、<a href="http://www.yupoo.com/photos/yicai-cyj/archives/date-taken/2011/12/11/">马灯部落</a>、如拉小镇、BetaCafe、知味观、野鱼馆和台州小吃）。弄坏了 Kindle 屏幕，又花400块换了块新的，然后效果似乎有差。另一个项目上线，但都还忙于各种调 bug。</p>
+
+<p>流水账的 2011 年，生活上一片忙乱，工作上也好不到哪儿去。然而毕竟没到求稳的阶段，还得再努努力，多快好省，搞定工作，享受生活才是。</p>
+
+<p>明天找时间想想 2012 年该如何吧。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最近二三事]]></title>
+    <link href="http://cyj.me/2011/12/17/lately-27/"/>
+    <updated>2011-12-17T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/12/17/lately-27</id>
+    <content type="html"><![CDATA[<p>来了淘宝之后生活变忙乱了，应付工作之余很难有闲情逸致自省，也没有收拾心情的想法，骚文写得自然也少了。今天难得来到贝塔咖啡小坐，变摸出电脑扮文青，叨叨一点想法，记一些近况。</p>
+
+<p>2011年很忙，开头是第一次接手已有项目钻石展位，中间是学习新技术 Ruby on Rails，结尾则是各种学晓的前、后端技术运用，做了俩项目。单枪匹马做项目的感觉很独特，有些时候可以自作主张，有些时候需要屈从产品经理或者老板的想法，无论如何，看到最终页面从浏览器里打开的样子，心里都是有成就感的。心里想到的却是一句话，成功就是机会遇到准备。老板已经给了机会，而我想我做的准备还算不错。</p>
+
+<p>然而这一年遇到的事情是之前所未曾预料的，2009年我做的最多的事情，是用 Python、Django 和 jQuery 制作各种玩具网站，而2010年的上半年，却是用 Flex 开发一个在线报表定制工具。或许真的如大牛们所说，技术是相通的，我学晓的，其实更多的是 DOM 结构、网站开发的各种最佳实践、ECMAScript 的精粹，和各种开发、除虫思路。Linus 大大说过的一句话我记忆犹新，这种随便乱调，不停刷新，以期解决问题的做法是极不可取的，我们更需要的，是从根本上厘清思路，找到原由，再去解决问题。按这个标准，我做的还远未足够。</p>
+
+<p>貌似总结过头了，先说写近况吧。有个新项目上了，<a href="http://ux.etao.com/">一淘UX规范平台</a>，是个展示同事们工作成果的地方，做得仓促，连浏览器兼容都还木有做。所以如果围观的时候遇到疑难，请务必在此留言，或者私信我，可别利用漏洞做坏事。</p>
+
+<p>车子开了9个月，居然已经1w多公里了，跟人刮擦有过、被人追尾有过，自己开得奔放有过、超速有过，甚至还有一次被人溜坡顶到车头，被动地爆了前车的菊花，所以总体还算精彩，不枉此1w公里。</p>
+
+<p>前些天，是女友生日，花了些心思，想来点惊喜，最终还是没能完成，希望可以在农历新年之前做好，聊表心意。</p>
+
+<p>啊，这文章写得虎头蛇尾了，另起一篇，小结一下毕业这三年余。</p>
+]]></content>
+  </entry>
+  
+</feed>

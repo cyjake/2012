@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>农历、格里历以及转换 - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="前些天练手 django，做了个袁天罡称骨歌小工具，在阳历与农历转换之间犯了难，后来让用户直接输农历了事，原先的 jQuery date_input 插件，也就不好再用。 这让我很郁闷，于是找了个 python 阳历农历转换之类的代码，该程序老旧，然而记录的150年农历倒是实用的，于是拿来主义， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2009/08/14/converting-between-lunar-gregory-calanders">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">农历、格里历以及转换</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-14T00:00:00+08:00" pubdate data-updated="true">Aug 14<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>前些天练手 <a href="http://www.djangoproject.com/">django</a>，做了个<a href="http://baike.baidu.com/view/511044.html">袁天罡称骨歌</a>小工具，在阳历与农历转换之间犯了难，后来让用户直接输农历了事，原先的 jQuery date_input 插件，也就不好再用。</p>
+
+<p>这让我很郁闷，于是找了个 <a href="http://bbs3.chinaunix.net/viewthread.php?tid=1523644">python 阳历农历转换</a>之类的代码，该程序老旧，然而记录的150年农历倒是实用的，于是拿来主义，取将过来，写了个简单的阳历、农历互相转换程序，测试不多，或将挂到网上。</p>
+
+<p>二者之间的转换比预想的很不一样，现行的国际通用的公历，又叫格里历（<a href="http://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian Calendar</a>），是 <a href="http://en.wikipedia.org/wiki/Julian_calendar">Julian Calendar</a>的改进版。1582 年的时候，教宗 Gregory 十三，为了矫正凯撒（Julius Caesar）改自罗马历法的 Julian Calendar 长期使用起来与实际时间产生的偏差（根据《<a href="http://www.math.nus.edu.sg/aslaksen/calendar/chinese.shtml">The Mathematics of Chinese Calendar</a>》）：</p>
+
+<blockquote><p>The reason why the Catholic
+church had to reform the Julian calendar was because the rules for computing
+Easter had fixed the March equinox to be March 21. That meant that Easter was
+drifting noticeably towards summer.</p></blockquote>
+
+<p>重置了日期的时间，并调整了闰年的算法。</p>
+
+<blockquote><p>The last day of the Julian calendar was Thursday, 4 October 1582 and this was followed by the first day of the Gregorian calendar, Friday, 15 October 1582 (the cycle of weekdays was not affected).</p>
+
+<p>Every year that is exactly divisible by four is a leap year, except for years that are exactly divisible by 100; the centurial years that are exactly divisible by 400 are still leap years. For example, the year 1900 is not a leap year; the year 2000 is a leap year.</p></blockquote>
+
+<p>原先的历法中，木有能被100整除并且不能被400整除不是闰年这一条。</p>
+
+<p>同时，值得八卦的是，在凯撒修改之前的罗马历法中，October 还是正宗的 October，指的是一年中的第八个月，这与英文 octal 八进制还是对应的。</p>
+
+<p>格里历是个计算性的历法，一年十二个月，大小月（31、30天）固定，2月分作为特殊月份，普通年份28天，闰年29天，用以调整历法与实际的偏差，365.2425 天。</p>
+
+<p>而农历呢？农历又叫阴历、古历，是一个沿用数千年，历经无数次合理的不合理不得已的不想要的让人欢喜的让人抓狂的修改增编之后的历法。它最近的一次修改实在 1645 年，明朝朱棣皇帝迁都北京（1403年）两百多年之后。明朝时，皇家看星星团（钦天监）的职位变为世袭，仰望星空的文武百官早已不再理解祖宗历法，从南京到北京，经纬度变化，使得原先预演月球阴晴的遗产算式不再能被套用，这帮食君俸禄的家伙连怎么调整浑天仪都不知道。然后，1582年，利玛窦同学本着上帝的名义来到中国，策反了时任当朝大员徐光启，中国人终于开始领受洋人的思想。而后，明朝覆亡（1644年），东北的少数民族爱新觉罗们，踩着徐光启和利玛窦们的肩膀，根据引进的洋人的新式天文设备，在又一个传教士<a href="http://www.newadvent.org/cathen/13520a.htm">汤若望</a>、罗雅谷的主持下，将他们的历局并入钦天监接着修订历法。然而新历出笼之后，保守佞臣<a href="http://baike.baidu.com/view/109480.htm">杨光先</a>，伙同什么都想插一脚的鳌拜，认为“宁可使 中国无好历法，不可使中国有西洋人”，收押了汤若望以及南怀仁。</p>
+
+<p>插播八卦，汤若望在顺治即位之后，学会了一级甲等的普通话，尝试想让顺治信基督耶稣；顺治对此颇感兴趣，然而在汤若望说到婚姻，天主教徒一夫一妻制的时候，他的兴趣便也索然，转而去跟得道高僧们谈经了。</p>
+
+<p>1665年1月16日，在汤与南仍在收押时，有一次日食，钦天监的三派，遵阴阳历的杨光先、奉阴历的穆斯林吴明烜和受哥白尼、伽利略等影响的汤若望南怀仁分别预测为当天下午2:30、2:15、3:00。一同收押的数名旅华外籍人士以及他们的中国助手们，戴着铁链镣铐，与当天下午2:57，见证了自己的信仰。然而，要面子如扬光先、鳌拜，是不需反悔的。汤若望与南怀仁的死刑被无限延缓，然而他们的中国助手们，被认为里通外人，处以极刑。1666年，汤在监禁中去世。</p>
+
+<p>许多年后，我们称之为皇历的东西，其实跟洋人们不无关系。祖宗历法，并不比西洋历法低劣；<a href="http://baike.baidu.com/view/6089.htm">郭守敬</a>（受穆斯林历法的影响，修《授时历》，为当时世界上最准确的历法）比任何传教徒都胜任天文学家之职。然而，保守的中国人们，最终忘记了算法的本质。</p>
+
+<p>以上，只是中国历法漫漫数千年间的一小部分。详细请参考《<a href="http://www.math.nus.edu.sg/aslaksen/calendar/chinese.shtml">The Mathematics of Chinese Calendar</a>》和<a href="http://zh.wikipedia.org/wiki/%E8%BE%B2%E6%9B%86#.E6.AD.B7.E4.BB.A3.E6.9B.86.E6.B3.95">维基百科-农历历代历法</a>。上述历史，亦是译自该文。</p>
+
+<p>再说回到转换，先插播点基础知识。所谓阳历、阴历、阴阳历，区别在于，阳历的历法基准，以太阳的变化、地球围绕太阳的周转为根据；阴历，则以月亮的阴晴圆缺为依托；而所谓阴阳历呢，则是二者在历法中都有其成分。农历本身，并不像格里历那样是个以数学计算为出发点的日历，以阴历为基本，插入阳历性质的二十四节气。这也是由中国农耕社会性质决定的。</p>
+
+<p>月亮就跟齐秦的心一样，是阴晴不定的，循环周期也受太阳、其他行星等影响，所以，没有普通算法能够胜任。所能依据的，只能是航天局、天朝看星星团之类的机构公布的数据。开篇我提到有个 python 程序，里头含有1900-2050年的农历数据，如下：</p>
+
+<pre><code>                        0x04bd8,    # 1900
+    0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950,    # 1905
+    ...
+    0x0aa50, 0x1b255, 0x06d20, 0x0ada0          # 2049
+</code></pre>
+
+<p>编码的方式是：</p>
+
+<pre><code># 0x0   c   a   b   5
+#   0   1100    1010    1011    5 is the intercalary month
+</code></pre>
+
+<p>全部数据，去参考程序就好了。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-14T00:00:00+08:00" pubdate data-updated="true">Aug 14<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/computer/'>Computer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2009/08/14/converting-between-lunar-gregory-calanders/" data-via="dotnil" data-counturl="http://cyj.me/2009/08/14/converting-between-lunar-gregory-calanders/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/08/13/google-app-engine-gotcha/" title="Previous Post: Google App Engine 的一个 gotcha">&laquo; Google App Engine 的一个 gotcha</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/08/20/missing-_why/" title="Next Post: 玩失踪的 _why">玩失踪的 _why &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2009/08/14/converting-between-lunar-gregory-calanders/';
+        var disqus_url = 'http://cyj.me/2009/08/14/converting-between-lunar-gregory-calanders/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

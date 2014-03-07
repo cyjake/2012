@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Complang | Chen Yangjian's Blog]]></title>
+  <link href="http://cyj.me/categories/complang/atom.xml" rel="self"/>
+  <link href="http://cyj.me/"/>
+  <updated>2012-04-08T01:05:42+08:00</updated>
+  <id>http://cyj.me/</id>
+  <author>
+    <name><![CDATA[Chen Yangjian]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[事件代理以及它的好处]]></title>
+    <link href="http://cyj.me/2012/01/03/what-is-event-delegating-and-why-you-should-be-using-it/"/>
+    <updated>2012-01-03T00:00:00+08:00</updated>
+    <id>http://cyj.me/2012/01/03/what-is-event-delegating-and-why-you-should-be-using-it</id>
+    <content type="html"><![CDATA[<p>不是什么新东西了，昨天做的分享里头需要讲到，又把几个知识点翻出来看了一下，<a href="http://cherny.com/webdev/70/javascript-event-delegation-and-event-hanlders">这篇博客</a>总结得不错，摘译一些。</p>
+
+<p>事件代理利用的是事件冒泡机制，在事件，例如点击触发时，是从 DOM 树最底端的阶段开始往顶端冒泡，事件对象贯穿这个生命周期。入门事件绑定的时候，绑定与处理是这样的：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>old.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;J_button&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">button</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>   <span class="c1">// handles target</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>这在要绑定、处理的节点多了之后有点难办的，尤其是列表、表格这种场景，在 for 循环的时候，有个经典的 js gotcha：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>wrong.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// 错误代码</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="nx">anchors</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">anchors</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>不管点那个锚点，alert 出来的都是 anchors.length -1，熟悉 js 的都会告诉你，这是因为闭包的关系，因为等你点击任意锚点的时候，这个 for 循环执行已毕，当前上下文，也就是 onclick 所在的闭包，里头的 i 已经是 anchors.length -1。</p>
+
+<p>而如果用事件代理的方式，则强迫你放弃闭包中的这些循环变量：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>delegate.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">anchors_box</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>   <span class="k">if</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>   <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>   <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>如果需要 i，则需要在事件处理时去实时获取，或者预处理一下，将 i 放到它们的属性里头去。两者对比，采用事件代理方式的好处显得清楚明了：</p>
+
+<ol>
+<li>绑定起来更加方便</li>
+<li>减少闭包使用，从而降低可能不必要的内存占用</li>
+<li>对代理节点的 innerHTML 做修改，不需要重新绑定</li>
+<li>在事件监听节点比较多的情况下，特别是重型的 OPOA，跑得更顺畅</li>
+</ol>
+
+
+<p><a href="http://cherny.com/webdev/70/javascript-event-delegation-and-event-hanlders">参考文章</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Rails 3 一二]]></title>
+    <link href="http://cyj.me/2011/02/18/using-rails-3/"/>
+    <updated>2011-02-18T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/02/18/using-rails-3</id>
+    <content type="html"><![CDATA[<p>昨天把做的项目发布到测试机，RedHat Linux，出了个小问题。数据读取的时候都好的，插入的时候挂掉了，SQLite 说找不到数据文件。</p>
+
+<pre><code>`SQLite3::SQLException: unable to open database file
+`
+</code></pre>
+
+<p>这个属于比较明显的权限问题。看数据文件的权限是没问题的，都已经是 777 了。后来才晓得是数据文件所在目录也需要加权限，真是土鳖了。看来 UNIX 神马的，要拾起来了。</p>
+
+<p>另一则。</p>
+
+<p>有个 model 储存的时候，希望如果只改了某一个属性的话，就绕过 before_save，Google 一下发现<a href="http://ryandaigle.com/articles/2008/3/31/what-s-new-in-edge-rails-dirty-objects">在 Rails 里头还真是 tmd 简单</a>。有几个很方便的语法糖：</p>
+
+<pre><code>`model.&lt;field&gt;_changed? # true / false
+model.&lt;field&gt;_was # orginal value
+model.&lt;field&gt;_change # ['origin', 'new']
+
+# 有变更的属性的列表
+article.changed  #=&gt; ['title']
+
+# 有变更的属性的 map
+article.changes  #=&gt; { 'title' =&gt; ["Title", "New Title"] }
+article.changed?  #=&gt; true
+article.save  #=&gt; true
+article.changed?  #=&gt; false
+`&lt;/field&gt;&lt;/field&gt;&lt;/field&gt;
+</code></pre>
+
+<p>如果属性变更不是通过 <code>attr=</code> 方式调用，但又想让 model 知道有改动的。还可以调用</p>
+
+<pre><code>`model.&lt;field&gt;_will_change!
+# 如
+article.title_will_change!
+article.title.upcase!
+article.title_change  #=&gt; ['Title', 'TITLE']
+`&lt;/field&gt;
+</code></pre>
+
+<p>Rails 在这方面真是越走越远了。当初第一次看到 <code>6.hours</code> 之类的语法时，直接晕菜的想法都有了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[让 ActionMailer 3 使用 gmail 发送邮件]]></title>
+    <link href="http://cyj.me/2011/02/14/send-mail-via-gmail-in-actionmailer-3/"/>
+    <updated>2011-02-14T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/02/14/send-mail-via-gmail-in-actionmailer-3</id>
+    <content type="html"><![CDATA[<p>发送邮件的方法很简单，继承 <code>ActionMailer::Base</code>，实现个发送邮件的方法：</p>
+
+<pre><code>`# app/models/notifier.rb  
+class Notifier &lt; ActionMailer::Base  
+  default_url_options[:host] = "authlogic_example.binarylogic.com"  
+
+  def password_reset_instructions(user)  
+    subject       "Password Reset Instructions"  
+    from          "Binary Logic Notifier "  
+    recipients    user.email  
+    sent_on       Time.now  
+    body          :edit_password_reset_url =&gt; edit_password_reset_url(user.perishable_token)  
+  end  
+end
+`
+</code></pre>
+
+<p>然后调用 <code>Notifier.password_reset_instructions(current_user).deliver()</code> 就可以了。以上方法来自 Ben Johnson 的 <a href="http://www.binarylogic.com/2008/11/16/tutorial-reset-passwords-with-authlogic/">Authlogic Password Reset 教程</a>。</p>
+
+<p>看起来很容易，对吧？发送邮件背后的苦工是 ActionMailer，它会找到 Rails 所在的机器上的 <a href="http://en.wikipedia.org/wiki/Sendmail">sendmail</a>，使用该服务把邮件发送出去。而当我们在本地开发的时候，机器上通常都不会有而且也懒得配置复杂的 sendmail 服务。这个时候，不妨用 gmail 来将就一下。</p>
+
+<p><a href="http://lindsaar.net/2010/3/15/how_to_use_mail_and_actionmailer_3_with_gmail_smtp">使用 gmail 的方法</a>也简单，注册个 <a href="http://mail.google.com">gmail</a> 帐号，并告诉 ActionMailer 使用 SMTP 的方式发送邮件，附上 gmail 账户参数，即可。</p>
+
+<pre><code>`# config/enviroments.rb
+ActionMailer::Base.smtp_settings = {
+  :address              =&gt; "smtp.gmail.com",
+  :port                 =&gt; 587,
+  :domain               =&gt; 'your.host.name',
+  :user_name            =&gt; '&lt;username&gt;',
+  :password             =&gt; '&lt;password&gt;',
+  :authentication       =&gt; 'plain',
+  :enable_starttls_auto =&gt; true
+}
+`&lt;/password&gt;&lt;/username&gt;
+</code></pre>
+
+<p>如果还是不成，试试重启服务吧。</p>
+
+<p>除此之外，还有个<a href="http://cowoo.javaeye.com/blog/36627">曲线救国的方法</a>。我们可以告诉 ActionMailer 去找另外的邮件发送服务，再通过该服务调用 gmail 的 SMTP 方式来发送邮件。这个服务名叫 msmtp，我试了下，可能是 ActionMailer 3 的关系，不好使。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在 Rails 3 中使用 Authlogic 的一个小问题]]></title>
+    <link href="http://cyj.me/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue/"/>
+    <updated>2011-01-25T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue</id>
+    <content type="html"><![CDATA[<p>最近组里头有个小项目，交给我做。我赶时髦用的 Rails 3，加入 Authlogic 的时候碰到些问题。</p>
+
+<pre><code>`undefined method `to_key' for #&lt;usersession: no credentials provided&gt;
+`&lt;/usersession:&gt;
+</code></pre>
+
+<p>按照 <a href="http://railscasts.com/episodes/160-authlogic">railscasts 的 authlogic 入门</a>，一步步走下来，到创建用户登录表单的时候，在 Rails 3 中会碰到问题，丢出上面这个错误。Google 一看，在 Railsplugins.org 上<a href="http://railsplugins.org/plugins/56-authlogic">碰到这个问题的人</a>还真不少。</p>
+
+<p>有一个比较简单直接的解决办法，修改 Rails 工程中的 Gemfile，把 authlogic 这个 gem 指向另外一个家伙临时 fix 的版本：</p>
+
+<pre><code>`gem 'authlogic', :git =&gt; 'git://github.com/odorcicd/authlogic.git', :branch =&gt; 'rails3'
+`
+</code></pre>
+
+<p>就木有问题了。</p>
+
+<p>然而问题还没有严重到要直接切换分支的程度。有位黑人兄弟<a href="http://techoctave.com/c7/posts/37-authlogic-and-rails-3-0-solution">指出了这么做的坏处</a>：</p>
+
+<ol>
+<li>这并非官方版本，而官方版本也没有老掉牙，作者还在更新。</li>
+<li>这么做并不保险。</li>
+<li>还有个更简单的解决办法。</li>
+</ol>
+
+
+<p>先看问题的起因。Rails 3 的 Routing 机制改变很大，routes.rb 不再像以前那么肥了。然而也引起了 authlogic 的问题。有两件事情它做不了了：</p>
+
+<ol>
+<li>authlogic 不能将 username/password 创建成 <code>:user_session</code>，导致 params[] 获取的时候出问题了</li>
+<li>authlogic 不知道该把哪个方法绑定到表单上去，导致 <code>/app/controllers/user_sessions_controll.rb</code> 里的 <code>create</code> 方法木有被召唤到。</li>
+</ol>
+
+
+<p>所以，相应的也就有了解决办法：把 <code>/app/views/user_session/new.html.erb</code> 修改一下，原先可能是：</p>
+
+<pre><code>`&lt;%= form_for @user_session do |f| %&gt;
+`
+</code></pre>
+
+<p>改成：</p>
+
+<pre><code>`&lt;%= form_for @user_session, :as =&gt; :user_session, :url =&gt; { :action =&gt; "create" } do |f| %&gt;
+`
+</code></pre>
+
+<p>当然，也有个简单直接暴力的办法，给 <code>/app/models/user_session.rb</code> 加上 <code>to_key</code> 方法。不太好，最好别这么做。</p>
+
+<hr />
+
+<p>一知半解，差不多全是翻译自 <a href="http://techoctave.com/c7/posts/37-authlogic-and-rails-3-0-solution">这里</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Flex DataGrid Column 自动排序]]></title>
+    <link href="http://cyj.me/2010/08/11/flex-datagrid-column-auto-ordering/"/>
+    <updated>2010-08-11T00:00:00+08:00</updated>
+    <id>http://cyj.me/2010/08/11/flex-datagrid-column-auto-ordering</id>
+    <content type="html"><![CDATA[<p>应用 Flex 开发，碰到的很常见的需求是对 DataGrid 的数据排序。今天碰上的是，DataGrid 生成之后自动按照数据单元的名称对其进行排序。</p>
+
+<p>我们点击一个可排序的 DataGrid Column Header 之后，DataGrid 会 dispatch 一个 <a href="http://livedocs.adobe.com/flex/3/langref/mx/events/DataGridEvent.html">DataGridEvent</a>.HEADER_RELEASE 事件。DataGrid 自己同时也监听这个事件，收到后就会对其进行排序。如果 SortFunction 木有制定，则按照数据类型的默认排序进行排序。所以，要让 DataGrid 自动排序，我们只需要人肉 dispatch 一个 HEADER_RELEASE 事件就行。</p>
+
+<p>值得注意的是，这个事件是由 DataGrid 发出的，不是 DataGridColumn。代码如下：</p>
+
+<pre><code>grid.dispatchEvent( new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, true, 1, null, 0, null, null, 0) );
+</code></pre>
+
+<p><a href="http://livedocs.adobe.com/flex/3/langref/mx/events/DataGridEvent.html#HEADER_RELEASE">参数</a>：</p>
+
+<pre><code>DataGridEvent(DataGridEvent.HEADER_RELEASE, bubbles, cancelable, columnIndex, currentTarget, dataField, itemRenderer, reason, rowIndex, target);
+</code></pre>
+
+<p>columnIndex 从 0 开始。
+<a href="http://www.hsharma.com/tech/air/auto-sort-datagrid-column-in-flex-3/">ref</a></p>
+
+<p>题外话：ActionScript 的框架很成熟，让我觉得不爽的地方只有两个，源码的缩进风格、仍然有大量改进空间的编译器。当初 Adobe 结合 Google 宣布 Flash 将在 Chrome 中默认安装，对所谓 Flash Killer 的 HTML5 冲击其实不小的。意思就是你看，爷还会喘气儿。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="与 1.3.1 主要的改变有： Elements Returned in Document Order. 似乎是为了跟内部其他部件好交流，按照选择器 API 做出的更改，
+我表示这个变更对我影响不大。
+.live() Can Now Prevent Bubbling. 两个 live &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/30">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/21/jquery-1-3-2/">jQuery 1.3.2 发布</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-21T00:00:00+08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2009</time>
+        
+         | <a href="/2009/02/21/jquery-1-3-2/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>与 1.3.1 主要的<a href="http://docs.jquery.com/Release:jQuery_1.3.2">改变</a>有：</p>
+
+<ul>
+<li>Elements Returned in Document Order. 似乎是为了跟内部其他部件好交流，按照选择器 API 做出的更改，
+我表示这个变更对我影响不大。</li>
+<li>.live() Can Now Prevent Bubbling. 两个 live 的元素可以嵌套，通过返回假或者调用阻止函数终止事件触发。
+1.3.1 的时候我就用到了一哈 live，还是挺方便的。（For those wondering about the,
+currently missing, features of .live() (like submit and change events)
+you can expect all of those to land in jQuery 1.3.3, due to arrive sometime next month.）
+想要 submit 与 change 之类的事件类型也能 live？等下一个版本吧。</li>
+<li>:visible/:hidden Overhauled. 判断方法的改变，我再度表示对生活影响不大。
+原来是判断一坨东西，现在只看元素的宽度与高度偏移，有的话就不认为是隐藏的。效率提升咣咣的。</li>
+<li>.height()/.width() Overhauled. 同样是速度提升。</li>
+<li>Selector Speed-up in IE. 据说在 IE 里头的提升尤其明显。</li>
+<li>.appendTo()/etc. Now Return Inserted Elements.  appendTo() 返回的不再是传递进去被操作的变量而已，而是实际插入到 DOM 中的元素。具体请看：</li>
+</ul>
+
+
+<blockquote><p>This was due to the fact that .appendTo, etc. would only return the elements that were passed in to it, instead of the elements that were actually inserted (and since only a single paragraph was passed in - the first one to be inserted - only the first paragraph had the class added to it).</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/21/give-ie6-a-funeral-like-os9/">像 OS9 一样给 IE6 举行一个葬礼如何？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-21T00:00:00+08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2009</time>
+        
+         | <a href="/2009/02/21/give-ie6-a-funeral-like-os9/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>IE6 老早就好被丢弃到历史的封土堆里头去啦。正如这厮所说：</p>
+
+<blockquote><p>There are two kinds of web developers. Those who refuse to hack sites to work in legacy browsers, and those who are employed.</p></blockquote>
+
+<p>而我不幸就是后者。我每天的任务就是给使用 IE6 的目标用户制造和维护网站。
+在公司里头我自己的机器也同样如此，据说 IE7 有安全漏洞，公司建议使用 IE6，囧！
+有点像据说 XP 有臭虫建议使用 Windows 2000 一样，这老东西除了可以用来被人遗忘外，
+早就没啥历史光荣使命了吧？抱怨归抱怨，事实摆在眼前：</p>
+
+<blockquote><p>Upgrade to what? IE7 is slightly better than IE6 but not by much, and IE8 is not out yet
+IE6 still has a huge install base in shitty intranet crap, which MS cannot afford to break</p></blockquote>
+
+<p>升级了又能如何呢？IE7 也不是什么好鸟，IE8 又还没出，IE6 在企业内部网络的安装数量依然巨大。
+最后一个微软怎么能敢让它们做出改变捏？如果你只是做网站给自己玩，
+如果你的网站不在乎那些喜欢用 IE6 或者被喜欢用 IE6 的可怜虫们，
+你可以<a href="http://www.reddit.com/r/programming/comments/7ykur/ie6_spring_cleaning_in_norway_most_major_sites/#">这样</a>：</p>
+
+<blockquote><p>Fair enough,
+&lt;!&#8211;[if IE]&gt; &lt;script type=&#8221;text/javascript&#8221;&gt; window.location.href = &#8220;http://www.getfirefox.com&#8221;; &lt;/script&gt; &lt;![endif]&#8211;&gt;
+That&#8217;ll do ya!</p></blockquote>
+
+<p><a href="http://www.cjohansen.no/en/browsers/norway_tells_ie6_users_to_shape_up">挪威的许多网站都是这么干的</a>。
+当然，没那么偏激。提醒你要升级了而已。</p>
+
+<p>如果你是用 IE6 来阅读我的博客的话，请去升级一哈子吧。IE7 虽然也不咋地，但比 IE6 还是好些的。
+引用史蒂夫·乔布斯给 OS9 的悼词：IE6 童鞋，你和你的打手 frontpage，
+给我们带来了无数的 Web 1.0 时代的惊喜、粗陋和财富，时代不同了，没听见老关说：“你过时了”么？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/18/some-javascript-css-related-top-x/">一些 JavaScript、CSS 相关的 Top X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-18T00:00:00+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/18/some-javascript-css-related-top-x/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这中几大某某、某某 Top X 之类的文章确实太多，让人看到眼烦。不过也有好文章：</p>
+
+<p><a href="http://nettuts.com/tutorials/html-css-techniques/5-tips-to-writing-better-css/">5个写　CSS 的良好习惯</a>：
+这个其实属于控制狂才爱做的事情，不过其中有个提醒值得注意。不要使用 * { margin:0; } 来重设样式。
+会比较慢，如果页面元素比较多浏览器又比较弱的话。其余的倒可以无视。至于重设 CSS，褒贬不一，
+我的看法是找到适合自己的。初学者可能还是尝试用一些 YUI 之类的重设比较方便。</p>
+
+<p><a href="http://www.bitrepository.com/web-programming/javascript/date-pickers.html">14个优秀的日期选择框</a>：
+前面几个全是 jQuery 的插件，哈哈。最近准备尝试一下<a href="http://www.eyecon.ro/datepicker/">这个</a>，
+jQuery UI 自带的那个太大，依赖的东西又多，很多功能又没必要，有点烦。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/18/lately-10/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-18T00:00:00+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/18/lately-10/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天钱包被偷了…… 干啥都没情绪，唉</p>
+
+<p>从上周开始一直在做项目组的 worklog 程序。后台通过 Java Servlet 传 XML 来跟前台打交道，
+也就是传说中的 ajax 啦~ jQuery 对 JavaScript 的改变简直是翻天覆地。</p>
+
+<p>吉他练到《指弹教程》的第三章中间和第四章的开头几首歌，有点缓步不前的意思。因为天又冷了……</p>
+
+<p>明天要去办一坨证明以及挂失等等。</p>
+
+<p>好久没有正儿八经坐下来画画了，似乎有必要去买一支漫画笔。中性水笔其实也能凑合。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/15/lennys-here-debian-5-0/">Lenny&#8217;s Here. Debian 5.0 于情人节发布</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-15T00:00:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/15/lennys-here-debian-5-0/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>也就是说 <a href="http://www.us.debian.org/News/2009/20090214">lenny 从 testing 变为新的 stable</a> 了，丫头变头牌了。只是可惜的是，大部分人的口味还是偏向丫头的，睡觉丫头比较新呢…… 顺便转载个笑话。</p>
+
+<blockquote><p>Savor this moment guys, a Debian release is like a Solar eclipse, you are lucky if you get to see one in your lifetime!</p></blockquote>
+
+<p>不过在我目前为止不长的与 debian 接触的时光里头，已经经历了两次版本变更了。debian 更新得再慢，也比 google 的 beta 标签快……</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/15/city-that-never-sleeps/">不夜城</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-15T00:00:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/15/city-that-never-sleeps/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://weburbanist.com/wp-content/uploads/2008/11/tokyo-1.png" alt="Tokyo" /></p>
+
+<p>用火树银花来形容根本不为过，这张图片让你看到了什么？还有<a href="http://weburbanist.com/2008/12/20/night-photography-cities-world-travel/">其他一些城市</a>。</p>
+
+<p>我看到的是，人类作为万物灵长，对大自然的予取予求。如斯良辰美景到底能够维持多久捏？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/15/all-star-second-day/">全明星第二日，淡定的螺丝，可怜的卡波诺，狡猾的内特</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-15T00:00:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/15/all-star-second-day/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>6点投篮比赛没啥特别的，是属于 tg 抓河蟹范畴的项目，唯一的出彩处是菲尼克斯队的前五个点都是一击命中。在接下来的技巧挑战赛里头，第一个出场的德文童鞋很淡定，莫不传很爱惜花花草草，只是没想到罗斯同学更加淡定。最终以31秒多中规中矩的成绩问鼎。</p>
+
+<p>之后的三分比赛规则看似河蟹，其实让白人兄弟卡波诺吃了大亏。初赛出场序按赛季命中三分数排名，决赛出场序按初赛得分排名，结果本赛季场均命中三分1个不到、初赛虽然晋级但是得分相对最低的卡波诺童鞋连续上去博命投了20个三分，最终决赛仅得到14分。而刘易斯童鞋在加赛的7分实在是太丢脸，好在还有帮主的五分帮忙点着（虽然后来还有更低的，但是实在不好意思帮主，我就记得你了……）。</p>
+
+<p>Rudy Fernandez 童鞋在 DW 头上的扣篮……</p>
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/47VLce11WDM&hl=zh_CN&fs=1" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/47VLce11WDM&hl=zh_CN&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+
+<p>扣篮大赛是重头，菜鸟费尔南德斯据说也是能吻框的主儿，可惜他的前两扣没能让那五个老家伙见识到妙处，第二扣又耗费太多时间。Jr 作为备胎，表现中规中矩，放在金州勇士那个 Richard 两连冠的淡季可能有点看头，但是创意一般，身高也一般。德怀特·霍华德照样让人惊喜，初赛第二扣电话亭道具很出彩，加高的篮筐也不错。决赛的第一扣让人充分见识到了丫的身体素质，超人的臂展与弹跳，真是不一样。如果不是观众票选，他绝对是冠军。</p>
+
+<p>可惜杀出了个程咬金，那个狡猾的能扣篮的矮个子，内特·罗宾逊。决赛上他的第二扣号称氪扣篮（超人的阿喀琉斯之踵），结果就是跨越德怀特·霍华德，还撑了一下……</p>
+
+<p>唉，只能说萝卜白菜各有所爱。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/14/web-design-vs-frontend-dev/">Web Design vs. Frontend Dev</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-14T00:00:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/14/web-design-vs-frontend-dev/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>参考 est 的<a href="http://initiative.yo2.cn/archives/636325">观点</a>，Web 设计工作者应该明白，他们做的是设计而非开发。所以，如果你对什么样的页面比较<a href="http://www.backtoessentials.com/showcases/a-showcase-of-85-creative-splash-pages/">有视觉冲击力</a>有感觉，但是对如何把这东西用合适的技术展现出来没啥研究的话，还是不要<a href="http://notalwaysright.com/she-uses-the-google/153">弄个 Dreamweaver 瞎掺和</a>了。而活跃在各大水区（Slashdot、reddit etc.）的自由从业者们（freelance），往往都是单枪匹马一站式服务，所以弄出些 <a href="http://www.dotnil.org/web/70937.html">table vs. css</a> 等实用至上与技术第一的掐架也是在所难免。</p>
+
+<p>以局外人的观点看，做设计的童鞋们能够迅速根据客户要求做出 sample 页面，能够与前段开发人员沟通，懂点 html，基本上就满足需求了。而做前段开发的呢？不要太沉溺于各种 css 奇技淫巧，能够迅速将样品网页制成动态页面，避免使用意大利面代码生成工具（例如 Dreamweaver、frontpage），晓得留坑跟后台沟通，明白 html 代码里头的<a href="http://code.google.com/p/browsersec/wiki/Main">陷阱、规范</a>，晓得使用自己需要的浏览器处理模式，就行了。</p>
+
+<p>而 js 开发就不好说了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/14/ted-talks/">TED Talks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-14T00:00:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/14/ted-talks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>从<a href="http://www.douban.com/group/tedtalks/">豆瓣 TED Talks 小组</a>知道的这么一个组织。</p>
+
+<blockquote><p>TED是英文technology, entertainment, design三个单词的首字母缩写。它是由Chris Anderson创立的一个基金会做的，每一年的三月在美国汇集众多科学家、设计师、文学家、音乐家等领域的杰出人物，在TED大会上分享他们关于科技、社会、人的思考和探索。</p></blockquote>
+
+<p><a href="http://item.feedsky.com/~feedsky/initiative/~5939548/163399117/1236017/1/item.html">官方的视频</a>可以免费下载观看。不过背后的运营都贵了，<a href="http://www.yeeyan.com/groups/show/ted">译言的 TED 演讲录</a>最近更新了两篇文章，其一就说到参加派对的消费水平。</p>
+
+<blockquote><p>TED大会还是保有不凡的名声，可能是它对申请者有很多要求，一张票6000美金，提前一年就卖完。</p></blockquote>
+
+<p>内容精彩纷呈，讲演人神采各异。有 PC Guy 讲自己遭遇幽浮，有物理学家将 LHC 背后的故事娓娓道来，有挨踢工作者演示新型桌面，有文艺复兴男架起音乐与计算的桥梁（从黑胶碟转录钢琴演奏家的演奏，成为计算机可以操作的二进制，再通过各种设定，比如情绪比如场景，加入装饰，在特制的雅马哈钢琴上演奏出来。听十次演奏，次次都会有所不同）。</p>
+
+<p>很精彩。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/14/finger-style-lu-jiahong/">华人指弹第一人：卢家宏</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-14T00:00:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/14/finger-style-lu-jiahong/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.dotnil.org/besides_silicon/71215.html">上周</a>我向大家报告了我去天目琴行的见闻和自己练习吉他的一些情况，这周呢就重点推介我在练的<a href="http://www.douban.com/subject/3024391/">指弹教材（指弹吉他完整教程）</a>的作者卢家宏（Chiahong Allen Loo）。</p>
+
+<p>优酷上的卢家宏列表全是他以前出的《魅力民谣》系列的视频，比较老了，这是他差不多两年多前即兴的《Jingle Bells》：</p>
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/BL4uX_kAyS4&hl=zh_CN&fs=1" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/BL4uX_kAyS4&hl=zh_CN&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+
+<p>此外如果不懂啥叫指弹的童鞋请看这里：不插电、靠琴箱发声的吉他最普通的有两种，古典吉他和民谣吉他，后者因为采用钢弦、区别于古典吉他的尼龙弦又被成为钢弦吉他。古典吉他的弹奏姿势跟我们的琵琶类似，而民谣吉他则多为横放、或者使用背带采用站姿。民谣常作伴奏用，例如我们，或者说我，中学时接触的校园民谣，无论是格莱美上拿奖还是好莱坞电影配乐（Juno、Once），都很顶的独立音乐，都可以看到钢弦吉他的身影。</p>
+
+<p>而所谓的指弹吉他就是，使用钢弦吉他作独奏。</p>
+
+<p>张卫平童鞋这时搭话了，指弹的英文叫做 finger style，也就是所谓的手指的艺术，也就是我们常说的指弹。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/31/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/29/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

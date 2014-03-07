@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="在 WebSphere 上跑的程序，每次重新部署（编辑任何文件，.js/.css/.jsp/.java，手动部署之类的）
+之后都会出现下面这样的错误。 class loading constraint violated (class: oracle/jdbc/driver/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/31">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/10/oracle-java-class-loading-constraint-violated/">[Oracle][Java]class Loading Constraint Violated</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-10T00:00:00+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/10/oracle-java-class-loading-constraint-violated/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在 WebSphere 上跑的程序，每次重新部署（编辑任何文件，.js/.css/.jsp/.java，手动部署之类的）
+之后都会出现下面这样的错误。</p>
+
+<blockquote><p>class loading constraint violated (class: oracle/jdbc/driver/OracleResultSet method: updateBFILE(ILoracle/sql/BFILE;)V)</p></blockquote>
+
+<p>而重新启动 WebSphere 之后又正常了。Google 了一下，碰到
+<a href="http://www.ibm.com/developerworks/forums/thread.jspa?threadID=31014">同样问题</a> 的人还真不少。
+但是没人给出明确的错误原因和解决办法。</p>
+
+<p>我的把用来链接数据库的 class12.zip 换成了 ojdbc14.jar，居然就可以了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/10/decorating-table-with-css/">使用 CSS 装饰 Table</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-10T00:00:00+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/10/decorating-table-with-css/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>使用 CSS 差不多有两年时间了，以前刚学的时候折腾了个<a href="http://cyj.me/wiki/">个人维基</a>，
+<del datatime="2012-03-03T00:00:00+08:00">顺便还给自己在网络上的各个坑折腾了个 <a href="http://jake.0fees.net/">简易主页</a></del>。
+中间真正接触到 table 的机会其实不算多，绝大多数 CSS 教材自然对使用 table 来布局极尽鄙夷的，
+不弄报表之类的东西基本接触不到表格，而简易的列表又能用 ol ul 之类搞掂。
+所以看别人<a href="http://www.dotnil.org/web/70937.html">闹腾效率 vs. 技术</a>，多半是以局外人的态度。</p>
+
+<p>于是最近老是拿到骨灰代码，就开始悲剧了。以前难以想象的事情全碰到了：</p>
+
+<ul>
+<li>用 table 布局随处可见。</li>
+<li>到处都是 font 标签。</li>
+<li>事实上还有许多 frame。</li>
+</ul>
+
+
+<p>历史遗留问题解决起来其实也并不难，难的是 table 做正途时，用来展现报表时，CSS 的混乱。</p>
+
+<ul>
+<li>td 只有 padding 木有 margin。需要 margin？在 html 代码里头用 cellspacing 好了。</li>
+<li>thead 与 tbody 基本形同虚设。它们和 tr 一样，木有 background-color，木有 margin，木有 padding，事实上他们连 border 都木有。</li>
+<li>承上，表头栏就用 th 凑合一下么好了。它跟 td 没啥区别，因此也基本没啥优点，默认加粗、居中。</li>
+</ul>
+
+
+<p>以上都是我个人前两个钟头的感受，请以 <a href="http://quirksmode.org/">quirksmode</a> 为准。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/10/bean-write-in-struts-1-1/">[Struts] 1.1 里头的 <bean:write /></a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-10T00:00:00+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/10/bean-write-in-struts-1-1/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>使用 &lt;logic:iterate &#47;&gt; 加上 &lt;bean:write &#47;&gt; 来处理 Java 里头的 List 是 Struts 1 时代最常见的事情了。不知道是我老了还是 Struts 1.1 老了，今天突然发现不能写整型，Google 得到<a href="http://www.theserverside.com/discussions/thread.tss?thread_id=25672">结果</a>如下：</p>
+
+<p>&lt;bean:write name=&#8221;book&#8221; property=&#8221;id&#8221; format=&#8221;#&#8221; &#47;&gt;</p>
+
+<p>输出 int 或者 Date 等非 String 类型的变量的时候加个 format 就行了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/08/guitar/">吉他</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-08T00:00:00+08:00" pubdate data-updated="true">Feb 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/08/guitar/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>周末出去买吉他的背带，因为老是坐着弹感觉不是很爽…… 于是坐303到学院路文二路口那，
+找天目琴行。如果找不到的话就扫街，因为据说文二路上琴行很多。
+结果天目琴行很“you can not miss”地出现在街角。第一次去这么大的琴行诶…… 顺利买到背带，15米。
+很可惜的是店员态度好一般，店里头也没有指套，只有拨片。可能跟吉他不是他们主打的缘故？
+但是那排箱琴和那排民谣实在太诱人了。</p>
+
+<p>我准备等到下半年能弹整首歌了就去瓦一个。</p>
+
+<p>然而晚上又不小心被李宗盛大叔的手工艺品给毒到了，
+<a href="http://ent.sina.com.cn/y/p/2006-07-06/12571148291.html">3500~4000美刀</a>
+的 <a href="http://www.leeguitars.com/">Lee Guitar</a>。倒不是给他代言的五月天，
+而是<a href="http://blog.sina.com.cn/luchiahong">卢家宏</a>。他也用李大叔的手工艺品：</p>
+
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/yg6c0urAt60&hl=zh_CN&fs=1" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/yg6c0urAt60&hl=zh_CN&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+
+<p>作为华人指弹里头首屈一指的家伙，他就是我的偶像。看看他
+<a href="http://www.youku.com/playlist_show/id_659278.html">蛮久以前的编曲</a>就知道啦。
+那时候好青葱，完全没有上边弹大海啸那副沧桑大叔样。
+此外这厮最近的比较著名的演出应该是五月天新加坡演唱会的开场，弹《离开地球表面》，
+跺地板跺得很high，跟兽王似的。只是有土鳖上的视频版本不够好，就不贴了。</p>
+
+<p>而我已经练他的书块三个月了，还在社会主义初级阶段，并且有维持一百年不变的架势。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/04/table-vs-css/">事关大局：Table vs. CSS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-04T00:00:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2009</time>
+        
+         | <a href="/2009/02/04/table-vs-css/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>写到一半，点到书签栏上了，只好再写过。</p>
+
+<p>不知道此事缘起是啥，但是最近在 <a href="http://www.reddit.com/r/programming/">proggit</a> 上争得很是火热。有<a href="http://www.reddit.com/r/programming/comments/7ujop/css_should_be_used_for_layout_heres_why/">高屋建瓴走道德路线</a>的，也有实用主义者特地建站摇旗的（<a href="http://giveupandusetables.com/">Give Up And Use Tables</a>）。所以难怪有人要跳出来感慨<a href="http://www.reddit.com/r/programming/comments/7ul0k/when_i_started_reading_reddit_rprogramming_was/">这个世界太疯狂</a>了。</p>
+
+<p>建议使用 table 来布局的童鞋们的论据很简单，<a href="http://www.flownet.com/ron/css-rant.html">CSS 在布局处理上太弱了</a>。使用 CSS 将网站跨浏览器完美布局几乎是不可能完成的任务。还有人特地作了<a href="http://iamelgringo.blogspot.com/2009/02/tables-vs-css-css-trolls-begone.html">调查</a>，主流网站中并不乏使用 table 布局者，比如 Google、Microsoft、YouTube 等等。远的不说，看看 Struts2 生成的表单布局，再看看 Google 登陆框的表单布局，也都是 table 搞掂。那些用 p 包装、用 span 标签 float 来 float 去，或者一律另起一行（WordPress 的登陆、留言等表单），等等，都没有一个 table 来得直接。</p>
+
+<p>与其花费近一个小时的时间使用纯 CSS hack 来 hack 去，不如使用 table 几分钟搞掂。这便是网站 <a href="http://giveupandusetables.com/">Give Up And Use Tables</a> 的主题思想。如此一来你还有时间去给自己买个甜圈呢，它说。</p>
+
+<p>然而反对者的态度也很坚决，他们对 <a href="http://shouldiusetablesforlayout.com/">Should I Use Tables For Layout?</a> 这一问题给出了奸腚的答案，去看该网页的代码就知道了。有高屋建瓴者特地<a href="http://www.reddit.com/r/programming/comments/7ujop/css_should_be_used_for_layout_heres_why/">在道德上鄙视</a>了用 table 偷懒的童鞋们。然而，内容与形式分离（separating content from presentation），在浏览器纷争，标准实现不一面前，都有点变成陈词滥调的意思了。虽然 <a href="http://www.newmediacampaigns.com/page/why-css-should-be-used-for-layout">CSS 实在是太弱了</a>捏…… 不过<a href="http://ajaxian.com/archives/display-table">据传</a>，IE8 将给 CSS 加入 table 属性，到时可能会方便些些……</p>
+
+<p>有和稀泥的把 Adobe 也<a href="http://www.reddit.com/r/programming/comments/7ujy9/tablebased_html_is_nothing_compared_to_the_evil/">拉下水</a>了。</p>
+
+<p>而作为一个实用主义者，本着能偷懒就偷懒的态度，我也认为在 CSS 上纠结太久没有意义。前面提到的道德卫道士的论据是，CSS 作为一项促进 Web 发展的技术，不应被放弃，在布局上退回 table 是倒退之类。然而网络还没有到他想象的程度，在中国这等卧虎藏龙之地，frontpage、Dreamweaver 流水线生产的 IE only 的网站一抓一把。而 HTML/CSS 在内容、形式分离上也尚未成熟。标准的指定速度、浏览器的支持程度，都是问题。</p>
+
+<p>不过话说回来，你的页面真的就那么复杂，一定要用表格才能画出来吗？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/02/multi-touch-itable/">Multi-Touch iTable</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-02T00:00:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2009</time>
+        
+         | <a href="/2009/02/02/multi-touch-itable/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/xg8yuSKN5aM&hl=en&fs=1" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/xg8yuSKN5aM&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+
+
+<p>演示的魔兽和 Google Earth 操作直接勾引到我了。特别是前者，给人一种自己的巫师的感觉……</p>
+
+<p>评语认为触屏技术模拟鼠标右击和双击的方式太麻烦。我个人意见是，或许是改变观念的时候了。
+参考图片放大方式就是。</p>
+
+<p><a href="http://multi-touch-screen.net/">官方网站</a>上还有些演示视频，感兴趣的去看一哈。</p>
+
+<p>跟重要的是，PQLab 还销售<a href="http://multi-touch-screen.net/hardware.html">独立的触屏</a>，
+长得像以前的视保屏的一个东东，目前支持的分辨率为1920x1080，只有一根外接 USB 线，无须其他外部电源。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/01/21/a-brief-timeline-of-python/">[Python]A Brief Timeline of Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-21T00:00:00+08:00" pubdate data-updated="true">Jan 21<span>st</span>, 2009</time>
+        
+         | <a href="/2009/01/21/a-brief-timeline-of-python/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在<a href="http://python-history.blogspot.com/2009/01/brief-timeline-of-python.html">这里</a>。</p>
+
+<p>来自<a href="http://python-history.blogspot.com/">The History of Python</a>，发起人是 Python 的作者。
+为了庆祝 Python 诞生二十周年，他邀请了一坨人来写这个群博。所以，如果你恰好对 Python 感兴趣，
+想成为一个编程人道主义者，就关注下这个博客吧。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/01/18/lately-9/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-18T00:00:00+08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2009</time>
+        
+         | <a href="/2009/01/18/lately-9/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天又跑出去找索尼的客服去了，我的第一台电脑 S16C 终于又从三姨那拿回来了，只是变了砖。以前拿它跑过两三次客服，不开机了、风扇坏了，等等。当初下血本大洋五百换的风扇，这体弱多病的本如今故态复萌，又开不了机了。</p>
+
+<p>下午在寻找客服的路上花费了不少时间…… Google Map 的路牌定位不可信…… 顺便记下索尼的<a href="http://service.sony.com.cn/KB/station.asp?pageid=2&amp;p_item=2&amp;station_id=124#tech">杭州客服地址</a>，和与地址不服的地图……</p>
+
+<p><img src="http://service.sony.com.cn/KB/site/hz.jpg" alt="杭州索尼客服" /></p>
+
+<p>我下午去的是文晖大桥前面一些那家，不晓得那块住宅区叫啥名字，给人感觉很不错。以前去过的都是如图所示那家，在省人民医院左近。</p>
+
+<p>下午和晚上陪妹妹又看了《阿甘正传》，IMDB 最二百五（IMDB Top 250 的直译，哈哈）的电影确实都让人百看不厌…… 一直好奇演丹·泰勒中尉的家伙是不是真是无腿人，在 <a href="http://www.imdb.com/title/tt0109830/trivia">IMDB 上的花边</a>里头终于发现这么一条：</p>
+
+<blockquote><p>Gary Sinise&#8217;s lower legs were wrapped in a special blue fabric that allowed them to be optically removed from the film by computer later.</p></blockquote>
+
+<p>顺便，关于阿甘做过的那条公园条凳，如今进了博物馆，不知此生能否有幸落臀一坐及彼一游。</p>
+
+<blockquote><p>The park bench that Tom Hanks sits on for much of the movie was located in historic Savannah, Georgia, at Chippewa Square. The fiberglass bench he sat on has since been removed and placed into a museum to avoid being destroyed by the weather. The church where the feather first falls is about 100 yards just down the street from his bench. The bench is currently held in the Savannah History Museum, Savannah, Georgia.</p></blockquote>
+
+<p>晚上跑去老地方公元大厦的外婆家吃饭，红烧羊肉味道很赞！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/01/16/recommend-a-few-sites-for-frontend-dev/">几个网站，做前端的手头必备</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-16T00:00:00+08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2009</time>
+        
+         | <a href="/2009/01/16/recommend-a-few-sites-for-frontend-dev/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><a href="http://code.google.com/p/browsersec/wiki/Main">Google browser security book</a>。</li>
+<li><a href="http://www.quirksmode.org/">quirks mode</a>。顾名思意，Quirks Mode 是浏览器的页面解析模式之一，
+所谓猥琐模式。在许多细节的处理上将与 Strict Mode 有所不同。不过该网站的功能倒不限于此，
+它是由一位荷兰人维护的私人专业网站。上面的 CSS 属性，JavaScript 语法文档，都非常齐全。
+将各种浏览器对各种标准的支持程度都列了出来，涵盖全面。</li>
+<li><a href="http://www.w3schools.com/">w3schools</a>。即 www school。我常常把它误写成 w3c shool，
+其实它和 w3c.org 是不一样的。btw，后者的网站上也同样有许多资源，比如标签校验工具，
+官方推荐的各种编辑器浏览器等等。w3school 的教程很全，而且很短小精炼，适合初学者。</li>
+<li><a href="http://code.google.com/p/doctype/">google doctype</a>。前端开发者的百科全书。“By web developers, for web developers. ”</li>
+<li><a href="http://jquery.com/">jQuery</a>。虽然 Ruby on Rails 用的是 prototype，
+尽管 Struts2 用的是 DoJo，但是 jQuery 永远是我的爱…… like no other.</li>
+</ul>
+
+
+<p>当然，还有其他技术，比如 flex。我通常就看看
+<a href="http://livedocs.adobe.com/flex/3/html/help.html?content=skinning_1.html">官方的文档</a>，
+和 <a href="http://examples.adobe.com/flex2/consulting/styleexplorer/Flex2StyleExplorer.html">Style 工具</a>。
+虽然它默认的效果就已经很不错，就已经非常富客户端，但是我就是不怎么喜欢它……</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/01/11/experiencing-m8/">M8 体验一二</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-11T00:00:00+08:00" pubdate data-updated="true">Jan 11<span>th</span>, 2009</time>
+        
+         | <a href="/2009/01/11/experiencing-m8/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我是第四批的体验机，通过代理拿的货。</p>
+
+<ul>
+<li>软件确实还不成熟，最多算是 beta 级别的。再未刷新固件之前，日历会出问题，按了列表之后就回不去了。mp3 的标签解析也有问题，会把非中文的最后一个字符阉割掉。比如“范特西（Fantasy）”就变成了“范特西（Fantasy”。所以我很奇怪为啥魅族官方没有一个 bug trace 之类的东西。</li>
+<li>界面做得很不错，软件虽然存在些许小问题，但是确实很有水果公司一般的简介优雅。</li>
+<li>内置功放很牛鼻。</li>
+<li>电池…… 能用两天就相当不错了。</li>
+<li>通话质量很不错，木有啥爆音之类的问题。或者只是我尚未遇到？</li>
+<li>大拇指太胖的人要谨慎购买…… 或者等9键输入出来之后再说。</li>
+</ul>
+
+
+<p>再说一点新手上手指南：</p>
+
+<ul>
+<li><p>联系人同步有三个办法：</p>
+
+<ol>
+<li>直接从 sim 卡复制；</li>
+<li>将 Outlook 联系人导出成 vcf 文件放到 M8 U 盘模式下的 Contacts/Backup 文件夹下。然后在 M8 上导入该文件。</li>
+<li>用 active sync 同步。M8 的 USB 连接方式得改成同步模式。</li>
+</ol>
+</li>
+<li><p>找个好点的无线路由器，我的似乎太鹾了，M8 经常报错，弹出框居然是 XP 风格的，那个 Okay 键还特别小，难按死了。</p></li>
+<li>音乐菜单按底部的四个按钮中相应的一个就能返回上一级。在播放的时候按最右边那个能够出现对该文件的操作菜单。感觉这种东西得研究手册才能发现么……</li>
+</ul>
+
+
+<p>暂时就这些。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/32/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/30/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

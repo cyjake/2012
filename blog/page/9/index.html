@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="了解 Python 的童鞋应该都知道 the Zen of Python。查看的方法很简单，import this就可以。 % python
+Python 2.6.5 (r265:79063, Apr 16 2010, 13:57:41)
+[GCC 4.4.3] on linux2
+Type " &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/9">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/06/10/import-this/">Import This</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-10T00:00:00+08:00" pubdate data-updated="true">Jun 10<span>th</span>, 2010</time>
+        
+         | <a href="/2010/06/10/import-this/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>了解 Python 的童鞋应该都知道 the Zen of Python。查看的方法很简单，<code>import this</code>就可以。</p>
+
+<pre><code>% python
+Python 2.6.5 (r265:79063, Apr 16 2010, 13:57:41)
+[GCC 4.4.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+</code></pre>
+
+<p>Python 的早期开发者之一，Barry Warsaw 不久前写了篇博客特此说明了 import this 的由来。2001 年秋天的时候，<a href="http://www.pycon.org/">Pycon</a> 的前身 IPC 10（<a href="http://www.python.org/workshops/2002-02/spam1folks.jpg">International Python Conference #10</a>）的组织者 <a href="http://en.wikipedia.org/wiki/Foretec_Seminars">Foretec</a> 希望为大会找个口号，而且希望从 Python 社区里头找。当时提交了至少 500 多个，绝大部分都很烂。Python 的主要开发者三个，Guido、Tim（the Zen of Python 就他的杰作）和作者 Barry，Guido 因为老婆临产几乎没心思搞这个，而 Tim 虽然嘴上说看这些鸟口号五分钟脑子就成了一坨屎但还是筛选出了相对好些的 100 多条。于是 Barry 就和 Tim 接着挑，最终在 &#8220;Bite off all you like - Chewing is optional&#8221; 和 &#8220;import this&#8221; 之间，选择了后者。</p>
+
+<p>而后，Barry 就搞了个 this.py 偷偷放进 Python 发行版里头，不知是 Tim 还是 Guido 建议再把内容 <a href="http://en.wikipedia.org/wiki/Rot13">rot13</a> 一下，于是就有了现在的 <code>import this</code>。</p>
+
+<p><a href="http://www.wefearchange.org/2010/06/import-this-and-zen-of-python.html">via</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/06/08/selling-goods/">变卖家产</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-08T00:00:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2010</time>
+        
+         | <a href="/2010/06/08/selling-goods/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://zju88.org/agent/thread.do?id=Deal_DigiHW-4c0d78f3-39221c638a2a03b18209f84a54bda054&amp;page=0&amp;bd=Deal_DigiHW&amp;bp=0&amp;m=0">围观地址</a></p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2010/06/%E6%9D%82%E7%89%A9.jpg"><img src="http://blog.cyj.me/wp-content/uploads/2010/06/%E6%9D%82%E7%89%A9.jpg" title="杂物" alt="" /></a></p>
+
+<p>手头紧，缺米。</p>
+
+<p>PSP 购于大三，差不多三年前的事情，PSP2000，3.71M33 版本的系统，无需重新
+破解。后盖不锈钢有磨损。定价800不刀。</p>
+
+<p>手绘板买来3月有余，使用过两次，画了只猴子，不习惯，故出掉，包装什么的都
+在，只是外包装盒目前跟板子异地，如果真的需要，我可以去拿回来。暂定 1k5
+。</p>
+
+<p>北通手柄买来120，80可刀。变调夹原价多少忘记了，20块拿走。</p>
+
+<p>我想我这博客也没几个人看，发这就聊作记录吧。哥也曾经拥有过……</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/06/08/old-stuff-seagull-camera/">古董海鸥（Seagull）相机</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-08T00:00:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2010</time>
+        
+         | <a href="/2010/06/08/old-stuff-seagull-camera/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>小学的时候，三姨刚认识三姨夫。三姨夫是当时村里为数不多的大学生，仕途不利，但是不失其文艺青年之气息。他有个海鸥相机，和几个镜头。那个时候三姨与三姨夫经常带着我和我妹妹去溪边玩，拍了不少照片。如今这些照片大都难觅了，而相机却仍然还在。上次回家，问他要了来，擦了擦，还有几分光鲜。</p>
+
+<p>只是，东西确实是老把式了，我对这些也都不动，不知道该买啥胶卷，拍了又该拿到哪里扫。所以就在这儿先发一下，哪位仁人志士帮帮小弟吧。</p>
+
+<p><img src="http://blog.cyj.me/wp-content/uploads/2010/06/%E5%A7%A8%E7%88%B6%E7%9A%84%E7%9B%B8%E6%9C%BA.jpg" alt="" /></p>
+
+<p>本来应该发 光影留痕@98 比较合适，但是 98 的图床挂掉了。所以暂且延后。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/06/04/still-love-him-foolishly/">还给傻逼织毛衣</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-04T00:00:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2010</time>
+        
+         | <a href="/2010/06/04/still-love-him-foolishly/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><embed src="http://www.xiami.com/widget/10869_1769535806/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent"></embed></p>
+
+<p>最初是在豆瓣音乐人听到这首歌，来自<a href="http://www.douban.com/artist/weiwei/">张玮玮</a>（他的<a href="http://www.douban.com/artist/weiwei/?s=1474">《米店》</a>也很温暖），今天在虾米上又听到<a href="http://www.xiami.com/song/1769535806">优质版本</a>。于是特此推荐。</p>
+
+<p>有意思主要是歌词，曲子很容易练，和弦也少。不要影射到人哈。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/06/02/marriage/">结婚</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-02T00:00:00+08:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2010</time>
+        
+         | <a href="/2010/06/02/marriage/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天看完一部小说，《傲慢与偏见》（Pride and Prejudice），18 世纪末的上流社会的爱情故事。男猪脚 Mr. Darcy 是个很有意思的角色，家里的后花园方圆不知几亩，从 Pemberley 房子出发走出花园要 11 英里，可以说是家财万贯。然而他看不起自己生活圈以外的所有人，却爱上了个小镇姑娘。女猪脚 Miss Elizabeth Benet 有个神经大条的妈，有个恃宠而骄的小妹妹，有个天使般的姐姐，有个轻松随意的老爹。这俩人难以置信地走到了一块。</p>
+
+<p>结婚是一件很神奇的事情，《京华烟云》里头，解释婚姻的相辅相成道理，套入了五行的概念，说立夫是某某、木兰是某某，走在一块虽极有火花然而不易持久，说荪亚与木兰又极合云云。我已记不太确切了。Google 一下，找到<a href="http://hi.baidu.com/justman/blog/item/0bbb28fa983a6d1fa9d31125.html">金水之配</a>：</p>
+
+<blockquote><p>“京华烟云”里女主人公Mulan(姚木兰）就属金，而她丈夫Sunya（曾荪亚）就属水。另外，小说的作者林语堂在其自传《八十自叙》中就说到：“妻是水命，水是包容万有，惠及人群的；我是金命，对什么事都伤害克损。</p></blockquote>
+
+<p>按这个看，前半段的达西先生怕是金命，该取包容万有的天使般的 Jane 合适。而 Mr. Bingley 也是个的好性子的人，最后却是他与 Jane 在一块。后来达西先生不显山不露水地展示了自己男人的一面，写了封长信纠正 Lizzy 的偏见，又勇于承担地挽救 Lizzy 小女儿于私奔之恶果，终于赢得姑娘芳心，和同是金命的女猪脚走到一起。</p>
+
+<p>Jane Austen 要是晚生几年，看了《Moment in Peking》（京华烟云），恐怕也不会这么安排了吧……</p>
+
+<p>18 世纪末的婚姻很传统，男的不能一棍子把女的撂倒拖到山洞里洞房掉完事。要先让姑娘芳心暗许，轻启朱唇一声“I do”或者“Yes”（我脑海里满是朱茵在《月光宝盒》里头的倩影）。而后再喜滋滋地跑去跟准岳父大人提出订婚。老人家要是高兴，会亲切的唤几声 son-in-law，讨论些男人做的事情（比如去园子里打鸟、钓鱼什么的）。而私定终身的代价很高，名声么肯定是没有了，如果有姐妹，可能会让她们不好嫁……</p>
+
+<p>而现代的温州地区的婚姻也很有意思，算是自由恋爱与门户之见的混合体，爱恨交织。温州人喜欢将嫁娶的范围限在本地人之内，除了语言、习俗这些重要因素之外，还有个很现实的原因是，讨了外地或者嫁了外地（至少在上辈人看来）是件极麻烦的事情，老婆回娘家、亲家有点事、又是 421 家庭，经常顾此失彼，心力交瘁。所以按此标准，昨天我高中同学的婚礼可以拿 90+，夫妇是老乡（一个镇的），高中同学，彼此都有兄弟姐妹，请的司仪是温州电视台的一个主持人，《闲事婆与和事老》里头的闲事婆，婚礼是中式，热热闹闹。而我所知的另一些则又是一番景象，有温州的嫁到东北去的（亲家母直接发飙，告诉自己儿子如果讨到温州以外就表来往了云云），有温州的讨了四川媳妇儿的（我妈对此的评论是，比起瑞安某些地方的，讨四川老婆好省）。</p>
+
+<p>结婚可以现实到这种程度，怕了么？我自己木有答案，我只知道，我看《傲慢与偏见》的时候，最感动的是 Mr. Darcy 的两次表白，克制然而又热切的表达。For love, is what we all need.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/30/how-to-produce-a-song-like-twisted-love-and-hate/">《爱交恨》音乐制作大揭秘</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-30T00:00:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2010</time>
+        
+         | <a href="/2010/05/30/how-to-produce-a-song-like-twisted-love-and-hate/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><embed src="http://player.youku.com/player.php/sid/XMTcxMDU5MjQ4/v.swf" quality="high" width="480" height="400" align="middle" allowscriptaccess="sameDomain" type="application/x-shockwave-flash"></embed></p>
+
+<p>评论里头有“高人”骂抄袭，暂且搁置，我只说说这教程本身。是个系列，介绍一首歌叫做《爱交恨》的创作与制作全程。</p>
+
+<p>本集是第一集，由曲子主题的创作者石少良介绍他的创作编配过程。首先是寻找灵感，找到动听诱人的旋律，片子里头这首歌是玩泛音得来。民谣吉他上的泛音是指，在特定品格上（7、12 等）左手手指靠近或者贴着琴弦，右手弹响的时候迅速移开，吉他发出来的很特别的效果，有种空洞感。</p>
+
+<p>然后，是为旋律配上和弦，加个节奏。这同样是个技术活，需要对诸多和弦的掌握。石少良童鞋选了 E7 和 A7。一般的选择原则是，尽量将旋律包括在内，同时有所出彩。和弦本身分很多种，我拿了吉他多是瞎弹，也说不太清楚。</p>
+
+<p>而后是华彩，点睛用的旋律，通常在高音部分。</p>
+
+<p>在后面的几集里头，讲到的是编曲、和声、人声、合成等，我都还没仔细看，这些知识我也都不熟，希望可以跟大家共同进步。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/27/wireless-dropbox-and-one-who-flew-over-cuckoos-nest/">无线、dropbox 和翻墙</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-27T00:00:00+08:00" pubdate data-updated="true">May 27<span>th</span>, 2010</time>
+        
+         | <a href="/2010/05/27/wireless-dropbox-and-one-who-flew-over-cuckoos-nest/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>买了个无限路由，重新用起已经饱经六年风霜的 VAIO S16，因为经常需要对这屏幕弹吉他，笔记本、台式机同步文件成了我的需求之一。解决办法不少，可以猥琐点，把好使一些的台式机弄成服务器，笔记本在 rdesktop 回去。最近 dropbox 很风骚，成功被老大哥看在眼里，墙掉了。于是我欣欣然去用。</p>
+
+<p>dropbox 支持的平台可谓广泛，Windows、Mac、Linux（官方提供二进制版本的是 debian、ubuntu 和 fedora）以及 <a href="https://www.dropbox.com/anywhere">Mobile</a>（iPhone、iPad、Android、Blackberry，然而木有 Symbian）。我的本本装的是 Arch Linux，得自己编译。不过好消息是，Arch 的社区软件仓库里已经有了 dropbox。该软件依赖 GNOME，于是不得以而装之。</p>
+
+<p>而<a href="http://blog.totodo.com/archives/122">翻墙去见 dropbox.com 也简单</a>，弄个支持 SSH 过去的国外的 VPS 之类，本地开启一个 tunnel，</p>
+
+<pre><code>ssh -D 7777 -l you yourserver.org
+</code></pre>
+
+<p>然后在 firefox 里头把代理（127.0.0.1:7777 SOCKS5）设置起来，顺便打开 about:config，将 <code>netword.proxy.socks_remote_dns</code>设置成 true，即可。</p>
+
+<p>Windows 下的话，使用 plink 也是一样，跟 putty 一起的，在<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">它的官方网站</a>上自然也下的到。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/27/sungha-jung-turns-13/">郑成河（Sungha Jung）小朋友 13 岁了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-27T00:00:00+08:00" pubdate data-updated="true">May 27<span>th</span>, 2010</time>
+        
+         | <a href="/2010/05/27/sungha-jung-turns-13/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>2008 年底开始接触吉他的时候就听说了他，当真是个 child prodigy。更令人欣喜的是，他，和<a href="http://www.ted.com/talks/lang/eng/sirena_huang_dazzles_on_violin.html">在 TED Talks 看到的 Sirena Huang</a>，是真心喜欢手中的乐器。
+<a href="http://blog.cyj.me/wp-content/uploads/2010/05/Sungha-Jung.jpg"><img src="http://blog.cyj.me/wp-content/uploads/2010/05/Sungha-Jung-e1275952397779.jpg" title="Sungha Jung" alt="" /></a></p>
+
+<p>在他九岁的时候，他翻弹了钢弦吉他大师 Trace Bundy 的代表作之一，<a href="http://www.youtube.com/watch?v=N9to1auUNTk">Trace 自己编曲的 Pachelbel&#8217;s Canon</a>，令大师本人也刮目相看。今年年初，还特地介绍给美国观众。</p>
+
+<p>以下摘译自他的<a href="http://www.sunghajung.com/about">官方网站</a>：</p>
+
+<p>生于 1996 年 9 月 2 日，梦想成为职业指弹吉他手，学吉他手父亲影响，习惯直接看视频翻弹，不过现在如果编曲的原作者有谱子给他，也会照着谱子来，上学的时候每天练习 1-2 个钟头不等，木有课的时候有时会弹三小时以上，老吉他是依据儿童体型定做的，从 2009 年元旦开始，Lakewood 成为他的赞助商，为他提供吉他。</p>
+
+<p><a href="http://www.boegershausen.com/">Ulli Bogershausen</a> 是他的偶像。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/23/living-in-hangzhou/">住在杭州</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-23T00:00:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2010</time>
+        
+         | <a href="/2010/05/23/living-in-hangzhou/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blog.cyj.me/84449.html">5·10 正式入住</a>，家里来了许多亲戚，我妈在潮涨的时候挂了红，倒了米。</p>
+
+<p>从 2月底开始到 5·1，装修其实只有两个月多一些的时间，后来则是陆陆续续的买家具、电器，等等。中间有许多照片，我也说过会贴上来，现在整理出来了一些，放在<a href="http://jakeslomoo.appspot.com/album/19001">我的鹿木</a>。</p>
+
+<p>如果你使用 RSS 阅读器，不妨<a href="http://jakeslomoo.appspot.com/feed">订阅我的鹿木</a>。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/20/google-code-blog-font-api-and-font-directory/">Google Code Blog: 字体 API 与字体目录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-20T00:00:00+08:00" pubdate data-updated="true">May 20<span>th</span>, 2010</time>
+        
+         | <a href="/2010/05/20/google-code-blog-font-api-and-font-directory/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://googlecode.blogspot.com/2010/05/introducing-google-font-api-google-font.html">via</a></p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2010/05/google_webfonts.jpg"><img src="http://blog.cyj.me/wp-content/uploads/2010/05/google_webfonts.jpg" title="google_webfonts" alt="" /></a></p>
+
+<p>大学的时候，折腾 Linux，配置过字体，改过 xorg.conf，看到 <a href="http://www.slayerx.org/2008/02/27/linus-torvalds-facts/">Linus Facts</a> 其一：Linus 不用戴眼镜了，不是因为他做了激光近视矫正，而是他终于把他脑袋里的 xorg.conf 配置正确不免莞尔。</p>
+
+<p>后来折腾 HTML/CSS，为传说中的 <a href="/57435.html">Web Safe Fonts</a> 头疼不已，选择真的太少。再后来，也知道了 <a href="http://www.css3.info/preview/web-fonts-with-font-face/">@font-face</a>。</p>
+
+<p>而今天，Google 发布了它的字体服务，两个方面，包括了许多开源网络字体的<a href="http://code.google.com/webfonts">字体目录</a>，和提供嵌入这些字体的<a href="http://code.google.com/apis/webfonts/">字体 API</a>。我行文猥琐，措词很不严肃，详细内容就不翻译了，简要写点。</p>
+
+<p>字体的嵌入方式非常简单，先在 &lt;head&gt; 里头声明：</p>
+
+<pre><code>&lt;link href="http://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet" type="text/css" /&gt;
+</code></pre>
+
+<p>以引入字体。然后，在自己的 CSS 文件里头使用，就可以了。具体的字体列表、名字，请看<a href="http://code.google.com/apis/webfonts/">字体目录</a>，同时，这些字体文件也在 <a href="http://code.google.com/p/googlefontdirectory/">Google code 的相应项目</a>中提供下载。<a href="http://www.typeisbeautiful.com/2010/05/2449">Type Is Beautiful</a> 还弄了个<a href="http://www.typeisbeautiful.com/files/googlewebfonts.html">演示页面</a>。</p>
+
+<p><a href="http://www.smashingmagazine.com/">Smashing Magazine</a> 在 Google 字体发布之后，还特地更新了页面，现在首页的 heading 字体使用了 Droid。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/10/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/8/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

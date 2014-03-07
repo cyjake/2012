@@ -1,0 +1,741 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="承蒙 pluskid 与 quark 童鞋的帮助，终于搞掂了 ibus。现在就在 Arch Linux 下写这个。 我在 .xinitrc 里头添加了 export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE= &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/22">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/14/ibus-invoke-failure-solved/">Ibus 无法召唤问题解决</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-14T00:00:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/14/ibus-invoke-failure-solved/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>承蒙 pluskid 与 quark 童鞋的帮助，终于搞掂了 ibus。现在就在 Arch Linux 下写这个。</p>
+
+<p>我在 .xinitrc 里头添加了</p>
+
+<pre><code>export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=xim
+
+ibus-daemon -r -x -d
+</code></pre>
+
+<p>之前尝试过 .profile、.Xresources，应该也是都可以的，只是这还不足以解决我的问题。我的 locale 是 en_US.UTF-8。</p>
+
+<p>于是偷懒把 locale 设置回 zh_CN.UTF-8，这里有个要注意的是，可能 <code>locale</code> 返回的<a href="http://bbs.archlinux.org/viewtopic.php?id=32770">结果有错误</a>。解决办法是，在 /etc/locale.gen 里头选择你在 /etc/rc.conf 里头已经指定的 locale，再跑一下：     locale-gen</p>
+
+<p>然后重新启动 x，应该就行了。works for me.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/13/arch-linux-day-3/">Arch Linux - Day 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-13T00:00:00+08:00" pubdate data-updated="true">Jul 13<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/13/arch-linux-day-3/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m still configuring the arch linux installed in my box. the laptop is fairly old with a 1.5 Ghz centrino and 256MB memory x2, which leads me choosing arch over ubuntu or any debian like distro i familiar with.</p>
+
+<p>ibus is the Chinese input method i want to use. But i cannot figure out why the hell i just can&#8217;t trigger its functionality.</p>
+
+<p>thx to AUR, with <a href="http://wiki.archlinux.org/index.php/Makepkg">makepkg</a> and pacman i have installed tint2 which functions smoothly and ibus which does not.</p>
+
+<p>and as arch linux advertises, i choose light weight softwares over those `heavy&#8217; ones. my arch uses <a href="http://slim.berlios.de/manual.php">SLiM</a> as login manager, <a href="http://wiki.archlinux.org/index.php/Feh">Feh</a> as wallpaper setter, and gmrun as my unviersal menu.</p>
+
+<p>the hal service starts cpufreqd and dhcpcd services too, so do not add the later two in the DAEMONS array.</p>
+
+<p>to pause system boot, you know, if you encounter some error and wants to read the message, press Scroll key. and you may refer to dmesg for error log after system boots up.</p>
+
+<p>i am wondering whether i could use this system for more than a week or not.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/12/installed-arch-linux-also/">跟风装了 Arch Linux</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-12T00:00:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/12/installed-arch-linux-also/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前在 VirtualBox 里头装了一下下。后来准备在自己的老本本上直接装，把原先的 XP 丢弃。先看了<a href="https://wiki.archlinux.org/index.php/%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85_Arch_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">硬盘安装</a>))介绍，结果进去之后配置网络虽然成功了，ping 通了 google.com，wget 也可以用了，但是就是取不到镜像的 package list。</p>
+
+<p>万般无奈，就 wget 了 iso 再手动挂载：</p>
+
+<pre><code>ln -s /cdrom/addons/core_pkgs /src/core/pkg
+</code></pre>
+
+<p>结果装好之后再装别的包的时候出问题了，一直提示 libreadline.so 软连接不存在，万分奇怪之下还是关机重启了，结果在自己的另一台机器上看到是因为<a href="http://bbs.archlinux.org/viewtopic.php?pid=579664">木有装 bash</a>。</p>
+
+<p>这时候系统已经启动8进去了，耐心点的话在 GRUB 打开命令行，启动进去，再人肉修复一下也许是可行的。但是我实在折腾8动，就选择去买了张刻录盘。之后重新安装，装 Xorg、python、firefox、<a href="http://wiki.archlinux.org/index.php/Openbox">openbox</a>、tint2、vim、rxvt-unicode、slim、<a href="http://wiki.archlinux.org/index.php/ALSA">alsa</a> 等等。</p>
+
+<p><a href="http://wiki.archlinux.org/index.php/%E6%97%A0%E7%BA%BF%E8%AE%BE%E7%BD%AE">无线配置</a>比较囧，我这边路由的设置是 WPA 验证，需要装 wpa_supplicant，按照该页搞掂之后也分配到了 IP，然而就是 ping 不通，也就暂且搁置。</p>
+
+<p>AUR 里头的包装了 tint2、ibus，后者还没配置好，Ctrl-Space 召唤不出来。</p>
+
+<p>Xorg 的配置先用 Xorg -configure 苟且了一下，后来去 ArchWiki 上找了同时 Sony 的配置，照搬了触摸板之类的设置，也就差不多了。当然，顺便装了 <a href="http://wiki.archlinux.org/index.php/ATI">ATI 显卡</a>，xf86-video-ati 这个。</p>
+
+<p>其余的还有让风扇不要太骚，CPU 不要太 High 的 cpufreqd、acpid，把这两个丢到 rc.conf 里头去，重启，ms 搞掂。</p>
+
+<p>再有就是用户管理、sudo 之类，参考<a href="http://wiki.archlinux.org/index.php/Arch_%E6%96%B0%E6%89%8B%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">新手安装指南</a>)，也就是了。</p>
+
+<p>顺便装上中文字体，wqy-zenhei wqy-bitmap，包名不确定。</p>
+
+<p>装的时候觉得麻烦百出，没想到到总结时，只能写这么点。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/09/html5-getting-real/">HTML5 如火如荼进行时</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-09T00:00:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/09/html5-getting-real/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>随着 Firefox 版本升级到 3.5，正式支持 HTML5，坊间对该标准的讨论就没停过。其中最显著的，
+<a href="http://hacks.mozilla.org/2009/07/video-more-than-just-a-tag/#">&lt;video&gt;</a>标签，
+因为对浏览器该支持哪一个视频编码而纠结不休，很是著名。</p>
+
+<p>有能人志士指出，video 是浏览器的，但最终是大家的，<a href="http://camendesign.com/code/video_for_everybody">video for everyone!（请务必摸我）</a></p>
+
+<p>别的呢？估计就是文义标签了，HTML5推行自定义标签，例如，与其写 &lt;div id=&#8221;head&#8221;&gt; 不如直接 &lt;head&gt;。
+如此，页面代码也更简洁清楚，CSS 文件里头的 selector 也更容易写。</p>
+
+<p>当然，canvas 也不能不提，只是我对此尚未研究，暂且按下不表。</p>
+
+<p>什么时候 IE6、7 绝迹江湖了，我就开始用……</p>
+
+<p>顺便哀悼 XHTML 2</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/09/getting-hands-on-google-app-engine-sdk/">Google App Engine SDK 一二</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-09T00:00:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/09/getting-hands-on-google-app-engine-sdk/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以下简称 <a href="http://code.google.com/appengine/">GAE</a>。</p>
+
+<p>我用的是 <a href="http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Python">python 版本</a>。
+本地开发有个简易版服务器，模拟了真实环境，<a href="http://code.google.com/appengine/docs/python/tools/devserver.html"><code>dev_appserver.py</code></a>。
+此外有个用来部署自己的应用的 <a href="http://code.google.com/appengine/docs/python/tools/uploadinganapp.html"><code>appcfg</code></a>。
+具体命令参数点过去看就是了。</p>
+
+<p>App Engine 提供了丰富的开发工具，跟 django template 没啥区别的 webapp template，
+用起来很顺手的 data store，以及有效的 app.yaml 设置，按照官方的 tutorial
+<a href="http://code.google.com/appengine/docs/python/gettingstarted/">hello world</a> 一路走下来，
+一个简单的应用就弄完了。正像我昨天对 jQuery plugin 评价的，有的时候更重要的是想法。</p>
+
+<p>目前支持的 Python 版本是 2.5，原以为要自己弄 simplejson 了，没想到自带了 django，直接：</p>
+
+<pre><code>from django.utils import simplejson as json
+</code></pre>
+
+<p>也就是了。</p>
+
+<p>dev_appserver.py 默认端口是8080，默认只能本地访问。想跑一个方便些的多人测试的话：</p>
+
+<pre><code>dev-appserver.py --port 80 --address 0.0.0.0 path_to_your_app
+</code></pre>
+
+<p>此外，还有个控制台，本地和<a href="http://appengine.google.com/">实际环境</a>中都有。</p>
+
+<p>最后，是我最近做的一个记账的小工具：<a href="http://gainorspend.appspot.com/">Gain or Spend</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/08/life-is-struggle/">Life Is Struggle</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-08T00:00:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/08/life-is-struggle/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>虎扑->开放区->步行街 <a href="http://bbs.hoopchina.com/427132.html">镇街之帖</a></p>
+
+<p>人有三衰六旺，日子很长，且行且珍惜</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/08/jquery-plugins/">jQuery 插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-08T00:00:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/08/jquery-plugins/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>可扩展性真是个好东西，参考着
+<a href="http://www.newmediacampaigns.com/page/writing-a-jquery-plugin">the basics of writing a jquery plugin</a> 和
+<a href="http://www.learningjquery.com/2007/10/a-plugin-development-pattern">a plugin development pattern</a>，
+很容易就能写个插件。</p>
+
+<p>于是经常会有一坨选择，比如 date input 啦、比如 tab 啦，比如 drop down menu 啦，良莠不齐，
+有的想要，有的有嫌弃，优缺点都不集中，最后只好选择最不赖的一个，或者 reinvent the wheel，
+埋头弄自己的。而 jQuery UI 又偏大。</p>
+
+<p>顺便推荐一个插件：
+<a href="http://www.filamentgroup.com/lab/jquery_visualize_plugin_accessible_charts_graphs_from_tables_html5_canvas">jQuery Visualize</a>。</p>
+
+<p>再推荐做得很帅的不是 jQuery 插件的 <a href="http://karmatics.com/chameleon/">Chameleon Color Picker</a>，
+demo 做得很赞，很好奇是怎么弄的。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/08/how-long-do-we-have-to-endure/">要到何时</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-08T00:00:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/08/how-long-do-we-have-to-endure/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>好像从我开始上豆瓣开始，它就不停的在割自己，今天说，这个字不许再说了，明天说，这部电影太尴尬，还是删掉吧。</p>
+
+<p>又突然有一天，它又说，你话太多了，还是不要在这里呆着了罢。</p>
+
+<p>“但是……” 我想争辩，“我只想引用党章而已诶。‘中国共产党带领人民建设社会主义民主政治’ 都不行吗？”</p>
+
+<p>它听我这么说，一脸惊恐地说，“您还是不要说了罢。我被割了很多刀，反而全是G点……”</p>
+
+<p>于是我抬起头看，“各网”蜷缩着触角，原本通络的触手满是刀痕，有的挂个牌匾，“莫谈国是”，有个很潮，“不许调戏”。</p>
+
+<p>“怎么调戏？” 我好奇。</p>
+
+<p>“来，春哥教你”</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/06/tianlai-guitar-shop/">推荐家琴行，杭州市天籁琴行</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-06T00:00:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/06/tianlai-guitar-shop/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在潮王路33号，老板兼镇店之宝叫李乐。在任浙工大吉他课的教师，以前有许多浙大的都跑去旁听。现在的话，不是很清楚，可能弹古典的人不太多了吧。有家<a href="http://store.taobao.com/shop/view_shop-47e20ab6e3c32d1d2fb12f66155f6de8.htm">同名网店</a>，卖的马丁尼（Martinez）古典吉他一开始以为是山寨货，到店里听老板一弹，就震惊了。</p>
+
+<blockquote><p>任课教师李乐简介：</p>
+
+<p>男，1970年生于陕西汉中，5岁起随父亲学习中国民乐和作曲，11岁考入西安音乐学院附中因故放弃；1992年毕业于南京航空航天大学，在此之前开始学习古典吉他；1992-1997年参与设计国产最大的运8系列飞机，在此期间开始教授古典吉他；1995年右手失去知觉从而停止吉他演奏，1997年入兰州大学数学系读硕士，毕业前右手逐渐恢复知觉，继续吉他教学工作并于兰州合作举办近10场古典吉他音乐会；2000年任教于浙江工业大学，编著《古典吉他入门与提高》一书，创作独奏、重奏乐曲10余首；2001年师从中央音乐学院吉他教授陈志教授学习古典吉他；2002年底创办李乐吉他教室和天籁琴行，2005年天籁琴行吉他教育中心成立。</p></blockquote>
+
+<p>古典为主。</p>
+
+<p>我觉得，如果想学古典，或者想玩指弹，都可以去该店多陶冶陶冶，打基础，正确、有效地练琴。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/03/using-hash-instead-of-swith-in-perl/">Using Hash Instead of Switch in Perl</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-03T00:00:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2009</time>
+        
+         | <a href="/2009/07/03/using-hash-instead-of-swith-in-perl/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在之前的<a href="http://www.dotnil.org/comp_lang/76296.html">《诡异的Perl》</a>一文中，
+我表示我被 Perl 木有 switch 震惊了。昨天写脚本的时候，老大说，
+最好将生成的 SQL 按照 schema 的名字输出到对应的文件里头去，习惯性的想用 switch
+或者 if else （Perl 里头跟 PHP 差不多，也有个 elseif，不过写作 elsif，这两个都很装逼吧？）。
+后来脑子终于灵光了一下，改成了下面这个：</p>
+
+<pre><code>my %out;
+while (&lt;&gt;) {
+    open $out{$schema}, "&gt;$schema.sql" if ($out{$schema} == undef);
+    print { $out{$schema} } "commit;\n";
+}
+</code></pre>
+
+<p>多省事呀…… print 的第一个参数如果不加大括号的话，不会被认作文件句柄。</p>
+
+<p>最后，写个八卦，当时群众对 elsif 意见很大，纷纷走上街头，骆驼教教主
+Larry Wall 同学一开口，大家都没声响了：“不喜欢？那你可以做以下两件事：
+1) 发明一个语言；2) 让大家都用它。”</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/23/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/21/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

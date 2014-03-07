@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Coda Popup Bubbles - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="via =============以下正文翻译的分割线=============== Coda 是个 Mac 上的 Web 开发套装 —— 在我认识的设计师与开发者们里头很流行。Panic （Coda 的开发团队）也以他们敏锐的设计闻名。并且，Jorge Mesa &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2009/04/17/coda-popup-bubbles">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Coda Popup Bubbles</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-17T00:00:00+08:00" pubdate data-updated="true">Apr 17<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://jqueryfordesigners.com/coda-popup-bubbles/">via</a></p>
+
+<p>=============以下正文翻译的分割线===============</p>
+
+<p><a href="http://www.panic.com/coda/">Coda</a> 是个 Mac 上的 Web 开发套装 —— 在我认识的设计师与开发者们里头很流行。Panic （Coda 的开发团队）也以他们敏锐的设计闻名。并且，Jorge Mesa 提出了鼠标悬停在下载图片上的时候像吞云吐雾般弹出一个提示框的<a href="http://jqueryfordesigners.com/request">需求</a>。</p>
+
+<p>简单说该效果只是多个特效的简单封装。不过有几个些微处需要注意。</p>
+
+<p><img src="http://jqueryfordesigners.com/images/coda-bubble.jpg" alt="Coda Popup Bubble" /></p>
+
+<h3>如何解决问题</h3>
+
+<p>为了得到该特效，我们需要做以下事情：</p>
+
+<ol>
+<li>有考虑 JavaScript 被关闭的情况的 HTML 代码。不过分的说，用 CSS 把弹出框隐藏掉就是了。</li>
+<li>隐藏的弹出框使用层叠样式表单保证出现的时候是已经设计好的。</li>
+<li>用 jQuery 实现鼠标移至与鼠标移出时的弹出特效。</li>
+</ol>
+
+
+<p>最值得注意的地方就是：当你的鼠标移到弹出框上的时候，该事件会触发原图片的鼠标移出事件。我会详述如何保证这个问题不会影响到弹出框的实现。</p>
+
+<p>我弄了个示范视频来演示怎么搞出这个效果。下面是我是怎么以及用什么做的。</p>
+
+<p><a href="http://jqueryfordesigners.com/media/coda-bubble.mov">演示视频</a>（<a href="http://jqueryfordesigners.com/video.php?f=coda-bubble.flv">Flash 版本</a>）</p>
+
+<p>QuikeTime 版本的大约 23 兆，Flash 的是流媒体。</p>
+
+<p><a href="http://jqueryfordesigners.com/demo/coda-bubble.html">demo / 演示</a></p>
+
+<h3>HTML 代码</h3>
+
+<p>为了保证重用性，我把“触发者”与“弹出框”放在了一个 div 里头。触发者即用户鼠标移至时显示弹出框的目标元素。</p>
+
+<figure class='code'><figcaption><span>demo.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;bubbleInfo&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">&quot;trigger&quot;</span> <span class="na">src=</span><span class="s">&quot;http://mysite.com/path/to/image.png&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;popup&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- your information content --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>CSS</h3>
+
+<p>实际需要的 CSS 其实并不多。当然，你的 HTML 代码如何对此肯定会有影响。演示视频用的是 Coda 网站上的版本，所以需要设定的 CSS 还是相当可观的。</p>
+
+<p>我推荐的标配如下：</p>
+
+<figure class='code'><figcaption><span>demo.css </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.bubbleInfo</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nc">.popup</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="c">/* keeps the popup hidden if no JS available */</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样，弹出框就能以绝对定位放置在触发者旁了。</p>
+
+<h3>jQuery</h3>
+
+<p>为了实现特效，我们需要为弹出框实现如下动画效果。</p>
+
+<h4>Mouse Over</h4>
+
+<ol>
+<li>在 <code>mouseover</code>（鼠标移至）事件触发时：重置弹出框的位置（因为弹出框弹出的时候网上偏移了，所以这是必须的）</li>
+<li>弹出框的不透明度从 0 到 1，并将它的 CSS 属性 top 减 10px（实现往上移动的效果）</li>
+<li>如果 <code>mouseover</code> 时间再度触发，而弹出框正在动画中 —— 无视</li>
+<li>如果 <code>mouseover</code> 时间再度触发，而弹出框已经可见 —— 无视</li>
+</ol>
+
+
+<h4>Mouse Out</h4>
+
+<ol>
+<li>设置个倒计时来触发弹出框的隐藏功能（这能保证用户不慎移出的时候弹出框不会立即消失）</li>
+<li>如果用以隐藏的倒计时已经设定，则重置（如此方可保证隐藏功能只会被触发一次）</li>
+<li>时间到时，将弹出框的不透明度从 1 降到 0 并将它的 CSS top 属性继续减 10 （往上飘走……）</li>
+<li>标记弹出框已经隐藏</li>
+</ol>
+
+
+<h3>The ‘Trick’</h3>
+
+<p>一开始有个恼人的地方我不知道怎么解决。每次我将鼠标从触发者移到弹出框上的时候，触发者都会触发一个 <code>mouseout</code>（鼠标移出）事件 —— 于是弹出框隐藏了。这个臭虫真要命。</p>
+
+<p>我这已经有了解决办法。不过或许有别的，而且据我所知，Coda 网站的开发者们并不是这么按我这说的来的。</p>
+
+<p>当前文所述的 <code>mouseover</code> 触发的时候，你需要重置 <code>mouseout</code>倒数计时。问题解决。</p>
+
+<h3>Complete Source Code</h3>
+
+<p>以下是完整代码，包括注释。</p>
+
+<figure class='code'><figcaption><span>demo.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.bubbleInfo&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// options</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">distance</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">250</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">hideDelay</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">hideDelayTimer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// tracker</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">beingShown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">shown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">trigger</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.trigger&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">popup</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.popup&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// set the mouseover and mouseout on both element</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">([</span><span class="nx">trigger</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nx">popup</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)]).</span><span class="nx">mouseover</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// stops the hide event if we move from the trigger to the popup element</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">hideDelayTimer</span><span class="p">)</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">hideDelayTimer</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// don&#39;t trigger the animation again if we&#39;re being shown, or already visible</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">beingShown</span> <span class="o">||</span> <span class="nx">shown</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">beingShown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// reset position of popup box</span>
+</span><span class='line'>        <span class="nx">popup</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>          <span class="nx">top</span><span class="o">:</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">left</span><span class="o">:</span> <span class="o">-</span><span class="mi">33</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">display</span><span class="o">:</span> <span class="s1">&#39;block&#39;</span> <span class="c1">// brings the popup back in to view</span>
+</span><span class='line'>        <span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// (we&#39;re using chaining on the popup) now animate it&#39;s opacity and position</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">animate</span><span class="p">({</span>
+</span><span class='line'>          <span class="nx">top</span><span class="o">:</span> <span class="s1">&#39;-=&#39;</span> <span class="o">+</span> <span class="nx">distance</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">opacity</span><span class="o">:</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="p">},</span> <span class="nx">time</span><span class="p">,</span> <span class="s1">&#39;swing&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">// once the animation is complete, set the tracker variables</span>
+</span><span class='line'>          <span class="nx">beingShown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>          <span class="nx">shown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}).</span><span class="nx">mouseout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// reset the timer if we get fired again - avoids double animations</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">hideDelayTimer</span><span class="p">)</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">hideDelayTimer</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// store the timer so that it can be cleared in the mouseover if required</span>
+</span><span class='line'>      <span class="nx">hideDelayTimer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">hideDelayTimer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">popup</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span>
+</span><span class='line'>          <span class="nx">top</span><span class="o">:</span> <span class="s1">&#39;-=&#39;</span> <span class="o">+</span> <span class="nx">distance</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">opacity</span><span class="o">:</span> <span class="mi">0</span>
+</span><span class='line'>        <span class="p">},</span> <span class="nx">time</span><span class="p">,</span> <span class="s1">&#39;swing&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">// once the animate is complete, set the tracker variables</span>
+</span><span class='line'>          <span class="nx">shown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>          <span class="c1">// hide the popup entirely after the effect (opacity alone doesn&#39;t do the job)</span>
+</span><span class='line'>          <span class="nx">popup</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>      <span class="p">},</span> <span class="nx">hideDelay</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Taking it Further</h3>
+
+<p>This effect could be perfected by changing the initial reset (popup.css())
+code to read from the trigger element and approximate it’s position. In my example,
+I’ve hardcoded it because I only have one on the page -
+but you may want to use this effect several times across your page.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-17T00:00:00+08:00" pubdate data-updated="true">Apr 17<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/complang/'>Complang</a>, <a class='category' href='/categories/computer/'>Computer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2009/04/17/coda-popup-bubbles/" data-via="dotnil" data-counturl="http://cyj.me/2009/04/17/coda-popup-bubbles/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/04/16/pulp-browsers/" title="Previous Post: Pulp Browsers">&laquo; Pulp Browsers</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/04/17/jquery-for-designers/" title="Next Post: jQuery for Designers">jQuery for Designers &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2009/04/17/coda-popup-bubbles/';
+        var disqus_url = 'http://cyj.me/2009/04/17/coda-popup-bubbles/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

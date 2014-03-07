@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript the Good Parts - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="最近在看这本书的中译版，《JavaScript 语言精粹》，貌似是淘宝大牛小马哥与雅虎中国鹍哥的译作。因为书很薄，按 Crockford 的意思是取其精华去其糟粕，只谈 JavaScript 语言中宜用的部分，就直接在蓝晶书店买了。隔了一年多，老板居然还认得我。生意人的扯皮，大抵也不足为信， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2009/10/29/javascript-the-good-parts">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">JavaScript the Good Parts</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-29T00:00:00+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>最近在看这本书的中译版，《<a href="http://www.douban.com/subject/3590768/">JavaScript 语言精粹</a>》，貌似是淘宝大牛小马哥与雅虎中国鹍哥的译作。因为书很薄，按 Crockford 的意思是取其精华去其糟粕，只谈 JavaScript 语言中宜用的部分，就直接在蓝晶书店买了。隔了一年多，老板居然还认得我。生意人的扯皮，大抵也不足为信，只是这份歪打正着，已让我十分受用。</p>
+
+<p>有好事者把奥莱利出版的 JavaScript 有关的两本重头放在一起合影，《<a href="http://www.douban.com/subject/1232061/">权威指南</a>》砖头一本，从编程语言基础到 DOM 到服务端 JavaScript 到嵌入的 JavaScript，无所不包，还嫌不够厚重，封皮是犀牛一只；而《语言精粹》则轻而灵，薄的一塌糊涂。让人想起《鹿鼎记》里头陈近南对小宝说：“这本是目录，那里才是绝世武功的全集”。</p>
+
+<p>学习编程语言确实不难，实际应用虽非易事但也不难做，唯一好耗费的是时间。需要<a href="http://ejohn.org/blog/the-dom-is-a-mess/">了解不同浏览器的 DOM 支持程度</a>，<a href="http://www.douban.com/subject/3022779/">各种规避缺陷的奇技淫巧</a>，等等。如果做前端开发，这两本书倒确实是缺一不可的了。</p>
+
+<p>JavaScript 作为最广为支持的前端开发语言（唯一广为支持的前段开发语言？），被许多从业者所误解。我们刚开始接触这语言时，往往都是抄袭写网上的只言片语，大多不上台面，甚至连改用户浏览器状态栏就为实现个时钟这样的事情也做得出来。到真的需要真刀真枪上了，却又惊异于 JavaScript 独特的原型继承、以闭包（Closure）作为变量作用域、函数式编程之类前所未闻的事情。</p>
+
+<p>Crockford 的抱怨总结的很好了：市面上的书良莠不齐；官方的说明文档冗长而条理不清；浏览器支持一塌糊涂；程序员写出的代码凌乱不堪；等等。</p>
+
+<p>但是并不妨碍这门语言凭借其精华发光，让 Java 程序员们艳羡的数据结构表达方式（JSON）等等。如果你有时间有兴趣，不妨也了解一番，说不定某天做其他事情，也会看到 JavaScript 应用的影子呢。<a href="http://kaijaeger.com/articles/javascript-for-people-who-are-in-a-hurry.html">快速入门</a>；<a href="http://kaijaeger.com/articles/javascript-for-people-who-are-in-slightly-less-of-a-hurry-part-one.html">稍微慢一点的快速入门</a>。都是英文。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-29T00:00:00+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/complang/'>Complang</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2009/10/29/javascript-the-good-parts/" data-via="dotnil" data-counturl="http://cyj.me/2009/10/29/javascript-the-good-parts/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/10/23/windows-7-hell-yeah/" title="Previous Post: Windows 7, Hell Yeah!">&laquo; Windows 7, Hell Yeah!</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/11/02/plz-recommend-an-rss-feed-aggregator/" title="Next Post: 求推荐 RSS Feed 聚合器">求推荐 RSS Feed 聚合器 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2009/10/29/javascript-the-good-parts/';
+        var disqus_url = 'http://cyj.me/2009/10/29/javascript-the-good-parts/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

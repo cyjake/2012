@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Computer | Chen Yangjian's Blog]]></title>
+  <link href="http://cyj.me/categories/computer/atom.xml" rel="self"/>
+  <link href="http://cyj.me/"/>
+  <updated>2012-04-08T01:05:42+08:00</updated>
+  <id>http://cyj.me/</id>
+  <author>
+    <name><![CDATA[Chen Yangjian]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[用 QUnit 做 JavaScript 单元测试]]></title>
+    <link href="http://cyj.me/2012/03/01/js-unit-testing/"/>
+    <updated>2012-03-01T09:30:00+08:00</updated>
+    <id>http://cyj.me/2012/03/01/js-unit-testing</id>
+    <content type="html"><![CDATA[<p>前一阵跟同事讲 JavaScript 单元测试该如何搞起，找了些资料，
+结合自己的应用情况，说了一些，但依然说得不好。因此写篇博文，记录一下。</p>
+
+<p>按专业做测试的童鞋们的划分，单元测试属于白盒测试。做法是，
+与待测模块使用相同的程序语言，引入该模块，引入测试框架，然后噼里啪啦写一堆测试用例。
+Ruby 童鞋这一点做得很好，自带了一个 <code>test/unit</code>，Rails 童鞋更进一步，在
+项目根目录的 <code>test/unit</code> 与 <code>test/functional</code> 下分别会生成对应 model 与
+controller 的测试类。同时还补上了一坨断言，详情请看
+<a href="http://guides.rubyonrails.org/testing.html">Rails Guides 之测试</a></p>
+
+<p>JavaScript 短小精悍，自带的东西除了各种神奇语法，啥也没有；有一堆所谓的
+Juicy Libraries 可供挑选，结果经常因为想用 B 框架的甲插件，自己却已经用了
+A 框架而心生惆怅。其实兼收并蓄也没什么不好，大家网速都还可以的嘛。</p>
+
+<p>扯远了哈，我的意思是，要做 JavaScript 单元测试，第一个问题就是先得挑一个框架。
+StackOverflow.com 上有人弄了个
+<a href="http://stackoverflow.com/questions/300855/looking-for-a-better-javascript-unit-test-tool">详细列表</a>
+，有些已经陈旧了，例如 JSUnit，有些则偏整体测试解决方案一点，例如
+John Resig 做的 TestSwarm.com。</p>
+
+<p>我们先讲语言层面的测试框架本身好了，现在用得比较多的是 JSSpec、
+<a href="http://pivotal.github.com/jasmine/">Jasmine</a>
+和列表中没有提到的同是 John Resig 的作品 <a href="http://docs.jquery.com/QUnit">QUnit</a>。</p>
+
+<p>先被我排除的是 JSSpec，因为在我接触到的前端项目里头，要么没有写单元测试，
+要么没有用 JSSpec，所以我一直没有见过 JSSpec 的单元测试语法是什么样的；
+不过把它列入考虑的原因也简单，没有专门的测试人员的 Facebook，
+写 JavaScript 单元测试用的框架就是它
+（<a href="http://www.quora.com/What-kind-of-automated-testing-does-Facebook-do">来源</a>）。</p>
+
+<p><a href="seajs.com">SeaJS</a> 与 <a href="http://docs.kissyui.com/">Kissy</a> 用的都是 Jasmine，
+应该就是玉伯的偏好了。Jasmine 的语法效仿自 Ruby 里的 RSpec。
+这种语法风格的宗旨是更贴近自然语言，直接从源码生成程序说明文档。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>example.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Jasmine&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;makes testing JavaScript awesome!&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">expect</span><span class="p">(</span><span class="nx">yourCode</span><span class="p">).</span><span class="nx">toBeLotsBetter</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>但我不太喜欢，觉得有点不伦不类的。另一个让我最终没选它的原因是，
+测试输出的部分还得自己包装，好麻烦⋯⋯ 参考玉伯 SeaJS 代码中
+<a href="https://github.com/seajs/seajs/blob/master/test/runner.html">runner</a>
+部分。</p>
+
+<p>所以我选了 QUnit。好啦，我终于切题了，下面讲 QUnit 的用法。</p>
+
+<p>QUnit 包含两个文件，qunit.js 与 qunit.css，它的断言结果是输出到页面 DOM 里的，
+所以基于 QUnit 写的测试，都需要有个 html 页面，引入这俩文件，并且保证页面中有这样的 DOM 节点：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>test.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;qunit-header&quot;</span><span class="nt">&gt;</span>亲爱的单元测试<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">&quot;qunit-banner&quot;</span><span class="nt">&gt;&lt;/h2&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">&quot;qunit-userAgent&quot;</span><span class="nt">&gt;&lt;/h2&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;ol</span> <span class="na">id=</span><span class="s">&quot;qunit-tests&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ol&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>你的测试代码应该长这样：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>test.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;a basic test example&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">ok</span><span class="p">(</span> <span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;this test is fine&quot;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">equal</span><span class="p">(</span> <span class="nx">value</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;We expect value to be hello&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="p">});</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">module</span><span class="p">(</span><span class="s2">&quot;Module A&quot;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;first test within module&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">ok</span><span class="p">(</span> <span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;all pass&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="p">});</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;second test within module&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">ok</span><span class="p">(</span> <span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;all pass&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="p">});</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">module</span><span class="p">(</span><span class="s2">&quot;Module B&quot;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;some other test&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">equal</span><span class="p">(</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s2">&quot;failing test&quot;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="nx">equal</span><span class="p">(</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;passing test&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>在测试页面中引入这个，就齐活了。</p>
+
+<p>QUnit 的 <a href="http://docs.jquery.com/QUnit#Reference_Test_Suites">示例</a>
+有很多，<a href="https://github.com/jquery/jquery/blob/master/test/unit/core.js">jQuery 本身</a>，
+jQueryUI 的部分项目，都用这货做的单元测试。</p>
+
+<p>基本的测试用例搞完了，接下去要考虑的事是如何
+<a href="http://docs.jquery.com/QUnit#Integration_into_Browser_Automation_Tools">自动化</a>，
+做持续集成。我尚无实际应用经验，先按下不表。John Resig 抱怨过
+<a href="http://ejohn.org/blog/javascript-testing-does-not-scale/">JavaScript 测试的烦恼处</a>，
+多平台、多浏览器测试使得一个小改动都需要大量人工去测，因此弄了
+<a href="http://testswarm.com">Test Swarm</a>，对前端童鞋来说，文章很有趣，推荐一看。</p>
+
+<p>此外，淘宝UED 的云谦童鞋，去年就搞过一个云测试项目，感兴趣的童鞋可以去了解一下。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[搬家到 Octopress]]></title>
+    <link href="http://cyj.me/2012/02/28/move-onto-octopress/"/>
+    <updated>2012-02-28T15:10:00+08:00</updated>
+    <id>http://cyj.me/2012/02/28/move-onto-octopress</id>
+    <content type="html"><![CDATA[<p>用 WordPress 写博客快四年了，一直有个痒处，怎么挠都不得劲，就是写文章的那框框实在是太不好用了。
+后来又试过装 markdown 格式支持的插件，但不过是前端的一个包装而已，每次还得人肉去点 render，蛋疼得紧。</p>
+
+<p>去年翻译 <a href="http://gitref.cyj.me">git-reference</a> 的时候，第一次了解了 <a href="http://pages.github.com/">Github Pages</a>
+和使它所以为可能的技术基础 <a href="http://github.com/mojombo/jekyll/">jekyll</a>。
+Github Pages 的中心思想是，可以建一个 yourname.github.com 仓库，在 master 分支里头放 HTML 文件，
+通过 http://yourname.github.com 访问，也可以在你的项目仓库里头建分支 gh-pages，该分支里头放 HTML 文件，
+通过 http://yourname.github.com/yorproject 访问。这两者都支持绑域名，在 CNAME 文件中填上域名，
+在域名的 DNS 解析中加上 A 记录，指向 Github 的地址 <code>207.97.227.245</code> 就成。</p>
+
+<p>精彩之处在于，Github 可以自动解析分支中的以标记格式为扩展名的文件，根据文件中声明的模板，
+渲染出最终的结果。这就是 jekyll 做的事情：</p>
+
+<ul>
+<li>让你能够用趁手的编辑器写自己喜欢的标记格式（markdown、textile 神马的）</li>
+<li>让你拥有真正的版本记录</li>
+<li>无需网络就能撰写文章</li>
+<li>发布之后只有静态文件，轻便快捷</li>
+<li>无需数据库</li>
+</ul>
+
+
+<p>前两点对我尤为重要，特别是在我立志要写牛逼文章的大背景下，咳咳。</p>
+
+<p>无需数据之类的，我的 <a href="http://cyj.me">cyj.me</a> 所用的东东，Stacey，就已经能够做到，
+但它还是没脱 Web 服务的窠臼，只不过更新方式换成了 FTP 而已。但从这一点来说，更适合展现视觉方面的东东。</p>
+
+<p>回到正题，我喜欢上了 jekyll，决定动手一试，于是翻看了篇
+<a href="http://oppih.github.com/2011/12/jekyll-introduction/">很优秀的介绍</a>，看明白了大概，
+但又觉得从头开始比较辛苦，恰好又发现它还提供
+<a href="https://github.com/mojombo/jekyll/wiki/blog-migrations">从各种平台迁移到 jekyll</a> 的功能，
+自然也包括了 WordPress：</p>
+
+<pre><code>$ ruby -rubygems -e 'require "jekyll/migrators/wordpressdotcom"; Jekyll::WordpressDotCom.process("wordpress.xml")'
+</code></pre>
+
+<p>呃，等等，我有点跳跃了，在做上面说的事情之前，要明确一个东西：</p>
+
+<blockquote><p>jekyll 不是记博客的软件，它是个解析引擎</p></blockquote>
+
+<p>所以，直接拿它替换 WordPress，你会遇到与我相仿的问题，有好多功能都没有，博客的设计还需要重头来过，等等。
+但幸好，套用玉伯的话说，这个世界上聪明的人很多，很多事情别人已经做了。所以我找到了
+<a href="http://octopress.org/docs/">OctoPress</a>。此外也有人用
+<a href="http://jekyllbootstrap.com/usage/index.html">jekyll-bootstrap</a>，丫还支持主题配置。但我并没有尝试后者。</p>
+
+<p>现在接着说回上面的问题，直接执行上边的导入，导进来的文章内容是 html 格式的，自然不是我想要的。
+所以参考了 <a href="http://blog.yorkxin.org/2011/11/26/import-from-wpcom-to-octopress/">yorkxin 的导入 gist</a>
+和 <a href="http://jiangle.name/2012/02/06/switched-to-jekyll/">Jiang Le 的从 WordPress 切换到 Jekyll</a>，
+并使用了 <a href="https://github.com/cousine/downmark_it">downmark_it</a> 将 HTML 转成 Markdown。</p>
+
+<p>downmark_it 还算好用，但效果并非完美，还得略微调整一些小瑕疵。</p>
+
+<p>我用的导入文章脚本被自己手贱删掉了，没能贴出来，灰常遗憾。</p>
+
+<p>接着说一些细节上需要注意的，上述迁移任务并没有将评论导进来。由于是静态文件，jekyll 生成的网站也不支持评论。
+但感谢 <a href="http://disqus.com/">disqus</a>，它提供了很风骚的纯 js 方式，令你的网页交互起来。更刺激人的事，
+这货居然还能导入 WordPress 的评论，摆明了挖墙角啊。</p>
+
+<p>此外，jekyll 中，categories: ['computer', 'bug'] 的概念与原先 WordPress 中的概念是不一样的。
+jekyll 里，会将 computer/bug 作为一个 category，所有标记为此类目的文章都归到此处，
+不会在 computer 或者 bug 类目出现。而 WordPress 里的是彼此分开的。</p>
+
+<p>最后说一句，如果不喜欢命令行，就不要使用啦。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Twitter Bootstrap 框架介绍]]></title>
+    <link href="http://cyj.me/2012/01/09/twitter-bootstrap-intro/"/>
+    <updated>2012-01-09T00:00:00+08:00</updated>
+    <id>http://cyj.me/2012/01/09/twitter-bootstrap-intro</id>
+    <content type="html"><![CDATA[<p>第一次听说 <a href="http://twitter.github.com/bootstrap/#overview">Boostrap</a> 是因为同事的 <a href="http://ruby-china.org/topics">Ruby China</a>，后来在自己负责的项目 <a href="http://ux.etao.com/">一淘UX</a>，后台部分的界面也用到了这个东东，用得有些束手束脚，因此决定把它的介绍看一遍，也给大家做个分享。</p>
+
+<p>Bootstrap 是 Twitter 搞的一个框架，目的是有个工具可以方便快速搞起一个项目，样式部分使用 Less 写就，也提供了一些 jQuery 插件形式的扩展。对景德镇居民来说，它比较狠的是直接不支持 IE6，许多特效、属性在 IE7、8 里头也是捉襟见肘；因此，如果你的网站放不下这部分用户，还是先不要用了，或者可以参考着整一个自己的版本。Bootstrap 的代码<a href="https://github.com/twitter/bootstrap">托管在 Github</a>，随时可以 fork。</p>
+
+<p>样式方面，它提供了如下解决方案：</p>
+
+<ul>
+<li>栅格系统</li>
+<li>布局</li>
+<li>字体样式</li>
+<li>多媒体展现</li>
+<li>表格</li>
+<li>导航</li>
+<li>警告与提示</li>
+<li>弹出浮层</li>
+</ul>
+
+
+<p>栅格系统与比较著名的 960 Grid 大同小异，不过丫默认是16栏，940像素宽，此外一个特性是，因为 Less 带来的动态语言特性（变量、函数等），可以通过配置几个参数，自定义自己的栅格。因为抛弃了老旧浏览器支持，可以直接用 :last-child 将最后一栏的 margin-right 去掉，这也是它与 960 Grid 的差别之一。</p>
+
+<p>布局也是老生常谈，一个固定宽度的居中，一个可变宽度的浮动布局。</p>
+
+<p>字体设置里的风格比较明显，标题、em、strong、b、i 以及 address，都配了一些样式。在 blockquote 的样式里头，利用 before 属性，加上了个 &amp;dash;。然后是列表，通过 .unstyled 类，获得样式充值效果；这个方式其实我也比较喜欢，特别是网站是以内容为主的时候。代码块也比较朴素，推荐了 <a href="http://code.google.com/p/google-code-prettify/">Google Code Prettify</a>。</p>
+
+<p>接着这个就比较贴心的了，很常用的 eye candy，内敛标签。</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.35.49-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.35.49-PM.png" title="Screen Shot 2012-01-09 at 9.35.49 PM" alt="" /></a></p>
+
+<p>多媒体列表其实也比较简单，明确了三种缩略图尺寸 330x230、210x150 和 90x90。至于你的网站如何做，可能还是悉听尊便吧。表格的样式也是简约风格。</p>
+
+<p>Bootstrap 对表单做了比较充分的定制，风格上比较明确，label 左浮动，圆角输入框。正确、错误的状态，表单 legend 的字号，前缀字符，输入、复选框等。文件选择的东东比较朴素，基本是老样子，也没有采用一些风骚的解决方案（那些基本需要与 JavaScript 配合搞）。表单的按钮也十分细致。</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.42.59-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.42.59-PM.png" title="Screen Shot 2012-01-09 at 9.42.59 PM" alt="" /></a></p>
+
+<p>网站的全局导航栏，风格一以贯之，使用样式实现背景色渐变，固定在头部；同样，因为不需要考虑老旧浏览器，放心地 position: fixed; 就够了。</p>
+
+<p>此外，还实现了提示、警告：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.46-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.46-PM.png" title="Screen Shot 2012-01-09 at 9.45.46 PM" alt="" /></a></p>
+
+<p>区块风格的消息提示：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.46.05-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.46.05-PM.png" title="Screen Shot 2012-01-09 at 9.46.05 PM" alt="" /></a></p>
+
+<p>面包屑导航：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.34-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.45.34-PM.png" title="Screen Shot 2012-01-09 at 9.45.34 PM" alt="" /></a></p>
+
+<p>翻页：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.56.10-PM.png"><img src="http://blog.cyj.me/wp-content/uploads/2012/01/Screen-Shot-2012-01-09-at-9.56.10-PM.png" title="Screen Shot 2012-01-09 at 9.56.10 PM" alt="" /></a>
+以上是样式的部分，是 Bootstrap 框架的主打。在代码上，基本把样式重置与定制都做掉了，上述内容，出了比较明显的组件如面包屑、翻页等，基本都是直接用标签做选择器的。不过，框架就该简单直接，对吧？有许多风格是利用较新的样式属性搞出来的，最明显的莫过于背景色渐变与圆角（gradient、border-radius、box-shadow 等）。因此，对于图省事、不介意老浏览器看起来效果差些，IE6 不需要管的开发者，Bootstrap 是个好选择，省时省力，美观大方。</p>
+
+<p>在样式之外，Bootstrap 还提供了几个常用的 JavaScript 实现的效果。模态框、提示浮层、表格的排序等等，jQuery 插件的形式。夜了，按下不表。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RMagick、MiniMagick、ImageMagick、GraphicsMagick 傻傻分不清楚]]></title>
+    <link href="http://cyj.me/2012/01/05/rmagick-minimagick-imagemagick-graphicsmagick-diff/"/>
+    <updated>2012-01-05T00:00:00+08:00</updated>
+    <id>http://cyj.me/2012/01/05/rmagick-minimagick-imagemagick-graphicsmagick-diff</id>
+    <content type="html"><![CDATA[<p>四兄弟都是 Magick 字辈的，要分清楚其实也简单。<a href="http://en.wikipedia.org/wiki/ImageMagick">ImageMagick</a> 和 <a href="http://en.wikipedia.org/wiki/GraphicsMagick">GraphicsMagick</a> 是名副其实的两兄弟，都是开源的图片处理工具，具有丰富的执行参数，艺术效果等等。后者是前者的分支，从 2002 年时的 5.5.2 版本分出来，专注软件与编程接口的稳定性。</p>
+
+<p>而 RMagick 与 <a href="https://github.com/probablycorey/mini_magick">MiniMagick</a> 也算是两兄弟，后者比前者优势在更稳定，不容易内存泄露（That's what they say...）。哥俩都是 Ruby Gem，是对 ImageMagick 的命令行选项的封装。中午查文档的时候瞥了一眼 MiniMagick 的些许代码，也是用的 method_missing 来搞。例如：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>foo.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'> <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="n">img</span> <span class="o">=</span> <span class="no">MiniMagick</span><span class="o">::</span><span class="no">Image</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+</span><span class='line'><span class="n">img</span><span class="o">.</span><span class="n">resize</span> <span class="s1">&#39;800x800&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;method_missing thrown, resize wrapped as an option of &lt;code&gt;convert&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">command</span><span class="o">.</span><span class="n">&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>所以，基本上对着 <a href="http://www.imagemagick.org/script/command-line-options.php">ImageMagick 的文档</a>用就是了。</p>
+
+<p>然后再提一个经常用到的实践，在 CarrierWave 的封装里头也很常见的，resize_to_fit 与 resize_to_limit，以及其他一些需求，例如我今天要做的，把图片宽度限制在 800 以内，高度不限。这种需求都可以通过 <a href="http://www.imagemagick.org/script/command-line-options.php#resize">-resize 参数</a>统统搞定。在文档里头我们看到，它说接收一个 geometry 格式的参数。那这个 geometry 参数长啥样嘞？</p>
+
+<pre><code>scale%  Height and width both scaled by specified percentage.
+scale-x%xscale-y%   Height and width individually scaled by specified percentages. (Only one % symbol needed.)
+width   Width given, height automagically selected to preserve aspect ratio.
+xheight Height given, width automagically selected to preserve aspect ratio.
+widthxheight    Maximum values of height and width given, aspect ratio preserved.
+widthxheight^   Minimum values of width and height given, aspect ratio preserved.
+widthxheight!   Width and height emphatically given, original aspect ratio ignored.
+widthxheight&gt;   Change as per widthxheight but only if an image dimension exceeds a specified dimension.
+widthxheight&lt;   Change dimensions only if both image dimensions exceed specified dimensions.
+area@   Resize image to have specified area in pixels. Aspect ratio is preserved.
+</code></pre>
+
+<p>这货定义的真是太精彩了，言简意赅，上面的那些需求都可以分别满足：</p>
+
+<pre><code>-resize 80x80
+-resize 80x80&gt;
+-resize 80
+-reszie 80x800&lt; # 如果刷屏金箍棒出现
+</code></pre>
+
+<p>不过话说回来，在可读性与简洁之间，确实很难做好平衡呢。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[事件代理以及它的好处]]></title>
+    <link href="http://cyj.me/2012/01/03/what-is-event-delegating-and-why-you-should-be-using-it/"/>
+    <updated>2012-01-03T00:00:00+08:00</updated>
+    <id>http://cyj.me/2012/01/03/what-is-event-delegating-and-why-you-should-be-using-it</id>
+    <content type="html"><![CDATA[<p>不是什么新东西了，昨天做的分享里头需要讲到，又把几个知识点翻出来看了一下，<a href="http://cherny.com/webdev/70/javascript-event-delegation-and-event-hanlders">这篇博客</a>总结得不错，摘译一些。</p>
+
+<p>事件代理利用的是事件冒泡机制，在事件，例如点击触发时，是从 DOM 树最底端的阶段开始往顶端冒泡，事件对象贯穿这个生命周期。入门事件绑定的时候，绑定与处理是这样的：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>old.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;J_button&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">button</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>   <span class="c1">// handles target</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>这在要绑定、处理的节点多了之后有点难办的，尤其是列表、表格这种场景，在 for 循环的时候，有个经典的 js gotcha：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>wrong.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// 错误代码</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="nx">anchors</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">anchors</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>不管点那个锚点，alert 出来的都是 anchors.length -1，熟悉 js 的都会告诉你，这是因为闭包的关系，因为等你点击任意锚点的时候，这个 for 循环执行已毕，当前上下文，也就是 onclick 所在的闭包，里头的 i 已经是 anchors.length -1。</p>
+
+<p>而如果用事件代理的方式，则强迫你放弃闭包中的这些循环变量：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>delegate.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">anchors_box</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>   <span class="k">if</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>   <span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>   <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>如果需要 i，则需要在事件处理时去实时获取，或者预处理一下，将 i 放到它们的属性里头去。两者对比，采用事件代理方式的好处显得清楚明了：</p>
+
+<ol>
+<li>绑定起来更加方便</li>
+<li>减少闭包使用，从而降低可能不必要的内存占用</li>
+<li>对代理节点的 innerHTML 做修改，不需要重新绑定</li>
+<li>在事件监听节点比较多的情况下，特别是重型的 OPOA，跑得更顺畅</li>
+</ol>
+
+
+<p><a href="http://cherny.com/webdev/70/javascript-event-delegation-and-event-hanlders">参考文章</a></p>
+]]></content>
+  </entry>
+  
+</feed>

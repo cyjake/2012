@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="我不是数据库管理大牛，也不想将 DBA 做为职业发展方向。因为数据库个人的感觉一直冗长和冷冰冰，特别是维护已有数据的时候。 但是为了搵二餐，活还是要干的。最近忙活的事情是改程序，把原有的操作 Sybase 的 SQL 改写成 Oracle 上能跑的。最近的一个程序是个 Java 写的守护进程， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/21">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/30/differences-between-oracle-and-sybase/">Oracle 与 Sybase 的些许差别</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-30T00:00:00+08:00" pubdate data-updated="true">Jul 30<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/30/differences-between-oracle-and-sybase/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我不是数据库管理大牛，也不想将 DBA 做为职业发展方向。因为数据库个人的感觉一直冗长和冷冰冰，特别是维护已有数据的时候。</p>
+
+<p>但是为了搵二餐，活还是要干的。最近忙活的事情是改程序，把原有的操作 Sybase 的 SQL 改写成 Oracle 上能跑的。最近的一个程序是个 Java 写的守护进程，编码风格诡异，编码方式拖沓，一个函数数百行是家常便饭。然而 SQL 才是让我痛不欲生的根源。</p>
+
+<p>绝大部分 SQL 都有一个共同点那就是长，如果关系到临时表的创建，多张表的更新等，很是折腾。</p>
+
+<p>关于两个数据库之间的差别，其实组里有个文档，不过关系到保密协议啦工作守则啦之类的玩意，我就干脆没看……</p>
+
+<p>小差别比如，在概念上 sybase 是分为 database，oracle 则是 schema；前者跟 mysql 的 database 是差不多的，也是一样的 use foobase; 之后再操作。也可以 db..table 来访问特定表，而 oracle 里头，则是一个点，schema.table。</p>
+
+<p>然后是临时表，sybase 的叫做 #temp 之类，oracle 则没有那个 #。命名上的些微差别还是好办的，然后实际操作起来就囧了。sybase  允许动态创建，可以直接 select * into #tmp from blah; Oracle 则需要预先处理好历史表的定义，换来的好处是，不需要在  insert into temp select * from blah 的时候再为 column 的类型担忧，如果某个 column 没有值，插入 null 就是了。而 Sybase 因为有临时表的定义混在里头，需要一坨乱七八糟的 convert()。</p>
+
+<p>再比如关系到多张表的 update，Sybase 是可以直接搞的，Oracle 则需要用 rowid 来做，如果比较复杂，还得写 Stored Procedure。还有就是之前提到的日期，函数啦，接收的格式啦，大相径庭。其他的用来 format 浮点数，concat 字符串之类的函数，也有差别。</p>
+
+<p>此外，Sybase 允许多个木有用 “;” 分开的木有返回值（数据集）语句一并执行下来，在 isql 客户端里头，打完一串，再“go”一下也就是了。而 Oralce，如果都丢在一个一串里头的话，需要用“;”分开，并在开头与结尾加上 begin、end;。</p>
+
+<p>以上，就是调戏了我近两周的jr。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/29/two-funny-episodes-of-how-i-met-your-mother/">How I Met Your Mother 里头很囧的两集</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-29T00:00:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/29/two-funny-episodes-of-how-i-met-your-mother/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>第三季第九集，<a href="http://www.youtube.com/watch?v=E_xWS0JfMik">You Just Got Slapped</a>。可以 YouTube 被墙，不然还可以贴过来。</p>
+
+<p>第四季第十一集，Heather Mosby。</p>
+
+<p>共同点是，都有很有趣的歌。尤其以后者 Barney 改编的低俗歌词为甚。</p>
+
+<p>比如 Jingle Bells：</p>
+
+<ul>
+<li>Pulling down your pants</li>
+<li>yanking off my own.</li>
+<li>Underneath the mistletoe,</li>
+<li>i make your sister moan.</li>
+<li>Oh, Heather&#8217;s hot. Heather&#8217;s hot.</li>
+</ul>
+
+
+<p>比如 We Wish You Merry Christmas</p>
+
+<ul>
+<li>I wish I could see her naked.</li>
+<li>I wish I could see her naked.</li>
+<li>And down on all fours.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/29/domainr/">domai.nr</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-29T00:00:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/29/domainr/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>很有意思的域名查询网站，http://domai.nr。正如它的介绍页面所说，.com、.org 都太过拥挤了，世界淫民需要多一些 del.icio.us 之类的名字，而不是 thejakeplus123.com 之流。</p>
+
+<p>不过，它会记录你的搜索数据，并跟你的浏览器对应起来，说是不会做坏事，比如 <a href="http://en.wikipedia.org/wiki/Domain_name_front_running">front-running</a>。</p>
+
+<blockquote><p>Domainr anonymously logs searches because we think this data is interesting in aggregate, and we use cookies because we plan to add personalized functionality in the future. And we’ll never do anything evil like <a href="http://en.wikipedia.org/wiki/Domain_name_front_running">front-running</a>.</p></blockquote>
+
+<p>但是墙内的百姓想去搞如斯域名可能还是麻烦了些，比如 .py，是巴拉圭还是哪里的，.an 是安哥拉，.ie 是爱尔兰，注册价格往往便宜，条件却不简单，比如需要在该国拥有组织机构，有可靠的财务保障，有稳定的服务器和 IP 申报之类。</p>
+
+<p>有张 VISA 或者 Master Card，事情或许会简单~</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/24/what-is-drupal-in-57-seconds/">What Is Drupal&#8230; In 57 Seconds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-24T00:00:00+08:00" pubdate data-updated="true">Jul 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/24/what-is-drupal-in-57-seconds/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://pingv.com/videos/1/what-drupal-57-seconds">via</a></p>
+
+<p>YouTube 已经几百年上不去了，庆幸该视频不在有土鳖上。就不贴过来了……</p>
+
+<p>drupal 是个开源内容管理系统，PHP、MySQL 或者 PostgresQL，GPL 授权，做毕设的时候稍微看了下它的代码，那个时候觉得太繁，就没有继续下去。</p>
+
+<p>是时候搞起来了？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/24/simple-web-designs/">简版 Web 设计</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-24T00:00:00+08:00" pubdate data-updated="true">Jul 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/24/simple-web-designs/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>大家越来越浮躁，地球很恰逢其盛地越来越热。简版风格开始盛行？</p>
+
+<p>在 r/web_design 上看到 <a href="http://www.cherrysave.com/web-design/simple-web-design-175-sites-featuring-minimalist-interfaces/">30个简版设计</a>，一路看下来，有些很是喜欢。</p>
+
+<p>当然，有些很水，比如 <a href="http://isitaleapyear.com/">isitaleapyear</a>，是不是闰年，istwitterdown.com、isitchristmas.com、<a href="http://hasthelargehadroncolliderdestroyedtheworldyet.com/">hasthelargehadroncolliderdestroyedtheworldyet.com</a> 等等。这些网站的立意本来就没啥鸟内容嘛。</p>
+
+<p>还有个很经典的，<a href="http://shouldiusetablesforlayout.com/">shouldiusetablesforlayout.com</a>，页面源码很有意思。</p>
+
+<p>言归正传，除去一些玩具性质的网站，这30个多为固定宽度，配色很少，除了 header 鲜有大色块（body 背景除外），但是并不畏惧使用大图。再有就是，文字区域的背景都是淡色，白色为主。也有<a href="http://silnt.com/v4/">silnt.com</a>等，流动布局，做得很不错。</p>
+
+<p>以前有人纠结过深色背景的问题，也拿出过几个看起来还不错的设计，但是不会有人喜欢盯着那些亮亮的字看下去。</p>
+
+<p>比较喜欢<a href="http://builtbybuffalo.com/">builtbybuffalo.com</a>。</p>
+
+<p>再回来看淘宝、京东、China-Pub 之类，你们真的会从它们首页上那个很挫（载入、反应…… 慢，淘宝尤甚）的分类框里头一层层点进去吗？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/24/people-do-glow/">原来人是会发光的……</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-24T00:00:00+08:00" pubdate data-updated="true">Jul 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/24/people-do-glow/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://science.slashdot.org/story/09/07/23/1819215/People-Emit-Visible-Light">via</a></p>
+
+<blockquote><p>The human body literally glows, emitting a visible light in extremely small quantities at levels that rise and fall with the day, scientists now reveal. Japanese researchers have shown that <a href="http://news.aol.com/article/humans-glow/584160">the body emits visible light</a>, 1,000 times less intense than the levels to which our naked eyes are sensitive. In fact, virtually all living creatures emit very weak light, which is thought to be a byproduct of biochemical reactions involving free radicals.</p></blockquote>
+
+<p>不翻译了，会发少量光，肉眼感觉不到。</p>
+
+<p>我在想，从 Slashdot 到 soliddot 会花多少时间。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/24/definitive-guide-to-taming-the-ie6-beast/">一些调戏 IE 的奇技淫巧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-24T00:00:00+08:00" pubdate data-updated="true">Jul 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/24/definitive-guide-to-taming-the-ie6-beast/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://sixrevisions.com/web-development/definitive-guide-to-taming-the-ie6-beast/">via</a></p>
+
+<p>虽然很详细、很神奇，但是相信我，<a href="http://c2.com/xp/YouArentGonnaNeedIt.html">YAGNI</a>。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/24/background-rgbar-g-b-a/">Background: Rgba(r, G, B, A);</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-24T00:00:00+08:00" pubdate data-updated="true">Jul 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/24/background-rgbar-g-b-a/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://jqueryfordesigners.com/broken-repeating-animations/">via</a></p>
+
+<p>J4D 今次又有一文，说到应用 fadeOut()、fadeIn() 的时候应该先调用 stop() 来终止之前在 animate 的特效。</p>
+
+<p>跟着 HTML5 一起吆喝着杀死 IE6 的还有 CSS3，了解 CSS3 最佳的去除莫过于 <a href="http://www.css3.info/">CSS3 Info</a>。支持的渲染引擎有 Gecko、Webkit，所以新的 Firefox、较新的 Safari 和 Chrome 都是支持的，其他的 Opera、Konqueror 之类，应该也已经、或者准备支持。</p>
+
+<p>CSS3 里头有许多很 high 的东西，比如 border-radius、opacity 和某个关于 3D 翻转的特效之类。IE 里头的话，有个 filter，类似 opacity，其余不知。</p>
+
+<p>今次就讲讲 rgba()。先看看你的浏览器<a href="http://css-tricks.com/rgba-browser-support/">支持不</a>。</p>
+
+<p>它的效果类似 opacity，取得很风骚的半透明的效果，应用到合适的配色之类，效果很赞。最主要的区别是，它不会将该区块里头含有的文字也变成半透明。比如</p>
+
+<pre><code>Hello, CSS3
+</code></pre>
+
+<p>并不影响“Hello, CSS3”的透明度。</p>
+
+<p>这取决于你个人喜好了，我则更喜欢 rgba。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/19/lately-15/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-19T00:00:00+08:00" pubdate data-updated="true">Jul 19<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/19/lately-15/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>小姑娘回家了，百无聊赖，夜里去操场拍皮球，汗出如浆，很爽。洗完澡看到直播坑，<a href="http://bbs.hoopchina.com/757418.html">一众jr坐等lz的红卡</a>。于是跑来写博，顺便写点最近发生的事情，跟有看我博客的jr分享一下。</p>
+
+<p><a href="http://www.flickr.com/photos/dotnil/3735329746/" title="长发飘飘 by dotnil, on Flickr"><img src="http://farm3.static.flickr.com/2485/3735329746_1f1de347e8.jpg" alt="长发飘飘" /></a></p>
+
+<p>画画好久没画了，更新一幅中性笔画的翔仔一见钟情的某位女士，头发飘飘，甚是诱人。</p>
+
+<p>80后木有不混论坛的，毕业之后98不再去了，主要关注 freecity、豆瓣小组和虎扑步行街。</p>
+
+<p>练吉他练的很迷惘，难的曲子练不起来，简单的练的很浮躁，买了一本卡尔卡西入门，C、G、D 这么一个个练下去，希望能坚持。坚持到可以弹押尾桑的《卡农》，而后再磨练些炫技，过个三五年，能够弹 Splash 和 Merry Christmas Mr. Lawrence。愿望必须是美好的。</p>
+
+<p>有说法称，练吉他不是练指法，贵在理解，要明白为什么要这么弹，要练乐感。如此才有收获。我愚钝，练的时候老走神，就在这里先写一下。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/14/password-password-password/">Password, Password, Password</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-14T00:00:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2009</time>
+        
+         | <a href="/2009/07/14/password-password-password/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>打开公司电脑，提示登陆密码过期，说是需要更改。软件公司各种各样的账号、ID总是很多，开发环境的服务器ID啦，公司员工系统全局ID啦，等等。对密码的要求还不尽相同，这边厢能用的，跑到那边反而不行。密码安全限制策略（特殊字符、数字什么的）编写的不规范，往往明明符合它要求的，却通不过。</p>
+
+<p>于是只好记下来。</p>
+
+<p>结果前一阵又有新规定，曰：不许明文记录。txt 的，用 7-zip 或者高级一点的 Winzip 之类加密压缩。xls 的，用高级一点 Excel 加密。等等……</p>
+
+<p>Yo, dog, i hear you like memorizing passwords, so i provide you with a password recording file with a password. so now you can memorize the password for your passwords!</p>
+
+<p>扪心自问，真的有必要么？夸张点说，我来公司是工作的，不是记密码的。求是一点说，<a href="http://it.slashdot.org/story/09/07/13/1336235/Strong-Passwords-Not-As-Good-As-You-Think">所谓的高强度密码</a>相比更严格的认证策略（三振出局，错误密码验证延迟之类）似乎已经不太重要了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/22/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/20/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

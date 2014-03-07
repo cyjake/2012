@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Portrait | Chen Yangjian's Blog]]></title>
+  <link href="http://cyj.me/categories/portrait/atom.xml" rel="self"/>
+  <link href="http://cyj.me/"/>
+  <updated>2012-04-08T01:05:42+08:00</updated>
+  <id>http://cyj.me/</id>
+  <author>
+    <name><![CDATA[Chen Yangjian]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Stevey Yegge's Back]]></title>
+    <link href="http://cyj.me/2010/07/16/stevey-yegges-back/"/>
+    <updated>2010-07-16T00:00:00+08:00</updated>
+    <id>http://cyj.me/2010/07/16/stevey-yegges-back</id>
+    <content type="html"><![CDATA[<p>停博一年余，<a href="http://steve-yegge.blogspot.com/2010/07/blogger-finger.html">Stevey Yegge 回来了</a>。他的博客以泼油漆为主，最著名的应该是喷 Java 走面向对象的极端，叫做《<a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>》。</p>
+
+<p>他是个软件开发者、博客写手，先后在 Amazon 与 Google 供职。他实现了 Google 的服务端 JavaScript 的 rails web 框架。为 Emacs 写了个 <code>javascript-mode</code>。</p>
+
+<p>他的博客：</p>
+
+<ul>
+<li>Amazon blog: http://sites.google.com/site/steveyegge2/blog-rants</li>
+<li>Google blog: http://steve-yegge.blogspot.com/</li>
+</ul>
+
+
+<p>摘自那篇 Java rant：</p>
+
+<pre><code>For the lack of a nail,
+    throw new HorseshoeNailNotFoundException("no nails!");
+
+For the lack of a horseshoe,
+    EquestrianDoctor.getLocalInstance().getHorseDispatcher().shoot();
+
+For the lack of a horse,
+    RidersGuild.getRiderNotificationSubscriberList().getBroadcaster().run(
+      new BroadcastMessage(StableFactory.getNullHorseInstance()));
+
+For the lack of a rider,
+    MessageDeliverySubsystem.getLogger().logDeliveryFailure(
+      MessageFactory.getAbstractMessageInstance(
+        new MessageMedium(MessageType.VERBAL),
+        new MessageTransport(MessageTransportType.MOUNTED_RIDER),
+        new MessageSessionDestination(BattleManager.getRoutingInfo(
+                                        BattleLocation.NEAREST))),
+      MessageFailureReasonCode.UNKNOWN_RIDER_FAILURE);
+
+For the lack of a message,
+    ((BattleNotificationSender)
+      BattleResourceMediator.getMediatorInstance().getResource(
+        BattleParticipant.PROXY_PARTICIPANT,
+        BattleResource.BATTLE_NOTIFICATION_SENDER)).sendNotification(
+          ((BattleNotificationBuilder)
+            (BattleResourceMediator.getMediatorInstance().getResource(
+            BattleOrganizer.getBattleParticipant(Battle.Participant.GOOD_GUYS),
+            BattleResource.BATTLE_NOTIFICATION_BUILDER))).buildNotification(
+              BattleOrganizer.getBattleState(BattleResult.BATTLE_LOST),
+              BattleManager.getChainOfCommand().getCommandChainNotifier()));
+
+For the lack of a battle,
+    try {
+        synchronized(BattleInformationRouterLock.getLockInstance()) {
+          BattleInformationRouterLock.getLockInstance().wait();
+        }
+    } catch (InterruptedException ix) {
+      if (BattleSessionManager.getBattleStatus(
+           BattleResource.getLocalizedBattleResource(Locale.getDefault()),
+           BattleContext.createContext(
+             Kingdom.getMasterBattleCoordinatorInstance(
+               new TweedleBeetlePuddlePaddleBattle()).populate(
+                 RegionManager.getArmpitProvince(Armpit.LEFTMOST)))) ==
+          BattleStatus.LOST) {
+        if (LOGGER.isLoggable(Level.TOTALLY_SCREWED)) {
+          LOGGER.logScrewage(BattleLogger.createBattleLogMessage(
+            BattleStatusFormatter.format(BattleStatus.LOST_WAR,
+                                         Locale.getDefault())));
+        }
+      }
+    }
+
+For the lack of a war,
+    new ServiceExecutionJoinPoint(
+      DistributedQueryAnalyzer.forwardQueryResult(
+        NotificationSchemaManager.getAbstractSchemaMapper(
+          new PublishSubscribeNotificationSchema()).getSchemaProxy().
+            executePublishSubscribeQueryPlan(
+              NotificationSchema.ALERT,
+              new NotificationSchemaPriority(SchemaPriority.MAX_PRIORITY),
+              new PublisherMessage(MessageFactory.getAbstractMessage(
+                MessageType.WRITTEN,
+                new MessageTransport(MessageTransportType.WOUNDED_SURVIVOR),
+                new MessageSessionDestination(
+                  DestinationManager.getNullDestinationForQueryPlan()))),
+              DistributedWarMachine.getPartyRoleManager().getRegisteredParties(
+                PartyRoleManager.PARTY_KING ||
+                PartyRoleManager.PARTY_GENERAL ||
+                PartyRoleManager.PARTY_AMBASSADOR)).getQueryResult(),
+        PriorityMessageDispatcher.getPriorityDispatchInstance())).
+      waitForService();
+
+All for the lack of a horseshoe nail.
+</code></pre>
+
+<p>少了一根马掌钉之 Java 版。</p>
+
+<ul>
+<li>少了一个铁钉，丢了一个马掌，</li>
+<li>少了一个马掌，丢了一匹战马，</li>
+<li>丢了一匹战马，败了一场战役，</li>
+<li>败了一场战役，失了一个国家，</li>
+<li>所有的损失都是因为少了一个马掌钉。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[小提琴家 Teppei Okada]]></title>
+    <link href="http://cyj.me/2010/07/04/violinist-teppei-okada/"/>
+    <updated>2010-07-04T00:00:00+08:00</updated>
+    <id>http://cyj.me/2010/07/04/violinist-teppei-okada</id>
+    <content type="html"><![CDATA[<p><embed src="http://www.tudou.com/v/FJBliUCN6VQ/v.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"></embed></p>
+
+<p>不只是演奏主题曲哦，游戏中各种音效都玩得出来……</p>
+
+<p><a href="http://zhaiyx.com/2010/06/teppei-okada/">via</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[郑成河（Sungha Jung）小朋友 13 岁了]]></title>
+    <link href="http://cyj.me/2010/05/27/sungha-jung-turns-13/"/>
+    <updated>2010-05-27T00:00:00+08:00</updated>
+    <id>http://cyj.me/2010/05/27/sungha-jung-turns-13</id>
+    <content type="html"><![CDATA[<p>2008 年底开始接触吉他的时候就听说了他，当真是个 child prodigy。更令人欣喜的是，他，和<a href="http://www.ted.com/talks/lang/eng/sirena_huang_dazzles_on_violin.html">在 TED Talks 看到的 Sirena Huang</a>，是真心喜欢手中的乐器。
+<a href="http://blog.cyj.me/wp-content/uploads/2010/05/Sungha-Jung.jpg"><img src="http://blog.cyj.me/wp-content/uploads/2010/05/Sungha-Jung-e1275952397779.jpg" title="Sungha Jung" alt="" /></a></p>
+
+<p>在他九岁的时候，他翻弹了钢弦吉他大师 Trace Bundy 的代表作之一，<a href="http://www.youtube.com/watch?v=N9to1auUNTk">Trace 自己编曲的 Pachelbel's Canon</a>，令大师本人也刮目相看。今年年初，还特地介绍给美国观众。</p>
+
+<p>以下摘译自他的<a href="http://www.sunghajung.com/about">官方网站</a>：</p>
+
+<p>生于 1996 年 9 月 2 日，梦想成为职业指弹吉他手，学吉他手父亲影响，习惯直接看视频翻弹，不过现在如果编曲的原作者有谱子给他，也会照着谱子来，上学的时候每天练习 1-2 个钟头不等，木有课的时候有时会弹三小时以上，老吉他是依据儿童体型定做的，从 2009 年元旦开始，Lakewood 成为他的赞助商，为他提供吉他。</p>
+
+<p><a href="http://www.boegershausen.com/">Ulli Bogershausen</a> 是他的偶像。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zed Shaw]]></title>
+    <link href="http://cyj.me/2010/04/28/zed-shaw/"/>
+    <updated>2010-04-28T00:00:00+08:00</updated>
+    <id>http://cyj.me/2010/04/28/zed-shaw</id>
+    <content type="html"><![CDATA[<p>前一阵，proggit 出现个巨坑，原来<a href="http://oppugn.us/posts/1272050135.html">著名文艺青年 Zed 同学喷 Dive Into Python</a>。作为一本编程语言入门指导书，<a href="http://diveintopython.org/">Dive Into Python</a> 确实不咂摸好看…… 我去年开始接触 Python 的时候，看了个开头放弃了，后面基本是看一本盗版的 O'Reilly 的 Learning Python 和 Google App Engine 的官方文档。</p>
+
+<p>再往前一阵，<a href="http://fretwar.com/player/1">Zed 童鞋</a>还喷过 Ruby 社区，不过事迹已经陈腐，就不再考。今天写这个主要是因为发现了他的另一个玩具网站，<a href="http://fretwar.com/">FretWar</a>。fret 意思是吉他指板上的品格，就是那一条条金属条。顾名思意，该网站是用来分享社区演奏作品的。</p>
+
+<p>我也弹弹吉他，所以顿时来劲，对此人颇感兴趣了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Natalie Merchant]]></title>
+    <link href="http://cyj.me/2010/04/28/natalie-merchant/"/>
+    <updated>2010-04-28T00:00:00+08:00</updated>
+    <id>http://cyj.me/2010/04/28/natalie-merchant</id>
+    <content type="html"><![CDATA[<object width="446" height="326"><param name="movie" value="http://video.ted.com/assets/player/swf/EmbedPlayer.swf" /><param name="allowFullScreen" value="true" /><param name="wmode" value="transparent" /><param name="bgColor" value="#ffffff" /> <param name="flashvars" value="vu=http://video.ted.com/talks/dynamic/NatalieMerchant_2010-medium.flv&su=http://images.ted.com/images/ted/tedindex/embed-posters/NatalieMerchant-2010.embed_thumbnail.jpg&vw=432&vh=240&ap=0&ti=823&introDuration=16500&adDuration=4000&postAdDuration=2000&adKeys=talk=natalie_merchant_sings_old_poems_to_life;year=2010;theme=spectacular_performance;theme=new_on_ted_com;theme=live_music;event=TED2010;&preAdTag=tconf.ted/embed;tile=1;sz=512x288;" /><embed src="http://video.ted.com/assets/player/swf/EmbedPlayer.swf" pluginspace="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" bgcolor="#ffffff" width="446" height="326" allowfullscreen="true" flashvars="vu=http://video.ted.com/talks/dynamic/NatalieMerchant_2010-medium.flv&su=http://images.ted.com/images/ted/tedindex/embed-posters/NatalieMerchant-2010.embed_thumbnail.jpg&vw=432&vh=240&ap=0&ti=823&introDuration=16500&adDuration=4000&postAdDuration=2000&adKeys=talk=natalie_merchant_sings_old_poems_to_life;year=2010;theme=spectacular_performance;theme=new_on_ted_com;theme=live_music;event=TED2010;"></embed></object>
+
+
+<p>在 TED 瞎逛，无意中看到 <a href="http://www.nataliemerchant.com/">Natalie Merchant</a> 和她用了六年时间做出来的专辑<a href="http://www.nataliemerchant.com/p/leave-your-sleep">《Leave Your Sleep》</a>。</p>
+
+<p>专辑的每首词都是已故诗人们或著名或籍籍的作品，开篇第一首叫做<a href="http://www.nataliemerchant.com/r/leave-your-sleep/lyrics/the-sleepy-giant">《The Sleepy Giant》</a>，是个纽约股票经理人夜间无聊的荒诞之作，却又引人入胜。</p>
+
+<p>THE SLEEPY GIANT
+Charles E. Carryl (1841 – 1920)
+My age is three hundred and seventy-two,
+And I think, with the deepest regret,
+How I used to pick up and voraciously chew
+The dear little boys whom I met.</p>
+
+<p>I’ve eaten them raw, in their holiday suits;
+I’ve eaten them curried with rice;
+I’ve eaten them baked, in their jackets and boots,
+And found them exceedingly nice.</p>
+
+<p>But now that my jaws are too weak for such fare,
+I think it exceedingly rude
+To do such a thing, when I’m quite well aware
+Little boys do not like to be chewed.</p>
+
+<p>And so I contentedly live upon eels,
+And try to do nothing amiss,
+And I pass all the time I can spare from my meals
+In innocent slumber—like this.</p>
+
+<p>最吸引我的，自然是她的声音。</p>
+]]></content>
+  </entry>
+  
+</feed>

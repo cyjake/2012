@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>各种问题记录一二 - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="最近转去用 Vim，安装了 rails.vim, NERDTree 和 snipMate，感觉足够用了。没有啥特别原因，也没觉得 Emacs 有啥不好。而且说起来，虽然 Emacs 是迄今为止用得最多的，但 Vim 是用的最早的。大二的时候学 C++，当时的老师就一直推荐。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2011/01/14/varieties-of-issues">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">各种问题记录一二</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-14T00:00:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>最近转去用 Vim，安装了 <code>rails.vim</code>, <code>NERDTree</code> 和 <code>snipMate</code>，感觉足够用了。没有啥特别原因，也没觉得 Emacs 有啥不好。而且说起来，虽然 Emacs 是迄今为止用得最多的，但 Vim 是用的最早的。大二的时候学 C++，当时的老师就一直推荐。</p>
+
+<p>配置的过程中设字体碰到些问题，后来查到正确方式是：</p>
+
+<ol>
+<li>从菜单选择字体</li>
+<li>:set guifont? 查看输出</li>
+<li>把输出写到 .vimrc 里头去，就欧了。如果输出内容含空格，则需要反斜杠 <code>\</code> 转义。</li>
+</ol>
+
+
+<p>组里有个项目，前后端都是自己搞的，后台用的 Ruby on Rails。这东西在 Windows 下不太好使（很多东西在 Windows 下都不好使），尤其是安装一些 gem 的时候。如今看来最妥帖的方式是安装 <a href="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit">DevKit</a>，然后安装 gem 的时候则使用</p>
+
+<pre><code>gem install rdiscount --platform=ruby
+</code></pre>
+
+<p>当然，如果你喜欢淳朴一点的方式，也可以。<code>gem list -r rdiscount</code>，看看 rubyforge 里头有木有 mswin32、mingw 的预编译版本，如果有，指定安装就可以了。比如 <code>bluecloth</code>：</p>
+
+<pre><code>gem list -r bluecloth
+</code></pre>
+
+<p>返回</p>
+
+<pre><code>*** REMOTE GEMS ***
+
+BlueCloth (1.0.1)
+bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
+</code></pre>
+
+<p>因此安装 2.0.7 版本就木有问题了。</p>
+
+<pre><code>gem install blutcloth -v 2.0.7
+</code></pre>
+
+<p>不管怎么说，还是有些麻烦。所以我又整了个虚拟机，在 VirtualBox 里头装了个 Arch Linux。装好之后，照例要装 guest-addtions 神马的，没想到神奇的是默认装好之后就有了。在 <code>/etc/rc.d/</code> 下已经有了 <code>rc.vboxadd</code>，并且不需要人肉将它加到 <code>rc.conf</code> 的 DAEMONS 里头去，只需要在 MODULES 里加上 vboxvideo、vboxsf （如果有用到的话）就可以了。</p>
+
+<p>vboxvideo 用于 X11 的显卡驱动，可以方便添加一些 vesa 不支持的分辨率，比如 1680x1050。vboxsf 则是共享数据空间需要用到的。VirtualBox 支持共享数据空间（那个 VM 平台还不支持呢），可以将宿主机的任意文件夹以共享数据空间的形式加到客户机上去。在我这个例子中，就是 Windows 是宿主机，客户机则是 Arch Linux。我增加了个数据空间，<code>C:\User\yicai.cyj</code> 并给它起别名叫做 yicai.cyj，然后在客户机里头，我只需要</p>
+
+<pre><code>mount -t vboxsf yicai.cyj /media/win7home 
+</code></pre>
+
+<p>就可以了。<code>/media/win7home</code> 是客户机上的挂载点（mount point），如果不存在，<code>mkdir</code> 一下就可以了，名字任取，似乎必须在 /mnt/ 或者 /media/ 目录下。<code>yicai.cyj</code> 就是共享数据空间的别名。</p>
+
+<p>然而有个乱码问题还没有解决。</p>
+
+<p>这篇文章好像火锅，什么都放进去煮，吃出来都是海鲜川崎的味道。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-14T00:00:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/computer/'>Computer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2011/01/14/varieties-of-issues/" data-via="dotnil" data-counturl="http://cyj.me/2011/01/14/varieties-of-issues/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/01/04/experiencing-kindle/" title="Previous Post: Kindle 使用记录一二">&laquo; Kindle 使用记录一二</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/01/15/summary-of-works-done-in-recent-3-months/" title="Next Post: 近三个月工作小结">近三个月工作小结 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2011/01/14/varieties-of-issues/';
+        var disqus_url = 'http://cyj.me/2011/01/14/varieties-of-issues/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

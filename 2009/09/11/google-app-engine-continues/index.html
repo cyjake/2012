@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Google App Engine 继续 - Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="记一下最近遇到的一些问题和解决办法。 简洁 URL：都到了传说中的 post web 2.0 时代了，你不会还不知道简洁 URL 吧？例如：https://developer.mozilla.org/en/Canvas_tutorial 其后的 Canvas_tutorial 即是传入的参数。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/2009/09/11/google-app-engine-continues">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Google App Engine 继续</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-11T00:00:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>记一下最近遇到的一些问题和解决办法。</p>
+
+<p>简洁 URL：都到了传说中的 post web 2.0 时代了，你不会还不知道简洁 URL 吧？例如：https://developer.mozilla.org/en/Canvas_tutorial 其后的 Canvas_tutorial 即是传入的参数。django 默认就是的，为我所知的一些 PHP
+ 做的内容管理系统，也是的。因为 PHP 默认不是动态 URL（传入 /post/245，PHP 会去 post 目录下寻找名为 245 的文件），所以 CMS 之一 drupal 的的实现方式是将所有的后缀 URL 都作为参数 p 的值，即改成：/?p=/post/245。而 django 我就不知道了…… 唉，离题好远。其实我要说的是，Google App Engine 也是可以 fancy URL 滴，URL 正则表达式里头把需要作为参数的部分括起来，在相应的 RequestHandler 类里头，实现相应的 get，就是了。例如：</p>
+
+<pre><code>('/tag/(.*)', TagAction),
+
+
+class TagAction(webapp.RequestHandler):
+    def get(self, tag):
+        print tag;
+</code></pre>
+
+<p><a href="http://osdir.com/ml/GoogleAppEngine/2009-04/msg00928.html">中文 URL</a>：中文 URL 在协议里头是要被转换掉的，所以在 RequestHandler 里头如果直接拿来用的话会有问题。需要先用 urllib.unquote 转回来，再 decode 到项目本身使用的编码。例如：</p>
+
+<pre><code>tag = unicode(unquote(tag), 'utf-8')
+</code></pre>
+
+<p>函数动态召唤：以前写 PHP 的时候，经常会写出类似 “$foo = &#8216;funcname&#8217;; $foo()” 的代码，因为在应用到原本需要用 switch 场景的时候，实在很方便。所以在 python 里头自然也想这么写，办法很多，参考<a href="http://keithdevens.com/weblog/archive/2003/Oct/04/Python.function.string">这里</a>。除了 eval()，本质上大同小异，eval() 的话，少用为妙。例如：</p>
+
+<pre><code>some_object.__getattribute__('method_name')()
+</code></pre>
+
+<p>哈希表（dictionary）的<a href="http://wiki.python.org/moin/HowTo/Sorting">排序</a>：首先，<strong>哈希表是无序的！</strong>我们能做的只是把键取过来，现行排序，而后再根据排序好的列表去访问原先的哈希表。例如，根据值排序：</p>
+
+<pre><code>def sort_by_value(data):
+    tags = data.keys()
+    if len(tags) == 0:  return []
+    tags.sort(lambda x,y: -cmp(data[x], data[y]))
+    return tags
+</code></pre>
+
+<p>简洁的主键：这里说的是 Google App Engine 的数据模型。例如，定义一个 Tag，则除了自定义字符串以外，GAE 还会自动<a href="http://code.google.com/appengine/docs/python/datastore/keyclass.html#Key_id">分配一个主键</a>，可以通过访问该数据模型类的子函数 .key() 来获取，如 <code>instance_of_tag.key()</code>。但是直接拿来用产生的字符串很难看，类似 <code>agtnYWlub3JzcGVuZHIOCxIGUmVjb3JkGPKrAQw</code>。其实该类（指通过 .key() 获取来的 Key 类）附带了个函数叫做 .id()。所以，通常 <code>instance_of_tag.key().id()</code> 一下，取得一个整形数字，就比较好看了。自然也可以根据 id 获取数据，代码如下：</p>
+
+<pre><code>Spending.get(db.Key.from_path(Spending.kind(), spending_id))
+</code></pre>
+
+<p>废话这么多，其实永远不如自己<a href="http://code.google.com/p/google-app-engine-samples/">看代码研究</a>实际。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Yangjian</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-11T00:00:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/computer/'>Computer</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cyj.me/2009/09/11/google-app-engine-continues/" data-via="dotnil" data-counturl="http://cyj.me/2009/09/11/google-app-engine-continues/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/09/10/the-empire-of-silver/" title="Previous Post: 白银帝国">&laquo; 白银帝国</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/09/11/perl-see-brainfuck/" title="Next Post: Perl: see brainfuck">Perl: see brainfuck &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cyj.me/2009/09/11/google-app-engine-continues/';
+        var disqus_url = 'http://cyj.me/2009/09/11/google-app-engine-continues/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

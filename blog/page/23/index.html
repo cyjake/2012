@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="简版，要逆序的话在前面加负号吧。同一天的还要比较的话就继续写下去。 foo.js 1
+2
+3
+4
+5
+dates.sort(function(a, b) { return (a.getFullYear() - b.getFullYear()) || (a.getMonth() - b. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/23">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/07/02/javascript-sort-compare-date/">JavaScript Sort / Compare Date</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-02T00:00:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2009</time>
+        
+         | <a href="/2009/07/02/javascript-sort-compare-date/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>简版，要逆序的话在前面加负号吧。同一天的还要比较的话就继续写下去。</p>
+
+<figure class='code'><figcaption><span>foo.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">dates</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>     <span class="k">return</span> <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">())</span> <span class="o">||</span>
+</span><span class='line'>          <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">())</span> <span class="o">||</span>
+</span><span class='line'>          <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或操作左起执行，如果遇到真就推出执行，而数字的话非零为真，于是如果年月日一直相等的话，上面这一段可以一直比较下去。先看年份，有结果的话就返回，木有就继续。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/27/touches-the-rim/">摸到篮筐了…… 内牛满面</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-27T00:00:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/27/touches-the-rim/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>紫金港露天篮球场，有个框比较矮的。晚上去拍皮球的时候试着摸了一下 hiahia</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/27/movies-watched-this-weekend-2/">周末观影</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-27T00:00:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/27/movies-watched-this-weekend-2/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>硬盘空间紧张，删掉了一些一直很喜欢所以一直保留的，比如《练习曲》、《Wall-E》、真人秀《The next great american band》和电视剧《士兵突击》、去年季后赛的科比集锦、Apple 的 Mac &amp; PC、iPhone 广告。删掉这些看过的之余，还看掉并删掉奥巴马的就职典礼、《Vicky Christina Barcelona》和《Burn After Reading》。</p>
+
+<p>奥巴马童鞋的演说由于晾得太久，事先已经粗略看过英文与中文两个版本。呃，确切说是，英文一个版本、中文两个版本。你知道，地产党当时很一厢情愿地把 “fought communists” 给水产掉了。所以中文有米国官方的和大陆水产的两个翻译版本。说回到晾太久，所以昨晚看的时候心态比较娱乐。奥巴马童鞋也很配合，请的全是好莱坞的头脸，丹泽尔·华盛顿、汤姆·汉克斯、杰米·福克斯、Queen Latifah 等等。全都一贯地上来读一些先贤的名言，如亚伯拉罕·林肯、JFK、JFK 的细佬。</p>
+
+<p>就职演说的话基本上时竞选时的延续，这和婚姻相仿。洞房花烛夜时，生米虽然已经煮成熟饭，但是脸还没撕破，气氛一面融洽和谐。</p>
+
+<p>《阅后即焚》看得我笑死，有评论说，<a href="http://www.douban.com/review/1616546/">上帝根本不想拯救二百五</a>，深以为然…… 三大男猪脚之布拉德·皮特和乔治·克鲁尼可以说是年度最具喜感谐星并列，二到不行的健身教练、随身带枪装逼的保镖，真是难为两个帅哥了…… 觉得实在受不了的可以去把《十[123]罗汉》翻出来温习一下。而二逼之首，酗酒男约翰·马尔科维奇，独特的嗓音独特的粗口，让电影改编小说的原作者对 FBI、CIA 之流的讽刺到了极致。他的其他作品我了解得不多，大多是演一些坏蛋，比如《空中监狱》里的杀人头子、《Rounder》里头的赌场扛把子。当然，他也在<a href="http://www.douban.com/subject/1291558/">《云上的日子》</a>的日子里头扮了扮小文青。</p>
+
+<p>话说回来，欧洲女人真的觉得秃顶男人有味道么？</p>
+
+<p>《Vicky Christina Barcelona》一如其他取景欧洲的电影（《日出之前》、《日落之前》、《杀手没有假期》等等）让我心生向往。Javier Bardem 这次终于没有戴假发装二逼，而是开着一辆小跑拿着颜料盘办热爱生活的文艺工作者。Scarlett Johnson 还是这么诱人，演 Vicky 的同学很像我一个高中同学，而大美女佩内洛普·克鲁兹依旧不是我的菜…… 恭喜她拿了小金人儿。</p>
+
+<p>本片看完最大的感受是：在欧洲生活要有钱，其一；古典吉他确实很喇轰，其二；当我看到 Javier 同时搂着 Scarlett 和 Penelope，然后他们三个人互亲的时候…… 我崩溃了。</p>
+
+<p>以上。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/27/firebug-for-chrome-opera-safari-and-ie/">Firebug for Chrome、Opera、Safari and IE</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-27T00:00:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/27/firebug-for-chrome-opera-safari-and-ie/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>确切地说，是 <a href="http://getfirebug.com/lite.html">firebug lite</a>。在你的页面中引入</p>
+
+<figure class='code'><figcaption><span>foo.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&#39;http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>就是了。当然，也有个 bookmarklet。</p>
+
+<p><a href="javascript:var firebug=document.createElement('script');firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');document.body.appendChild(firebug);(function(){if(window.firebug.version){firebug.init();}else{setTimeout(arguments.callee);}})();void(firebug);)">firebug lite</a></p>
+
+<p>不知道是不是我网络太烂的缘故…… 这厮用起来速度堪忧。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/27/a-writer-of-people-net-got-overwhelmed/">《人民网》专栏写手李牧筒子在豆瓣被围观了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-27T00:00:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/27/a-writer-of-people-net-got-overwhelmed/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.douban.com/note/37362465/">盛况空前</a></p>
+
+<p>写手这个词是什么时候搞出来的？很囧呀</p>
+
+<p>有演变成<a href="http://www.douban.com/note/37364896/">论战</a>的趋势。李牧童鞋本人在此之后又发布了另一篇日志，言之凿凿称，“<a href="http://www.douban.com/note/37463037/">黑白两道不知惹了多少</a>”，很是牛鼻。</p>
+
+<p>所以豆瓣众打酱油者只好继续围观……</p>
+
+<p>确实，人傻逼了不要紧，就怕傻逼拿自己当回事。</p>
+
+<blockquote><p>您的解释概括下来就是这么个意思：</p>
+
+<p>我现在在加拿大，我很爽。</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/25/unicode-is-not-utf-d1-2/">Unicode 不是 UTF-\d{1,2}</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-25T00:00:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/25/unicode-is-not-utf-d1-2/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://enjoydoingitwrong.wordpress.com/2009/06/22/unicode-is-not-utf/#comment-17">via</a></p>
+
+<p>\d{1,2} 是一个正则表达式，\d 表示 [0-9]，{1,2}表示前缀集合重复1或两次。也就是 UTF-8、UTF-16、UTF-32 之类。作者想说的是：Unicode 不是 UTF-8、UTF-16 之流。</p>
+
+<p>因此，这个标题教育我们，原作者是个彪蹄党。原本想翻译全文，但是天气一热人就容易懒惰，偷懒挑着翻一点。</p>
+
+<p>====以下译文====</p>
+
+<p>这就是错的。Unicode 是一个标准，而 UTF(8|16|32) （译注：这个正则就河蟹多了嘛）则是支持将 Unicode 编码成为字符串的字符编码。UTF-16 能将 Unicode 全部指令编码，但是 UTF-16 不是 Unicode，反之亦然。</p>
+
+<p>一个字符串不能用 Unicode 编码。它就是不能。你能够施咸猪手的要么是已经编码的字符串，要么是 Unicode 数据（一串码点）。但是你不能“用 Unicode 编码”，这是说不通的。同样你不能将一个字符串编码为 Unicode。你就是不能，你可以将一个字符串从它的源编码解码成 Unicode 数据：码点串。</p>
+
+<ul>
+<li>当你将数据从 Unicde 转为一个特定的字符编码集，你是在将 Unicode 码点<strong>编码</strong>为字符串。这个编码的依据就是你想要的字符编码集的特定的字符编码。</li>
+<li>当从字符串转为 Unicode 的时候，你是在<strong>解码</strong>你的数据：如果不幸没能知晓原先的用来编码给字符串的字符编码，你就解码失败，彻底悲剧了。</li>
+</ul>
+
+
+<p>====以下是我的废话====</p>
+
+<p>Unicode 是标准，不是实际应用。UTF-xx 是满足该标准的编码规范，是该标准的实现。具体点可以看 Joel on Software 的 <a href="http://www.joelonsoftware.com/articles/Unicode.html">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a> （每个挨踢从业人员都应该知晓）。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/25/are-you-ready-to-scale-out/">Are You Ready to Scale Out?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-25T00:00:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/25/are-you-ready-to-scale-out/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Jeff Atwood 今日著文一篇，比照了服务器架构的<a href="http://www.codinghorror.com/blog/archives/001279.html">两种不同的策略</a>。打造一台怪物级的机器，大而全，名曰 Scale Up，其一；花同样的钱去买便宜货，小型服务器，成分布式处理，称其 Scale Out，其二。Google 的宣传策略是后者，从创始人最早还摆在斯坦福的几台小机器开始，一直坚持着<a href="http://www.dotnil.org/web/75097.html">机海战术</a>。</p>
+
+<p>后者的优势看起来很明显，在健壮性、效率、资源价格比上都占尽优势，但是 Jeff 的博文和后续的评论指出了更重要的 pros &amp; cons，服务器所需要的软件授权、开发人员需要做的额外工作、大型集群的冷却、能源消耗、机位占用等等。</p>
+
+<p>所以窃以为，要玩人海战术的话前提如下：when you use low/no cost software and you have got plenty of time free.</p>
+
+<p>或者，不如把这些事情交给擅长的家伙去办。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/24/guitar-canon-the-ultimate/">吉他卡农终极版？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-24T00:00:00+08:00" pubdate data-updated="true">Jun 24<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/24/guitar-canon-the-ultimate/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><object width="420" height="363"><param name="movie" value="http://www.tudou.com/v/NxpFAAyHZsE" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="opaque" /><embed src="http://www.tudou.com/v/NxpFAAyHZsE" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="420" height="363"></embed></object>
+
+
+<p>卡农并非曲名，而是一种曲式。旋律循环往复，弹奏简单，但往往能触及心灵。据说编曲初哥们会拿这曲式练手。详情请看百度百科，卡农。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/22/got-a-date/">Got a Date?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-22T00:00:00+08:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2009</time>
+        
+         | <a href="/2009/06/22/got-a-date/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近的工作是在 Sybase 和 Oracle 之间翻译 SQL，二者之间的主要区别之一就是 date，格式占位符倒是没啥太大迥异，但是函数的命名方式和参数排布差别好大……</p>
+
+<p><a href="http://www.psoug.org/reference/date_func.html">Oracle</a> 里头是可以直接对日期进行加减数字的，例如 <code>date +1</code>，前进一天，如果需要操作的是月份之类，则加上个 Interval()，而 Sybase 里头变成了 dateadd()。如何格式化日期呢？一个 <a href="http://www.oradev.com/oracle_date_format.jsp">to_char()</a> 一个 <a href="http://www.compuspec.net/reference/database/sybase/function/convert.shtml">convert()</a>，天差地远。</p>
+
+<p>然后我又顺便在弄 Python 和 JavaScript，这又是一片天地，JavaScript 里头的 <a href="http://www.cev.washington.edu/lc/CLWEBCLB/jst/js_datetime.html">Date()</a>，木有格式化方法，只能 getFullYear()、getMonth() 一点点人肉去取，而从字符串到日期呢？同样木有格式化构造方法，它只支持默认的几个日期构造格式。在计算上倒是还算方便。</p>
+
+<p>Python 最顺手。</p>
+
+<p>如果跑到以前的 Java，就更恐怖，什么 Date 啦 Calendar 啦 DateFormat 啦 SimpleDateFormat 啦，烦死你。</p>
+
+<p>Perl 呢？mighty perl 鼓吹的方式是自己去写正则，您就慢慢 $1、$2 地搞吧。</p>
+
+<p>以前有个故事说巴别塔，人类以前很团结，要造通天塔，天神们觉得不妥，就让苍生说不通的话有不同的信仰，于是人们忙着吵架打仗，塔的事情也就就此搁置。</p>
+
+<p>在程序里头即是如此，很多事情实现起来很简单，但是一旦牵扯到细节就开始让人抓狂。数字的格式，日期的格式，文本的对齐方式，等等。</p>
+
+<p>有说法称，英语成为世界语言的最大原因不在于日不落帝国曾经的辉煌，而在于人们内心存在的沟通需求。而英语恰好被看上了。但是又有谁会真的希望全世界的日期格式都是 <code>yyyy-mm-dd</code> 呢</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/06/18/freaking-perl/">诡异的 Perl</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-18T00:00:00+08:00" pubdate data-updated="true">Jun 18<span>th</span>, 2009</time>
+        
+         | <a href="/2009/06/18/freaking-perl/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>学了 Perl 两年有余，今天才发现这厮没有 <code>switch</code>。在不是在此时不知在何时发布的 Perl 6 里头，
+switch 被有了个表亲叫 given。Larry 说，少打哪怕一个字符，都是对自我的救赎…… 所以 print 穿上马甲变成了 say。</p>
+
+<p>解决办法有许多，比如<a href="http://www.perlmeme.org/howtos/syntax/switch_statements.html">创建个子例程哈希表</a>。</p>
+
+<p>而我原本想用的地方是跟 print 有关的一句，后来幡然悔悟，最终写下：</p>
+
+<figure class='code'><figcaption><span>foo.pl </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">print</span> <span class="p">{</span> <span class="nv">$files</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="p">}</span> <span class="s">&quot;stuff\n&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>既然有这么完美的数组跟哈希表了，还要 if-else 和 switch 干啥……</p>
+
+<p>外一则：了解 Perl 的都知道丫有很多
+<a href="http://www-cgi.cs.cmu.edu/afs/cs.cmu.edu/Web/People/rgs/pl-predef.html">内建特殊变量</a>，
+<a href="http://perldoc.perl.org/perlvar.html">命名方式</a>十分之诡异风骚，例如 $` 和 $&#8217;，正则匹配前后字符串。
+一直忘了存有当前文件句柄的变量是啥，特地 Google，
+<a href="http://www.usenix.org/publications/perl/perl02.html">答案</a>是 $ARGV。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/24/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/22/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

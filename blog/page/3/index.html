@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="在还是草稿的 HTML5 规范里头，id 和 class 属性的值的约束似乎没怎么说明，只说 id 不能包含空格。我们这里讨论，还是以 HTML4 为准吧。 HTML4 规范中，id 与 class 的属性规范分别是 NAME 与 CDATA-LIST。NAME 的格式，用正则表达就是，/[a- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/26/what-are-valid-html-id-class-values/">HTML Id、class 属性值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-26T00:00:00+08:00" pubdate data-updated="true">Sep 26<span>th</span>, 2011</time>
+        
+         | <a href="/2011/09/26/what-are-valid-html-id-class-values/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在<a href="http://dev.w3.org/html5/spec/Overview.html#concept-id">还是草稿的 HTML5 规范</a>里头，id 和 class 属性的值的约束似乎没怎么说明，只说 id 不能包含空格。我们这里讨论，还是以 HTML4 为准吧。</p>
+
+<p><a href="http://www.w3.org/TR/html401/struct/global.html#h-7.5.2">HTML4 规范</a>中，id 与 class 的属性规范分别是 <a href="http://www.w3.org/TR/html401/types.html#type-name">NAME</a> 与 <a href="http://www.w3.org/TR/html401/types.html#type-cdata">CDATA-LIST</a>。NAME 的格式，用正则表达就是，/[a-zA-Z][a-zA-Z0-9.:-_]*/；而 CDATA 则<a href="http://stackoverflow.com/questions/2617170/what-characters-are-widely-supported-in-css-class-names">更加自由</a>：</p>
+
+<figure class='code'><figcaption><span>wrong.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;1blah/bläh&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://stackoverflow.com/questions/448981/what-characters-are-valid-in-css-class-names">这都行</a>？严格说来，这可不怎么行，在 CSS 里想用作选择器时，还需要转义；<code>.\31 blah\2F bläh { ... }</code>，不过，那真的很麻烦。据 SO 的回答，所有 A 级浏览器都支持这么搞，不过，还是不要这么搞了吧？</p>
+
+<p>然后是长度，这里<a href="http://stackoverflow.com/questions/584184/what-is-a-practical-maximum-length-for-html-id">有人做了测试</a>，称 IE7、Firefox 等，都支持 1M 的长度。但我不是很信服，有必要的话得自己整一下。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/13/nanxun-wuzhen/">小长假·南浔·乌镇</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-13T00:00:00+08:00" pubdate data-updated="true">Sep 13<span>th</span>, 2011</time>
+        
+         | <a href="/2011/09/13/nanxun-wuzhen/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>所谓小长假，只怕这世上再没比这玩意更名不副实的了。明明只放了一天，每次都拼死拼活跟亲爱的周末凑到一起，腆着脸当个小三，然后就堂而皇之宣称自己是小长假，虽然略短，但也是个长假了。这种假日，宅家里太罪恶，出门又嫌仓促，总让我在纠结中以西湖/影院/百货大楼/太子湾一日游仓促结束。而今番中秋，则大有不同。</p>
+
+<p>今次算是蓄谋已久，像《指环王》里树人的会议一般，花了大把大把的时间确定了一个重要议题：这个小长假，一定要出去玩。至于去哪儿玩，路线怎么样，坐车还是自驾，酒店定不定，全不在计划之内。于是在这小长假的第一日，就囧了。去哪儿？绍兴、宁波、西塘、嘉兴、乌镇？乌镇吧；那订酒店先。神马？只能定豪华大床房？1000+ 一晚？</p>
+
+<p>肿么办？</p>
+
+<p>于是决定降级去冷门一些的，啊，游遍江南九十九，不如南浔走一走，南浔洒家来也。酒店也不定了，决定自驾，当天去当天回，不尽兴就另说。计划必，晌午已过，与姑娘相顾，还是明天再出发吧⋯⋯ 次日出发，已近中午，开着车走在 S13 杭申嘉湖高速，十分空旷，心说，总算是出来了。</p>
+
+<p>南浔古镇不大，挺小的一块，而且挨着城区，不像乌镇，房子没有被政府收购走，当地人依然拥有自住的房子的话事权。于是当地人自由出入景区，于是各种逃票。街区一里长最多，沿河两岸，加上两个古宅（我们逃票进的景区，因为宅邸另外检票，没能进去），就是整个南浔了。所以游了一个下午，逛了各种店，买了几把牛角梳，一件长裙，就略有些兴致索然，只好觅晚餐了。来到杭州就听说，湖州的名产是千张包，而南浔的饭店打的招牌三样，除千张包，还有手札肉，和形状十分硕大的猪腿（忘了名头了，只记得其形之硕）。千张包其实都差不多，因为肉馅往往只有自家做的才新鲜好吃，不推荐点；手札肉如果新做，十分滑嫩，肥而不腻，可以尝尝的。那猪腿因为很有些大，我们木有点。至于河鱼，刺少的贵，刺多的又不想吃。姑娘还不想吃清蒸的，要铁板或红烧，但我们吃的那家，似乎不做铁板，后来也就没点。</p>
+
+<p>饭毕，时值晚六时余，不尽兴，决定赶赴乌镇，此时小长假三分之二已过，人该少些了吧。南浔与乌镇离得很近，直线距离不超过20公里，花了40分钟开到，直接到了西栅外的停车场，买了夜场票80元每人入内。因为在景区投宿，可省却次日日场门票120大洋每人，后来逛到10点多些，便找了家客栈，问老板借宿。</p>
+
+<p>一问才知，这客栈，是个连锁店的分号，整条西栅大街遍布，名曰乌镇·民宿。都是镇上的古宅，被政府统一收购之后，改了作了客栈，里头住的，大多也还都是当地人，拿工资。</p>
+
+<p>西栅与南浔相形之下，要成熟许多。乌镇发展很早，湖州人沈晨以前就告诉我，他们那儿也颇多老屋老巷，但在乌镇的发展过程中，十之七八拆了卖了，搬到了乌镇。不过，在眼拙者如我看来，这古镇从头到脚都古色古香，早分不清哪儿是翻新，哪儿是存旧了。西栅大街很长，一路老屋、青石板，但不能一路沿河走；于是我们兜兜转转，又到了河对岸，遇到桥就过，8点左右进的场，玩到10点多，走了个三分之一。累了，就投店。在11点之后出门，需要问客栈掌柜的要钥匙，因为他要锁门的。我们在去南浔的路上还买了俩西瓜，入住之后，到厨房偷用了菜刀剖开，又拿了两把调羹，坐在沿河的桌边，挖着吃，好生惬意。</p>
+
+<p>次日接着转悠，去了月老庙求签，这签够牛的，解签的条子从人生到理想，从财运到姻缘，一网打尽。说我和妹纸的姻缘，还亏得有媒人相助，相处几年，也就自然成了。子嗣有，失物不可避免，总之一切都要淡定。不过，对月老庙也无需期许，是间小庙，只有个工作人员，也不是道士，做的事情就是根据摇出来的签，给你相应的解签的条子。</p>
+
+<p>此庙与龙形田很近。田里种了颇大一片向日葵，田边还有水车两架，似乎闲置得有些时日了。西栅可供逗留的地方颇多，水上戏台、三寸金莲馆、乌镇邮局、益大丝号、乌锦等等，当然，也有兜售各地旅游景点可见的火柴天堂、帆布鞋、娃娃等义乌小商品的小店。</p>
+
+<p>因为民宿的自助早餐太过给力，我们又吃得晚，午饭就省却了，在大街小巷各种晃悠；后来天色将晚，相机也宣告弹尽粮绝，便坐到河边，一家叫做步步莲花的店，叫了份炒饭、奶茶，蹭了份赠送的月饼，静静看这暮色降临。</p>
+
+<p>然后就踏上返程，一路120码回家，向这两个可爱的小镇说再见了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/08/19/google-chrome-extesion-considered-harmful/">Google Chrome 的扩展很危险哇</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-19T00:00:00+08:00" pubdate data-updated="true">Aug 19<span>th</span>, 2011</time>
+        
+         | <a href="/2011/08/19/google-chrome-extesion-considered-harmful/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近<a href="http://www.seroundtable.com/google-amazon-treatment-13881.html">有人爆料说</a>，在一些常规的 Google 搜索中，Amazon 的结果会列在前头：</p>
+
+<p><a href="http://blog.cyj.me/wp-content/uploads/2011/08/amazon-google-results-1313589558.png"><img src="http://blog.cyj.me/wp-content/uploads/2011/08/amazon-google-results-1313589558.png" title="amazon-google-results-1313589558" alt="" /></a></p>
+
+<p>为什么 Google 会觉得 Amazon 的结果如此重要？<a href="http://www.blogstorm.co.uk/google-partners-with-amazon-to-show-amazon-results/">仔细一看</a>，原因居然是 Google Chrome 的一款扩展，名唤 <a href="https://chrome.google.com/webstore/detail/alelhddbbhepgpmgidjdcjakblofbmce">Awesome Screenshot</a>，搞的鬼。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/06/30/ppks-fund-raising-experience/">PPK 的募捐之旅</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-30T00:00:00+08:00" pubdate data-updated="true">Jun 30<span>th</span>, 2011</time>
+        
+         | <a href="/2011/06/30/ppks-fund-raising-experience/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天要查一下 js 里头 mousemove 事件是否有些 gotcha，google 出来的结果自然有 <a href="http://www.quirksmode.org/about/">PPK（Peter Paul Koch）</a> 童鞋的 <a href="http://www.quirksmode.org/compatibility.html">QuirksMode.org</a>。</p>
+
+<p>结果打开 Dom Events 的兼容性表格页面的时候，看到他在做一次<a href="http://www.quirksmode.org/blog/archives/2011/06/donation_drive.html">募捐</a>，结果点进去一看，大大出乎意料，从起因到结果都令我印象深刻。</p>
+
+<p>PPK 是个超级理性的人，因为以下几个原因，他不想维护桌面、笔记本电脑的浏览器兼容性表格了。各大浏览器对标准支持越来越好，兼容性的问题自然愈发少了，各种 gotcha 十之八九只在 IE6、7 里遇到，往往一个星期的测试只能发现一两个新的小 bug，还不一定能遇到，其一；他一个星期的薪酬是 5k 欧（荷兰人民真富裕，连王小波都以他们为例说聪明人的生活该是这样），花一个星期事件免费做这么一件事情意义不大，其二；Chrome 和 Firefox 的版本机制太奔放了，他完全不晓得测完一个版本之后，这结果能够正确多久。</p>
+
+<p>所以为什么还要做下去呢？他说，唯一的理由就只剩下钱了。所以，根据 5k 的周薪，加上因为是做喜欢做的事情打个半折，他决定，如果能够在 2011 年底之前募到 2.5k 欧，他就接着维护。</p>
+
+<p>而事情的结果出人意料，在文章发布之后 5 个小时时间内，他的目标就达到了：</p>
+
+<p>30分钟之后：还差 € 2,357.52</p>
+
+<p>1小时之后：尚余 € 2,115.74</p>
+
+<p>3个小时多些之后：仍需 € 1,179.49</p>
+
+<p>4个半小时之后：募捐成功。</p>
+
+<p>Wow</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/06/25/reaching-5km-milestone/">即将5k公里</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-25T00:00:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2011</time>
+        
+         | <a href="/2011/06/25/reaching-5km-milestone/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>2月份的时候提的车，灰色的克鲁兹 1.8 SE，去年年底看车的时候，看了外观令我钦慕已久的福克斯，和基友99推荐的高尔夫6，最后就是老鸭已经在开的克鲁兹了。结果福克斯的内饰和高6的所谓销售策略令我望而却步，最终选择了一辆灰科，听了老鸭的意见，选了 1.8 排量的。</p>
+
+<p>在开这辆车之前，家里亲戚的车我也开过一些，无一例外都是自动档。拿到驾照后摸的第一辆现在看来十足老旧的进口尼桑，和表哥开车去海边。后来又开了阵三菱的一款 SUV，高头大马，视野开阔，确实很舒服，市区与市郊都能胜任。那时候还不小心钻进老瑞中所在的仓前街，可算是钻出来了。再后来是去年寒假，开了凌志 ES 240，应该算是个相对朴素款？开着的感受是各种轻松，加上一些小加分（一键启动，锁车自动合拢后视镜神马的），令我真心喜欢这车。中间还开车上山，终于去了温州最高的山，金鸡山。也算是温州最高人之一了，木哈哈。</p>
+
+<p>后来还摸了摸福克斯，三厢的，开着它去了趟仙岩，疑似被拍，后证实木有，大慰。</p>
+
+<p>春节结束，返杭工作，车子可算到了。拿车的时候一通手续，保险原本想电话车险，销售经理不耐烦，送了次保养。而验车的时候发现一处小细纹，没能赖到一次保养，让维修工抛光跑掉了。后来知道抛光的坏处之后，各种后悔。原本可以强硬些的。当天，开着它去车管所，踩油门那一刻不是激动而是各种困惑，这脚感不太对呀⋯⋯ 选号、上牌回来之后，差不多算是习惯了。</p>
+
+<p>然后就变成了开车上班，发现并没能快多少，而且公司所在的写字楼停车费是坑爹的25/天。而数月后的现在，已经是 35/天了。我的线路是留下往古荡，感触最深的是西溪路的各种堵。至于文[123]路与天目山路的各种堵，很荣幸未曾领教。</p>
+
+<p>很快到了五一，准备开车回家。之前的清明晃点了一次妹妹，心下十分愧疚。而这次五一，她就不高兴跟我回去了。当然，时间上也有原因。一大早起来，到了古荡准备接搭车的同学，还顺便去了学校吃了碗葱油拌面。接着就雄赳赳气昂昂开往绕城留下入口，天气很合适，没太阳，没下雨，不算阴。这是我第一次上高速，而且要开400公里，我都要起鸡皮疙瘩了。然后我终于拿了卡，开入绕城高速，激动地加到80多公里每小时，然后发现前方堵车了。</p>
+
+<p>当时我就震惊了。</p>
+
+<p>幸好不算太久，之后还算通畅。靠着安吉星导航和古西风童鞋的陪唠嗑，一路顺利开到瑞安。一开始有些放不开，上了诸永高速我开始奔放，中间一路避测速。放下他们，开会家，结果在小区楼下发现一个十分惊悚的事情，我的距离感变了，钻进车位的时候，一路往前顶，居然直接车顶到墙了踩晓得，哎呀没空间了。幸好，车速不快。</p>
+
+<p>开回来是一个人的，诸永还是那么奔放。在那些个山洞里头穿行，痛快之余，略微也会有些惧怕。按彼时的车速，万一前方有个坑没见着没避开，都是十分危险的。但好彩这条高速新建不就，车少路空，我自然“速来”。</p>
+
+<p>到了杭州左近一如既往开始堵车，一路堵到绕城下，这次自驾终归结束。当时里程将近3k公里。</p>
+
+<p>然后的日子，依然是学校、家，西溪路、天目山路，路况都还能接受，而且爬起来早点，确实车子也少些。行车电脑显示的油耗降到了 9.2，至今未变。</p>
+
+<p>车子已非完璧，刚开不久的时候，一次开门太粗暴，磕到了，凹了一个小坑；另一次新远观影结束，从市区回来，转弯的时候没注意，被一辆电瓶车碰上，车头左下角划了两道，加上当时有点疲劳驾驶了，他碰我，我心下反而愧疚，赔了点钱，当破财免灾。</p>
+
+<p>以上，差不多就是我这5k公里的故事。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/06/25/lately-25/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-25T00:00:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2011</time>
+        
+         | <a href="/2011/06/25/lately-25/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>距离上一次更新居然快两个月了，时间过得真快。久未更新，说点近况。</p>
+
+<p>女朋友要毕业了。在这毕业的季节，各种桑感各种表白各种买醉都出来了。很庆幸，在所谓“拆散每一对，各收各肥水”的白色恐怖下，我们还能在一起。希望经过这些事情，彼此都能学到一些东西。我观念老旧思想传统，满脑子都是且行且珍惜，说分手，真的难出口。</p>
+
+<p>工作上，继续鼓捣项目，因为有一个明确的需求方，一个业务熟练的测试，项目进展顺利，月底应该能够亮出来见人了。不过，上网冲浪的诸位，对这网站恐怕不看也罢，它就是方便鼓捣广告牌的。项目组有个规范库，名作 <a href="http://ued.alimama.com/lib">MED Library</a>，都是些现在还略显零散的粗略规范与 Demo，还有许多工作要做。诸位莫见笑。当然，谦虚完了，牛皮还是要吹的。平台做得朴素，但内容真实，都是诸位攻城师应对各种需求之余的总结，大有裨益哦。上半年的验证，也说明，确实是行之有效的。</p>
+
+<p>学习 Ruby on Rails 半年多了，对它最大的感触是，东西真全，对 Web 开发过程中，每一个环节，前台的后台的，都有其解决方案。让我时刻想起那句将其与 Django 对比时的评论，Rails chooses sides。它是个带有强烈个人观念的作品，了解它、接受它，它就能令你事半功倍。像我这种无可无不可的墙头草，别人帮忙作决定再好不过。当然，这是玩笑，我的性格里确实有容易纠结的部分，我希望以后可以尽量避免它出来作祟。</p>
+
+<p>如今成了 Mac 深度用户，移动光标的第一反应时找触摸板，各种小贴心无需多说，向龙笛看齐，说点它让我不爽的地方。</p>
+
+<p>中文输入法不够好，很多人推荐的一款(叫什么来着？)是收费的，让我很是踟蹰。话说回来，吃这碗饭的人，不愿在这玩意上面花钱，是说不过去的。总之，忍了这么些天的内置中文拼音输入，中间被搜狗、QQ 的拼音输入调戏一番(发布1.0，结果各种 bug)，严重不可用。最不爽的是这厮跟 MacVim 不是很对路。</p>
+
+<p>其他好像没了⋯⋯ 我不玩游戏，就 Window、Mac OSX、Linux 尽可操作系统了。</p>
+
+<p>技术扯得差不多了，说下热点。我看完了传说中的肉蒲团，这通篇各种搞、乱的三级片，片尾居然告诉了我这么一句话，“有没有的搞，真的不重要”。这算是对我的安慰么？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/05/09/summers-coming/">暑期又要来了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-09T00:00:00+08:00" pubdate data-updated="true">May 9<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/09/summers-coming/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>每年暑期临近，都是北半球各大体育联赛决出冠军的日子，NBA 季后赛到了东西部半决赛，欧洲五大联赛也即将排定积分榜。赛事激烈，各家互喷口水，经常说些裁判、球风等场外因素，比如巴萨本赛季又不幸被评出五大影帝：</p>
+
+<p>自然又宇宙队的粉丝说，你们家佩佩本来就<a href="http://static.youku.com/v1.0.0152/v/swf/qplayer.swf?VideoIDS=XMjYyOTQ1MjIw&amp;embedid=-&amp;showAd=0">不是什么好鸟</a>，看得我触目惊心。大学的时候有一期英语学习上有篇英国人写的文章，说场上踢球的这 22 个家伙是最狗屎运的，他们在全场几万名观众、三位执法裁判、两个主教练、饮水机旁各自队友以及全世界的观众的注视下表演、侵犯对手，而不用因此收到半分谴责。看看侵犯贝尔，让他黯然结束本赛季，甚至职业生涯岌岌可危的英超某队队长吧，这要在和谐社会，比如说重庆，十有八九在看守所里就被搞死了 XD。</p>
+
+<p>这等人渣，踩了这一脚，居然没有吃牌！连犯规都不是！还在之后的比赛中罚中点球！真是昭昭天命，尽皆坑爹了。</p>
+
+<p>和过去三年不同的是，湖人这次没能撑到六月份，他们的主教练在本赛季结束之后也要离开联赛了。我是个打酱油的湖人粉丝，偶尔看几场球，高一的时候因为高鼻白人之飘逸而关注这只球队，看到他们三连冠达成，被马刺搞定，组流星花园被汽车人变形搞定，球队重建，高鼻白人努力、失望、开始刷分，连续的 40+、50+，和之后的三节 62 分，与单场 81，再之后十三爷终于给这支球队整出精气神，高鼻白人和卢克沃顿、夸梅布朗、斯马什帕克之流，打进季后赛，3:1 太阳，而又连输三场被翻盘，之后再遇再输，这次不再有机会，再之后迎娶了家嫂，终于重返联盟之颠，西部季后赛顺顺当当，总决赛却又被三个同级生组成的联谊会当头棒喝，当时觉得，这仨也不过为冠军走到一块，一个赛季不到就连成什么光荣传统，真不知羞，殊不知 business is business，而媒体总归要找些东西大着浓墨的；再后来联赛双杀凯尔特人、骑士，结果总决赛却碰上魔术，忐忑间，老兵 4:1 搞定新丁，高鼻白人终于得到属于自己的 FMVP；再后来，上一季的对手自废武功，终于又碰凯队，这一次，渣湖有了主场优势、拜纳姆和阿泰，湖人终于 4:3 拿下，厌恶绿色的一群小盆友们终于喜笑颜开，而河文档同学带着帕金斯受伤的怨念，幽幽地说，从未在五虎集齐的情况下输给湖人。历史可以假设么？</p>
+
+<p>而今年，东部翻天覆地，西部的老朋友们有些物是人非，渣湖卫冕之路从一开始就荆棘满布，然而全明星结束之后的一番冲刺，仍然让人对季后赛乐观，却不想是这番结局。输给小牛的系列赛，对手的发挥除了第四场逆天，并无特别之处，渣湖技不如人，说各种发挥失常，都是虚的。大姨妈来了也照样要打仗的，输了就是输了。</p>
+
+<p>只是没想到这么窝囊。</p>
+
+<p>高鼻白人同学今天说，大比分输球，0:4 被淘汰，对他来说和大战七场再输掉没什么分别。我僭越一下，他不是这么想的。</p>
+
+<p>最后呢，联赛一年一度，输输赢赢，兵家常事，真正的暑期属于各种球场、沙滩、湖泊与山林，可别让各种不如意伤了自己心情，秀是别人的，日子是自己的。要过得精彩点。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/04/23/two-reposts/">两则转发</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-23T00:00:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2011</time>
+        
+         | <a href="/2011/04/23/two-reposts/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>名人 Joel Spolsky <a href="http://www.reddit.com/r/IAmA/comments/gulpx/iama_cofounder_of_stack_exchange_and_fog_creek/">在 reddit 上做 IAmA</a>，被问到最讨厌的有关 reddit 的事情是神马。他说，<a href="http://www.reddit.com/r/IAmA/comments/gulpx/iama_cofounder_of_stack_exchange_and_fog_creek/c1qet5f">最不喜欢的是</a>，假如有人发了条极其不公的，令人处理愤怒，引起公粪的帖子，会有成百万的 redditor 支持该帖子，认为自己很了不起，对这个不公平的世界已经尽了自己的一份气力。而实际上这完全没有意义，只不过是互联网世界中多了一条看起来很火的帖子而已。</p>
+
+<p>在都市字典中，这叫 <a href="http://www.urbandictionary.com/define.php?term=slacktivism">slacktivism</a>。意思是，参与完全没有意义的事情，认为自己把这则消息传递出去，便尽力了，从而得到心理上的满足感。</p>
+
+<p>大学里的时候，我当过学校论坛的一个板块的版主，那时候最痛恨的帖子就是“顶”，这对看帖子的人来说是完全没有意义的。而现在顶都不必了，大家都 RT，RT 一个还不够，要 follow5，让全世界都听到你转发了一个令人义愤填膺的事情。然而这件事情仍然在那里，大家看过，批过，评过，又都渐渐忘记。</p>
+
+<p>有部纪录片样的东东，叫做《我虽死去》，很值得看。它告诉我，我们的记性太差，连为了忘却的纪念都省却了。呃⋯⋯ 扯远了。</p>
+
+<p>另一则来自大嘴巴 Linus Torvalds，<a href="http://thread.gmane.org/gmane.linux.kernel/1126136">在邮件里头说一个 Linux 参与者</a>，看名字似乎是华裔或者华人。当然，也并非针对个人：</p>
+
+<blockquote><p>  This kind of &#8220;I broke things, so now I will jiggle things randomly until they unbreak&#8221; is not acceptable.</p></blockquote>
+
+<p>像这种“我搞坏东西了，那现在我就随便调来调去直到它们又跑得通为止”的做事方式是绝对不能接受的。</p>
+
+<p>说的就是我啊⋯⋯</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/04/21/getting-hands-on-osx/">OSX 上手小记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-21T00:00:00+08:00" pubdate data-updated="true">Apr 21<span>st</span>, 2011</time>
+        
+         | <a href="/2011/04/21/getting-hands-on-osx/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我的配置主要是些开发方面的东东，设计工具神马的很少。</p>
+
+<p>首先要装的自然是包管理工具，这是自各种 Linux 发行版使用以来得到的最宝贵经验。好的包管理让你事半功倍。了解了一下主要有仨，HomeBrew、MacPorts 与 Fink，名声最好的是 HomeBrew。于是选了 <a href="https://github.com/mxcl/homebrew">HomeBrew</a>，<a href="http://www.engineyard.com/blog/2010/homebrew-os-xs-missing-package-manager/">参考着装了</a>，但是<a href="http://zheye.org/asks/4dafa069fd503c3e58000026">亮亮不推荐这个</a>，说更新、自启动等，它做的不好。先凑合用吧，哪天可以跟 pacman 论高下就好了。</p>
+
+<p>碰上需要编译安装的包(貌似大部分都是要的)，HomeBrew 会需要 gcc、make 等开发工具包。Apple 提供的这一套叫做 Xcode。最新的 Xcode 4 需要米，Xcode 3 则是免费的。装免费的就行。这厮很大，建议从别人那拷把。</p>
+
+<p>然后用 <code>brew install</code> 安装了 git、lftp 神马的，ruby、python 系统自带的，而 gem、eggs 等，需要<a href="https://github.com/mxcl/homebrew/wiki/Gems,-Eggs-and-Perl-Modules">与 HomeBrew 作个整合</a>。默认情况下，以 <code>gem install</code> 为例，默认装到 /Library/Ruby/，不带 sudo 执行的话，改为装到 ~/.gem，但是 .gem/ruby/1.8/bin/ 是需要自己人肉加到 PATH 里头去的。这里的原因不是 /Library/Ruby 权限不够，而是 gem install 只有用 sudo 执行是才会找到 /usr/local/bin 去。所以，为了省却以后挠头的次数，让自己以后可以直接 gem install，建议在 .gemrc 里头加上</p>
+
+<pre><code>--- 
+gem: -n/usr/local/bin
+</code></pre>
+
+<p>如此，gem 就能聪明点，把实际的 gem 丢到 /Library/Ruby/，把可执行文件丢到 /usr/local/bin，并且不需要 sudo。哦对了，记得更新一下 rubygems，自带的那厮有点老了，<code>gem update --system</code>。</p>
+
+<p>还有个比较重要的是换 Shell，bash 太老了，zsh 的可定制性、自动补全都比它强。系统自带了 zsh，不过有些老了，<code>brew install zsh</code> 一下。不过这里有个问题，装好之后使用 <code>chsh  -s /usr/local/bin/zsh</code> 切换不过去，说 non standard shell。原因是 /usr/local/bin/zsh 不在 /etc/shells 文件中，加上就好了。</p>
+
+<p>zsh 的配置很好玩，入门可以使用 <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>。这是官方的链接，<a href="http://leeiio.me/bash-to-zsh-for-mac/">中文版在此</a>。带了 git rails ruby 等命令的子命令补全，许多主题。其他的，慢慢研究吧。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/04/09/lately-24/">最近二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2011</time>
+        
+         | <a href="/2011/04/09/lately-24/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>上篇博客居然已经是二月份的事情了，按罗先生的话说，乌飞兔走，白驹过隙，时间像吃到肉包子的狗，一去不回了。虽然近况于<a href="http://weibo.com/dotnil">微博</a>、人人网都有些更新，但在此总结一下，我想会清楚些。</p>
+
+<p>从去年年底开始整 Ruby on Rails，终于有些上道了。部门的规范库平台，也算是整出了个可用的版本，丢到了<a href="http://ued.alimama.com/lib/components/3?tab=demo">线上</a>（现在内容还不多），留了许多问题和些许遗憾，由于另一个项目要整，只好不限期搁置了。</p>
+
+<p>另一个项目是部门私产 <a href="http://banner.alimama.com/">BannerMaker</a> 的补充项目，为的是让用户更好更快地生成亲们上网的时候避之不及的广告牌。哪一天广告不像广告了，春天也就来了。这属于梦想，做梦的时候想想。言归正传，BannerMaker 的关键是 Flash 广告牌，设计师制作模板，用户购买使用，在其基础上定制，生成自己想要的广告牌。它有个强大的设计工具，使用 ActionScript 写就，各种特效、特性。而新项目则需要挖掘 BannerMaker 其外的部分，因为工作仍在进行中，暂不多谈。</p>
+
+<p>三月里去了一趟安徽，绩溪·家朋，据说油菜花梯田很好看，我们比清明节早了一个星期去，非常可耻的过早了。目前为止两次出去玩都有梯田风景，然而两次都时节不对。另外一次是桂林，龙脊梯田，那要插秧的时候看，从上往下，梯田就是镜子，满山的蓝天白云。而我们去的时候刚好收稻子……</p>
+
+<p>后来坐着游船，在深渡港出发，沿着新安江荡了一圈，看到一个超大的轿子，一棵巨大的香樟，和点缀在山坡上的各色油菜花。</p>
+
+<p>清明三天，去了趟青山湖，看到了几个很华丽的别墅区，被资本主义的糖衣炮弹深深诱惑，入夜后在当地一家野鱼馆大快朵颐，鸡毛菜神马的。</p>
+
+<p>2月中的时候提了车，从拿车到现在木有给油耗清零过，总算降到 10，然而油价则奔着 7.5 元/升 去了。诸位打算购车的，不介意市区吵闹的话，还是往市区挤挤，买辆好点的自行车吧。实在需要车辆代步，买个油耗低点的……</p>
+
+<p>上周还完成了一件小事，上篇博文提到的 <a href="http://gitref.org">Git Reference</a>，我已经翻译完毕了，打算放出来，只等取得原作者的同意。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

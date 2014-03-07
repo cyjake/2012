@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bug | Chen Yangjian's Blog]]></title>
+  <link href="http://cyj.me/categories/bug/atom.xml" rel="self"/>
+  <link href="http://cyj.me/"/>
+  <updated>2012-04-08T01:05:42+08:00</updated>
+  <id>http://cyj.me/</id>
+  <author>
+    <name><![CDATA[Chen Yangjian]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[nginx 的请求大小限制]]></title>
+    <link href="http://cyj.me/2011/12/19/nginx-request-size-limit/"/>
+    <updated>2011-12-19T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/12/19/nginx-request-size-limit</id>
+    <content type="html"><![CDATA[<p>项目里头有文件上传的功能，测试的时候，上传大文件都没有问题的，结果发布到测试环境和线上，就都挂掉了。很奇怪，Rails log 里头 POST 请求都木有，第一反应是 Flash 上传组件的问题，或者是 crossdomain.xml 的缘故。前者因为开发环境木有问题，排除；后者也因为 swf 文件、请求地址、页面地址都是在 / 下，也排除。</p>
+
+<p>排除这俩，自然就觉得整个世界崩溃了，出了人品与长相还有别的原因么？</p>
+
+<p>结果晚饭的时候顺便跟同事提起，他讲到 nginx 可能会限制请求大小，恍然大悟，于是给<a href="http://forum.slicehost.com/comments.php?DiscussionID=1714">配置文件</a>加上：</p>
+
+<pre><code>client_max_body_size 4M;
+</code></pre>
+
+<p>或者你需要的更大的尺寸。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[项目发布、Ruby Gems、Bundler 与伟大的墙]]></title>
+    <link href="http://cyj.me/2011/10/21/ruby-gems-bundler-and-the-great-wall/"/>
+    <updated>2011-10-21T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/10/21/ruby-gems-bundler-and-the-great-wall</id>
+    <content type="html"><![CDATA[<p>敝人在做的一个小项目，有一些些小改进，经过一番测试，于昨日开始上线。项目用的 Ruby on Rails，并依赖一系列 <a href="http://rubygems.org/">Ruby Gems</a>，为了方便后续的 1.8 -> 1.9 转换，并保证两边不耽误，1.8 的紧急除虫之类的工作能够照常进行，又加了 <a href="http://beginrescueend.com/rvm/install/">RVM</a>（Ruby Version Manager？）。在自己的机器、测试环境里头看看，一切正常，今天 <code>cap production deploy</code> 的时候，挂了无数次，回滚了无数次，到刚刚，可算是成了，现记录血泪史如下。</p>
+
+<p>前几次失败，是自己 naive 了，忘了给产品环境安装 RVM，又忘了在 RVM 里头装需要的 Ruby 版本，以及它的 gemset，1.8.7@my-awesome-project。这导致项目里的 <a href="http://beginrescueend.com/workflow/rvmrc/">.rvmrc</a> 执行出错了。贪图方便，我在项目里配置了 .rvmrc。生成它的方法很简单：</p>
+
+<pre><code>$ rvm --rvmrc --create 1.8.7@my-gemset
+</code></pre>
+
+<p>就可以了。不过这里有个 git 带来的问题。我全局开启了 cr 自动转成 crlf，结果 .rvmrc 在转掉之后，bash 执行出错了，不认得 ^M 字符。因为 bash 脚本实在不熟，只好含泪先把 crlf 关关掉，凑合用一下先。</p>
+
+<p>再说回到产品环境的解决，自然就是安装 RVM，然后安装 bundler。在这个原以为柳暗花明的时候，伟大的墙出现了，<code>gem install bundler -v 1.0.21</code> 一直超时，等了半个早上都装不好。无奈之下，只好在本机翻墙出去，搞到了 bundler-1.0.21.gem，sftp 登到产品机器，放上去，再安装：</p>
+
+<pre><code>$ curl http://rubygems.org/downloads/bundler-1.0.21.gem
+$ sftp foo@hawlscastle.com
+$ &gt; put Downloads/bundler-1.0.21.gem
+$ ssh foo@hawlscastle.com
+$ bundle install --local
+</code></pre>
+
+<p>原本呢，直接从 rubygems.org <code>bundle install</code> 肯定也是不行的；幸好之前做了 <code>bundle package</code>，把所有依赖的 gem 都写到了项目的 vender/cache 目录，如此，总算是在墙内完成了这些事情。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[近期遇到的一些 Bug 汇总]]></title>
+    <link href="http://cyj.me/2011/10/13/bugs-bumped-into-recently/"/>
+    <updated>2011-10-13T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/10/13/bugs-bumped-into-recently</id>
+    <content type="html"><![CDATA[<p>项目里头，用户保存一份设计的时候，会合并多份 JavaScript 文件。这些文件都是 <a href="http://seajs.com/">seajs</a> 模块，过程中，会根据模块中声明的依赖关系，自动添加相应的文件到合并的文件中去。依赖声明的形式是数组，类似：</p>
+
+<pre><code>define('foo', ['a','b','c'], function(require, export){});
+</code></pre>
+
+<p>代码实现得很容易，之前也一直没有问题。然而最近一个模块因为依赖太多，出了麻烦。那个模块被 Closure Compiler 压缩之后，成了这个样子：</p>
+
+<pre><code>define("foo","a,b,c".split(","), function(require, export){});
+</code></pre>
+
+<p>之前根据 [] 寻找依赖数组的，就挂掉了。Closure Compiler 这里的压缩策略是，如果用 ",".split(",") 这种，能够比之前的语句压缩后要短，就改成这种。算是一个 gotcha，记在这里。</p>
+
+<p>另一个问题，是略有些粗苯的，代码如下：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>wrong.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">,</span><span class="nx">exports</span><span class="p">){});</span>
+</span><span class='line'><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">a</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>结果 <a href="https://developer.mozilla.org/en/document.write">document.write</a> 锁住了 DOM 树，seajs 在尝试解决 a 模块的依赖，在 head 中加入 <script src="b.js"></script> 的时候卡住了。比较奇怪的是，即使调用了 document.close(); 也不行。下次 debugger 看一下⋯⋯</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveModle 的一个小 gotcha]]></title>
+    <link href="http://cyj.me/2011/02/25/activemodle-gotcha/"/>
+    <updated>2011-02-25T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/02/25/activemodle-gotcha</id>
+    <content type="html"><![CDATA[<p>错误信息：</p>
+
+<pre><code>ActiveModel::MissingAttributeError in ComponentsController#update
+missing attribute: name
+</code></pre>
+
+<p>提示错误的源头是 model 里头通过 after_find 注入的方法中，self.name 这句挂掉了。name 属性自然是有定义的，这就让人很摸不着头脑。</p>
+
+<p>tl;dr 的请看：在出错的方法里头加一句判断</p>
+
+<pre><code>return unless self.attribute_present?(:name)
+</code></pre>
+
+<p>就可以了。</p>
+
+<p>第一次碰上这个的时候很无厘头，后来发现是当 model 的 validation 流程挂掉的时候才出现的。一开始向暴力解决问题，便加上一句 <code>self.instance_variable_defined?(:@name)</code> 期待能解决问题，然而这句实实在在的返回的是 false。然后 <code>self.inspect</code> 一下，才晓得 ActiveRecord 类中对数据库中的字段属性并不是直接以类变量定义的，要查看模型中是否有相应的字段，得用 <code>self.attribute_present?(:name)</code>。inspect 的时候，还顺带找到了错误根源，当 model.save 挂掉的时候，rails 不知道搞什么，要去找导致错误的另一个 model （当校验 uniqueness 的时候）。而且该 model 返回的数据里头除了 <code>id</code> 属性神马也没有。但是也会去调 after_find，于是就挂了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[IE 6、7 中在 iframe 中操作父窗口 DOM 的时候的问题]]></title>
+    <link href="http://cyj.me/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe/"/>
+    <updated>2011-02-24T00:00:00+08:00</updated>
+    <id>http://cyj.me/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe</id>
+    <content type="html"><![CDATA[<p>错误信息：<code>Invalid argument error using AppendChild</code></p>
+
+<p>具体情况是，在 iframe 中的页面里头，写：</p>
+
+<pre><code>var node = document.createElement('div');
+parent.document.body.appendChild(node);
+</code></pre>
+
+<p><a href="http://www.workcss.com/Javascript/20100803122.html">解决办法</a>是，使用父窗口的 <code>document</code> 对象创建 HTMLElement：</p>
+
+<pre><code>var doc = parent.document, node = doc.createElement('div');
+doc.appendChild(node);
+</code></pre>
+
+<p>不过我在 IE6 下还是遇到这个问题，实在搞不懂为神马，暂且压着。</p>
+]]></content>
+  </entry>
+  
+</feed>

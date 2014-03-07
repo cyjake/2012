@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chen Yangjian's Blog</title>
+  <meta name="author" content="Chen Yangjian">
+
+  
+  <meta name="description" content="学达芬奇把研究写成食谱，以下是需要的主料： Emacs 推荐使用 NTEmacs
+EMMS 推荐使用开发版，还是蛮稳定的。
+Mplayer 或者其他
+EMMS 目前支持的并且有移植到 NT 的媒体播放程序，如 MPG321 先准备 Emacs，拆封之后基本就可以使用了， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cyj.me/blog/page/39">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17751107-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chen Yangjian's Blog</a></h1>
+  
+    <h2>Carpe diem - Seize the day</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cyj.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/08/01/emms-in-nt/">EMMS in NT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-01T00:00:00+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2008</time>
+        
+         | <a href="/2008/08/01/emms-in-nt/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>学达芬奇把研究写成食谱，以下是需要的主料：</p>
+
+<ul>
+<li>Emacs 推荐使用 <a href="http://ntemacs.sourceforge.net/">NTEmacs</a></li>
+<li>EMMS 推荐使用开发版，还是蛮稳定的。</li>
+<li><a href="http://www.mplayerhq.hu/design7/dload.html">Mplayer</a> 或者其他
+EMMS 目前支持的并且有移植到 NT 的媒体播放程序，如 MPG321</li>
+</ul>
+
+
+<p>先准备 Emacs，拆封之后基本就可以使用了，需要进行的配置就是注册表里头写一下
+<code>HOME</code>。当然，如果你无所谓，可以直接把 .emacs 丢到 C:\ 里面。
+设置主目录有两种方法：新建一个名字叫 HOME 的环境变量。
+变量值就是你的想要的目录路径名称，其一；</p>
+
+<p>如果你觉得第一种方法不过瘾，想让 Windowz 最强大的注册表发挥一下功能，也可以。
+新建一个数据项：<code>HKEY_CURRENT_USER/Software/GNU/Emacs</code>。
+在里面添加一个 REG_SZ 类型的字符串，名字就叫 HOME, 值就是你想要的目录路径名，
+想要所有人都这样的话就 <code>HKEY_LOCAL_MACHINE/Software/GNU/Emacs</code>。</p>
+
+<p>此外关于 Emacs in NT 有许多文章可以参考，最主要的自然就是官方的
+<a href="http://www.gnu.org/software/emacs/windows/ntemacs.html">Manual</a></p>
+
+<p>然后找份 EMMS 包，拿来直接用就行，Mplayer 也是一样，推荐使用没有图形界面版本的。
+因为这样比较酷…… 顺便提一下，如果已经有 Cygwin 作为佐料的话就更加劲暴了。
+<a href="http://www.khngai.com/emacs/cygwin.php">配置好 Cygwin</a>之后，
+应该可以自行烹饪 EMMS 解析 MP3 标签用的 MP3info，不过我还没弄。</p>
+
+<p>看到这里你可能已经发现了，这和 Linux 下配置没啥子区别嘛，区别就在下面这点。让
+Emacs 找到 Mplayer 在边度：</p>
+
+<ul>
+<li>NTEmacs 继承了环境变量中的可执行文件路径，<code>C:\Windows\System32\</code>还是啥的，
+可以选择把 Mplayer 的路径加到该环境变量后边。</li>
+<li>或者这样：<code>(add-to-list 'exec-path "C:/mplayer/")</code>。和上面一个意思，
+区别是只对 Emacs 有效，足够了。</li>
+</ul>
+
+
+<p>如此应该就可以啦~ 不过使用过程中肯定会碰到问题，比如前面说到的标签解析程序不存在阿什么的，
+真的得闲，就在 Cygwin 里头慢慢编译把。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/18/moment-in-peking/">《京华烟云》摘抄</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-18T00:00:00+08:00" pubdate data-updated="true">Jul 18<span>th</span>, 2008</time>
+        
+         | <a href="/2008/07/18/moment-in-peking/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>著者林语堂，译者张振玉，翻译得很不错。</p>
+
+<blockquote><p>曼娘自然而然地长成了中国古典型的小姐，中国这种古典型的小姐，生而美丽动人，但却退而隐蔽：虽偶以爱情相假，但狡猾诡异，吝于施赠；其惊鸿一瞥，也出之以狡猾；其青春之魔力，因规避而愈强；深藏于香闺，自帘内而外窥，得见追求者而不为追求者所见；居内室而听得家人交谈，立在隔扇后而恣情窥看；与人在一处时，则屡次用眼偷瞟，对男人从不正面而视。</p></blockquote>
+
+<p>可怜的体仁老是谬用或者说不如不用的旁征博引：</p>
+
+<blockquote><p>世事洞明皆学问，人情练达即文章</p></blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2008/07/18/moment-in-peking/">继续 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/17/confucius/">大圣先师与文笔及其他</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-17T00:00:00+08:00" pubdate data-updated="true">Jul 17<span>th</span>, 2008</time>
+        
+         | <a href="/2008/07/17/confucius/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前些日子与不得一起买书，<a href="http://www.china-pub.com">chinapub</a>，买了一堆林语堂的。看林语堂原因其实也简单，源自于前一阵的文笔争论。陈丹青和韩寒上了某个制作得不怎么成功的节目，还好俩人人格魅力足够，几番闲谈听起来也还不错，然而节目尾声的关于鲁郭茅巴老曹的言论招惹到了几位文化义合拳人士。后来时事嗅觉敏感什么话题都敢碰一下的窦文涛锵锵三人行就请了俩文化人对此做了一番讨论，常客许某某的话我印象颇深，不知是他提到还是我想到，林语堂的文笔是很不错的。因为工科四年看了太多金山词霸或者股沟翻译的译文，我的思维方式和码字方式已经变得很变态了，所以我觉得我需要调剂一下。</p>
+
+<p>买的书里头有本是《孔子的智慧》，林语堂对他的评价很高，更难得的是点出了许多孔子生平中的可爱一面。这其中的许多典故都来自于司马迁的《史记》中对孔子的描述。他描述孔子与他的弟子们的融洽关系，举例说，有次孔子与一干弟子众人去某国不幸与得意高足颜回失散。终于碰上，孔子便揶揄他说：“我还以为你死了！”；颜回便答：“老师您还健在，弟子岂敢轻易就死”。林语堂说他倾心于孔子的幽默与爱憎分明。曾有个孔子讨厌的人登门拜访，孔子便托病不见，不仅不见，还拿把琴在内庭弹唱，生怕客人不知道他在家。乔丹在03年全明星的时候扣飞了球，说，我必须先笑话自己，不然别人怎么笑得出来。一如孔子的幽默，他因出生的时候脑袋中间是凹的而得名“丘”，长得估计就算不寒碜也好不到哪里去，所以孔子常常揶揄自己。说这一次是孔子和众人失散了。弟子们一通找，有当地人说看见一个长得像古代帝王却焦急得活像丧家之犬的人。后来终于找着孔子，如实相告。孔子便大笑：“长得像不像鸟生鱼汤不知道；丧家之犬的形容可真是贴切极了，贴切极了！”。</p>
+
+<p>虽然与弟子相处融洽气氛河蟹，孔子对衣着与吃食却相当考究。与时节不符的蔬菜不吃，烹饪方法不对的菜不吃，佐料不对的菜也不吃等等；衣着上，讲究配色作料等等，林语堂举的例子是“黑羊羔皮子配黑面子，白羊羔皮子配白面子”，我看了没啥感觉，其他的比如为了做事方便右袖子要短，避免脚冷被子要长人身一半。如此难伺候，夫人都给气跑了。</p>
+
+<p>看到第二章，是司马迁为孔子作的传和林语堂的白话翻译，然而阅及此处翻译的质量骤然下降。用韩寒的话说就是：“文笔太差，让我读不下去”。林语堂写著《孔子》《老子》《苏东坡》等传记或介绍的时候用的是英文，所以书好不好看翻译很重要。本章我看得很郁闷，不过也读到个很发人深省的故事。自然是关于孔子的，说有次孔子想到齐国去，途径的某国不让，派兵挟持不让圣人过境。孔子为了脱身就和他们谈条件，最后达成“不去齐国就放行”的约定。脱身之后，孔子却带着弟子直奔齐国而去。弟子感到奇怪，圣人笑道：“被要挟的约定做不得数的”。看看孔子的言行，再看看现在电视节目、言情小说等等中数见不鲜的摆烂情节。小师妹被林小妖人捅了一刀命在须臾，结果临终遗言确实要求令狐冲照顾好那福建小子。再比如张无忌答应赵敏的三件事（不娶小昭啊什么的）等等。这种道德的挟持和当事人伪君子岳不群一般的行径实在另我发指（当然，冲哥哥没在里头，他或者盈盈的智慧让他圆满完成任务）。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/15/immortal-beloved/">不朽的爱人</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-15T00:00:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2008</time>
+        
+         | <a href="/2008/07/15/immortal-beloved/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前些日子在看《Immortal Beloved》，是部艺术化的传记/传记化的关于贝多芬的电影，
+从他的朋友兼秘书根据在他秘密抽屉里的几封信按图索骥出发，
+半回忆地讲述贝多芬的（爱情）故事。这几封信在电影中的发现处是他的办公桌，
+而 Anne Baker 写的贝多芬传中说的则是他的橱柜中的秘密抽屉。
+不过这只是电影于史实诸多差别中的一个，我有点不想一一详述，我要说的是那些信，
+人们在称呼它们时将它们叫做“Immortal Beloved”，按照德语愿意翻译的话应该是
+“Eternal Beloved”才是，不过我并非语言学家亦非打破沙锅者，不做深究。</p>
+
+<p>这几封信的非同寻常在它们的发现地就可循端倪。在贝多芬不怎么走运的爱情生涯里头，
+尽管也曾经对几位姑娘吃果果表露爱意甚至要了洗礼证明以便结婚之需，
+但女方极少或者说没有对他的爱有过感觉，她们更多是感到被追捧感到荣耀，
+按照现在通俗的话说，她们觉得贝多芬是个很厉害的好哥哥/很乖张的怪书塾。
+那首献给爱里斯，即是这段时间的即兴创作，收录在编外作品中。
+所以很少能在 Antonie Brentano 出现之前的信件中看到那份炽热的爱恋，
+在电影中贝多芬的钦慕对象改成了他的弟弟的妻子，比传记中勾引已婚妇女
+（Antonie 在维也纳首次遇到贝多芬是因她的父亲病重与她的丈夫 Franz Brentano
+回来照顾家父，他们在她十八岁的时候就在她父亲的撮合下结婚了，Franz 是法兰克福的富商）
+还要劲暴还要不伦，而电影里头的弟弟则是现实中贝多芬诸位弟弟的合体，
+肺结核的 Carl 和被贝多芬认为自降身份的另外一个弟弟，等等，或许是我看得不够仔细。
+不管情节如何，这都是导演的安排，而 Gary Oldman，即是《这个杀手不太冷》中演怪书塾警察那位，
+演绎的更怪书塾贝多芬，深情地在信中吃果果地表露自己的爱意：</p>
+
+<blockquote><p>“Can our love endure without sacrifices, without our demanding everything from one another;
+can you alter the fact that you are not wholly mine, that I an not wholly yours? &#8230;
+However much you love me &#8211; my love for you is even greater.”</p></blockquote>
+
+<p>在贝多芬的日记中，罕有直书不朽的爱人，贝多芬在提到她时往往称她为 T.
+（因为 Antonie 的昵称是 Toni），如果你真的很闲很有偷窥欲想去看贝多芬的日记，
+你会看到这样的句子：</p>
+
+<blockquote><p>“With regard to T. there is nothing else but leave it to God, never go there where one could do wrong out of weakness.”</p>
+
+<p>“be as good as possible towards T.; her devotion deserves never to be forgotten.”</p></blockquote>
+
+<p>看着这几句觉得味道不对？那是因为贝多芬在他一生中少数的几次爱的人终于爱回他的情况下
+决定放弃与她在一起，因为她已婚，也因为她的丈夫也是他的好朋友。囧，好错综的情感。
+有野史或者说猜测说，Antonie 的第六个孩子是与贝多芬生下的，
+这也解释了为何贝多芬决定放弃与她在一起时是如此的痛苦。</p>
+
+<p>贝多芬在言及放弃的时候的理由是害怕婚姻可能会影响到他的创作源泉。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/14/diversity-kills-product/">多歧亡羊？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-14T00:00:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
+        
+         | <a href="/2008/07/14/diversity-kills-product/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>试用 KDE 中，GTK 类的桌面系统这段时间不想去理它们了。原因说来自己都觉得可笑，因为 Firefox 3 的字符显示突然出了问题，把空格一律当作制表符显示。而且是不管是程序界面还是网页内容，一律平等对待，正让我很纠结。初步的摸索结果是 libpango 的问题，这是 firefox 依赖的库，用以处理 i18n 的字符显示，依稀记得我在编译安装 <a href="http://code.google.com/p/ttm/">tint</a> 的过程中有装过类似的包，然而早就忘记了，而跑 Synaptic 里头看历史记录自然是看不到的。多嘴说一下，aptitude install 的 tint 居然是个俄罗斯方块，囧。</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2008/07/14/diversity-kills-product/">继续 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/13/seven-years/">七年</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-13T00:00:00+08:00" pubdate data-updated="true">Jul 13<span>th</span>, 2008</time>
+        
+         | <a href="/2008/07/13/seven-years/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>二零零一年的今天晚上我在舅舅家的油漆店里头帮舅舅看店，顺便关注细细体味五，旁边坐着我的外婆，然后和我外婆差不多年纪的萨马兰奇爷爷对这世界宣布：二零零八年夏季奥运会举办地——北京。我忘了那一刻自己的反应是怎样了，我的家乡只是个遍布大江南北的鱼米之乡中的一个，对政治对时势的接收和反馈与皇城根是天壤之别的。然而我深深地记得萨老头宣布之后天朝体育台的屏幕上不停回闪的那四个字，“我们赢了”！我们赢了什么？赢了另外几个举办城市，赢了邪恶的资产阶级、帝国主义？按我那些日子里从报纸上吸收的有限的消息看，奥运会以及其他大型国际赛事的举办城市（国）在五大洲之间是有个不成文的轮替规矩的，一九九三年的时候亚洲输给了澳洲，如今我们终于能够举办了而已。或许没能经历一九九三时候的申办失利让我失去了了解背景知识的机会，或许朝廷电视台被要求这么做，或许导播黄健翔了，我不知道，我只是认为那个时候的“我们赢了”显得很可笑，一如如今的“只盼坟前有屏幕，看奥运，同欢呼”。</p>
+
+<p>再回首，已经七年过去了，七年前的那个时候我还在等待瑞安中学的入学通知书吧，或许已经知道自己能够入学了，唉，实在记不清和三姨一起去学校食堂二楼交自费生的三万入学费是在哪一天了。能够记得的，只剩下八月份的军训和九月份某天出操回教室时同学们笑呵呵地交流美国纽约那件事，或许我这么说他们是不对的，但是我可以百分百地肯定我自己听到九一一时候的反应，那一刻我有点开心。为什么会这样？虽然小时候也弄死过几只青蛙踩死过几只蚂蚱，但是我相信我还当时应该还是个纯良少年。自我分析一下，原因如下。初中的时候恰好是大使馆被炸南海上空撞机等事情发生之后，那时对美帝的厌恶情绪和广大活跃在一线二线的粪青们一样，像是一个乡下小子对横行霸道的地主家的少爷的抵触，丫真事儿。</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2008/07/13/seven-years/">继续 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/13/lately/">前些天的二三事</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-13T00:00:00+08:00" pubdate data-updated="true">Jul 13<span>th</span>, 2008</time>
+        
+         | <a href="/2008/07/13/lately/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>又一个博客：
+想搭博客的同学们可以看看 我最近找的一个地方。就不同折腾免费空间和 WordPress 搭建了，当然也牺牲了一些东西，比如敏感词汇。</p>
+
+<p>敏感词汇：
+韩寒新近更新了一篇文章叫做《那个啥》，可惜被和谐掉了，后来他又对原文做了删节改了题目叫做《最惨的事》，还是被和谐掉了。幸好我们伟大的传统文化在此刻发光发热，上个月的轰轰烈烈之后互联网络开始流行竖排，有激进者叫嚣：让你丫过滤。可苦乐夹在信息产业部和用户之间的这些个网站们，查得严被人说还有人真挥刀自宫的，查得不严还动辄有大盖帽冲进来直接端服务器。竖排的辉煌估计还得延续，其实要过滤也不算难，计算下行宽，把竖的变回来再作计较也行，毕竟都用的一个软件，还很嚣张地加框。然而堵终究是堵不牢的，弄来息土也没用，更何况是现如今这信息爆炸的时代。举一些魔高一丈的例子：截图、火星文、转换敏感词（不要以为就你丫会 str_replace()）……</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2008/07/13/lately/">继续 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/07/05/yet-another-blog/">Yet Another Blog&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-05T00:00:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2008</time>
+        
+         | <a href="/2008/07/05/yet-another-blog/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>先统计一下：</p>
+
+<ul>
+<li><a href="http://hi.baidu.com/irabbit">百度</a>：界面简介清楚明了，最美的是能够全局改 CSS 设计主题，
+从一开始的时候用了一阵到后来渐渐遗弃……可能和朋友不多有关系吧。缺陷自然也有许多，
+最显著的便是：不能贴代码…… 不过天下博客一般不能贴，这也是我为何又注册 yo2。</li>
+<li><a href="http://www.xioanei.com/leto">校内</a>：没啥优点，就是很多生活中的朋友能看到，
+也能看到他们的生活状态等等，速度慢界面拖沓，Java 做的都这特点么？
+最让我鄙视的就是抄袭得很没有水准，野心又大，唉……</li>
+<li><a href="http://www.douban.com/people/leto">豆瓣</a>：电影、音乐加书籍是我生活三大爱，
+加上屈指可数的游戏便是我的宅居四大主旋律了。所以其他博客都能抛弃，这个是不能丢的……</li>
+<li><a href="http://jake.0fees.net/">自己弄的wiki</a>：注册的国外的一个免费的空间，
+支持 PHP 和 MySQL，本想有空也弄个 WordPress 或者 Drupal 上去弄个小网站，
+好歹是动态的，比原来写写 Muse 文件显得 Web 2.0 一些……
+然而就 <a href="http://blosxom.sourceforge.net/">Blosxom</a> 的一篇文章来说，
+写博客本来就应该是消遣的事情，管他这么多劳什子做啥。总之很纠结，因为平时速度越来越慢，
+现在基本废弃，什么时候自己的毕设成果完善了能够使用了，再弄上去玩一玩，实际跑跑看看。</li>
+<li><a href="http://www.ohloh.net/accounts/dotnil">dotnil@Ohloh</a>：这个纯粹凑热闹……
+能力不足成事，败事倒是有余。</li>
+</ul>
+
+
+<p>这五个已经让我应接不暇，如今又加上<a href="http://www.dotnil.org">这个博客</a>，囧。</p>
+
+<h2>2012-03-03</h2>
+
+<ul>
+<li>Ohloh 账号压根没用过，跟风注册了而已；</li>
+<li>wiki 文件放到了 <a href="http://cyj.me/wiki">http://cyj.me/wiki</a>，原先那个地址是个国外的免费空间，自然不怎么靠谱；</li>
+<li>校内网改名叫人人网，不过原链接似乎仍然有效（干得好，人人网的工程师们）</li>
+<li>最重要的，博客换成了 <a href="http://cyj.me/blog">http://cyj.me/blog</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/38/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/04/07/xiamen/">正月里去厦门（一）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/06/yet-another-site-moving/">再度搬家</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/04/jokes/">莞尔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/dotnil">@dotnil</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dotnil',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("dotnil", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chen Yangjian -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yicai';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
