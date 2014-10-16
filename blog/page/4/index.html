@@ -8,28 +8,28 @@
   <title>Chen Yangjian's Blog</title>
   <meta name="author" content="Chen Yangjian">
 
-  
+
   <meta name="description" content="要理解 Git 的工作方式，首要大事就是明白它的版本控制方式与 Subversion（SVN）、Perforce 或者其他任何你用过的源码管理工具都是不同的。通常，把原先的理解全部忘掉，反而更容易了解 Git。 让我们从头开始。假设你正要设计一个源码管理系统。在你使用一个版本控制工具之前， &hellip;">
-  
+
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
+
   <link rel="canonical" href="http://cyj.me/blog/page/4">
-  <link href="/octo/favicon.png" rel="icon">
-  <link href="/octo/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/octo/javascripts/modernizr-2.0.js"></script>
-  <script src="/octo/javascripts/ender.js"></script>
-  <script src="/octo/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/2012/favicon.png" rel="icon">
+  <link href="/2012/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/2012/javascripts/modernizr-2.0.js"></script>
+  <script src="/2012/javascripts/ender.js"></script>
+  <script src="/2012/javascripts/octopress.js" type="text/javascript"></script>
   <link href="http://feeds.feedburner.com/dotnil" rel="alternate" title="Chen Yangjian's Blog" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
-  
+
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-17751107-1']);
@@ -47,48 +47,47 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/octo/">Chen Yangjian's Blog</a></h1>
-  
+  <h1><a href="/2012/">Chen Yangjian's Blog</a></h1>
+
     <h2>Carpe diem - Seize the day</h2>
-  
+
 </hgroup>
 
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://feeds.feedburner.com/dotnil" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
+
 </ul>
-  
+
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:cyj.me" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
-  
+
 <ul class="main-navigation">
-  <li><a href="/octo/">Home</a></li>
-  <li><a href="/octo/blog">Blog</a></li>
-  <li><a href="/octo/archives">Archives</a></li>
-  <li><a href="/octo/about">About</a></li>
+  <li><a href="/2012/">Home</a></li>
+  <li><a href="/2012/blog">Blog</a></li>
+  <li><a href="/2012/archives">Archives</a></li>
+  <li><a href="/2012/about">About</a></li>
 </ul>
 
 </nav>
   <div id="main">
     <div id="content">
       <div class="blog-index">
-  
-  
-  
+
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/02/27/thinking-in-git/">怎样以 Git 的方式思考</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/02/27/thinking-in-git/">怎样以 Git 的方式思考</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -97,15 +96,16 @@
 
 
 
-  
+
+
 
 
 <time datetime="2011-02-27T00:00:00+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/02/27/thinking-in-git/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/02/27/thinking-in-git/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -113,14 +113,14 @@
 
 <p>让我们从头开始。假设你正要设计一个源码管理系统。在你使用一个版本控制工具之前，是怎么完成最基本的版本控制工作的呢？很有可能想下边这样，把你的项目文件夹作一份拷贝：</p>
 
-<pre><code>$ cp -R project project.bak 
+<pre><code>$ cp -R project project.bak
 </code></pre>
 
 <p>这样，如果接下去对 project 做了坏事，还有备胎（project.bak）可以救火；或者看看最新的项目和作拷贝时的项目的对比，看看做了哪些改动。</p>
 
 <p>如果你是个偏执狂，那么你可能经常这样做，为每个备胎加一个时间戳：</p>
 
-<pre><code>$ cp -R project project.2010-06-01.bak 
+<pre><code>$ cp -R project project.2010-06-01.bak
 </code></pre>
 
 <p>这样，你就有了一堆项目备胎可以随时查看、比较。你还可以以此模式有效地与人分享项目的改动。如果你给到了一定阶段的项目打个包，丢到网站上，别的开发人员就能下载到它，并把改动的地方打个补丁，发送给你。</p>
@@ -146,22 +146,21 @@ $ (email change.patch)
 
 <p>翻译自 <a href="http://gitref.org/">gitref.org</a>，不知道是否有人做过这工作。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/02/25/activemodle-gotcha/">ActiveModle 的一个小 Gotcha</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/02/25/activemodle-gotcha/">ActiveModle 的一个小 Gotcha</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -170,15 +169,16 @@ $ (email change.patch)
 
 
 
-  
+
+
 
 
 <time datetime="2011-02-25T00:00:00+08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/02/25/activemodle-gotcha/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/02/25/activemodle-gotcha/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -199,22 +199,21 @@ missing attribute: name
 
 <p>第一次碰上这个的时候很无厘头，后来发现是当 model 的 validation 流程挂掉的时候才出现的。一开始向暴力解决问题，便加上一句 <code>self.instance_variable_defined?(:@name)</code> 期待能解决问题，然而这句实实在在的返回的是 false。然后 <code>self.inspect</code> 一下，才晓得 ActiveRecord 类中对数据库中的字段属性并不是直接以类变量定义的，要查看模型中是否有相应的字段，得用 <code>self.attribute_present?(:name)</code>。inspect 的时候，还顺带找到了错误根源，当 model.save 挂掉的时候，rails 不知道搞什么，要去找导致错误的另一个 model （当校验 uniqueness 的时候）。而且该 model 返回的数据里头除了 <code>id</code> 属性神马也没有。但是也会去调 after_find，于是就挂了。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe/">IE 6、7 中在 Iframe 中操作父窗口 DOM 的时候的问题</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe/">IE 6、7 中在 Iframe 中操作父窗口 DOM 的时候的问题</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -223,15 +222,16 @@ missing attribute: name
 
 
 
-  
+
+
 
 
 <time datetime="2011-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/02/24/ie-6-7-manipulating-parent-window-dom-in-iframe/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -251,22 +251,21 @@ doc.appendChild(node);
 
 <p>不过我在 IE6 下还是遇到这个问题，实在搞不懂为神马，暂且压着。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/02/18/using-rails-3/">使用 Rails 3 一二</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/02/18/using-rails-3/">使用 Rails 3 一二</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -275,15 +274,16 @@ doc.appendChild(node);
 
 
 
-  
+
+
 
 
 <time datetime="2011-02-18T00:00:00+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/02/18/using-rails-3/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/02/18/using-rails-3/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -326,22 +326,21 @@ article.title_change  #=&gt; ['Title', 'TITLE']
 
 <p>Rails 在这方面真是越走越远了。当初第一次看到 <code>6.hours</code> 之类的语法时，直接晕菜的想法都有了。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/02/14/send-mail-via-gmail-in-actionmailer-3/">让 ActionMailer 3 使用 Gmail 发送邮件</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/02/14/send-mail-via-gmail-in-actionmailer-3/">让 ActionMailer 3 使用 Gmail 发送邮件</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -350,31 +349,32 @@ article.title_change  #=&gt; ['Title', 'TITLE']
 
 
 
-  
+
+
 
 
 <time datetime="2011-02-14T00:00:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/02/14/send-mail-via-gmail-in-actionmailer-3/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/02/14/send-mail-via-gmail-in-actionmailer-3/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
   <div class="entry-content"><p>发送邮件的方法很简单，继承 <code>ActionMailer::Base</code>，实现个发送邮件的方法：</p>
 
-<pre><code>`# app/models/notifier.rb  
-class Notifier &lt; ActionMailer::Base  
-  default_url_options[:host] = "authlogic_example.binarylogic.com"  
+<pre><code>`# app/models/notifier.rb
+class Notifier &lt; ActionMailer::Base
+  default_url_options[:host] = "authlogic_example.binarylogic.com"
 
-  def password_reset_instructions(user)  
-    subject       "Password Reset Instructions"  
-    from          "Binary Logic Notifier "  
-    recipients    user.email  
-    sent_on       Time.now  
-    body          :edit_password_reset_url =&gt; edit_password_reset_url(user.perishable_token)  
-  end  
+  def password_reset_instructions(user)
+    subject       "Password Reset Instructions"
+    from          "Binary Logic Notifier "
+    recipients    user.email
+    sent_on       Time.now
+    body          :edit_password_reset_url =&gt; edit_password_reset_url(user.perishable_token)
+  end
 end
 `
 </code></pre>
@@ -402,22 +402,21 @@ ActionMailer::Base.smtp_settings = {
 
 <p>除此之外，还有个<a href="http://cowoo.javaeye.com/blog/36627">曲线救国的方法</a>。我们可以告诉 ActionMailer 去找另外的邮件发送服务，再通过该服务调用 gmail 的 SMTP 方式来发送邮件。这个服务名叫 msmtp，我试了下，可能是 ActionMailer 3 的关系，不好使。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue/">在 Rails 3 中使用 Authlogic 的一个小问题</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue/">在 Rails 3 中使用 Authlogic 的一个小问题</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -426,15 +425,16 @@ ActionMailer::Base.smtp_settings = {
 
 
 
-  
+
+
 
 
 <time datetime="2011-01-25T00:00:00+08:00" pubdate data-updated="true">Jan 25<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/01/25/rails-3-authlogic-undefined-method-to_key-issue/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -489,22 +489,21 @@ ActionMailer::Base.smtp_settings = {
 
 <p>一知半解，差不多全是翻译自 <a href="http://techoctave.com/c7/posts/37-authlogic-and-rails-3-0-solution">这里</a></p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/01/15/summary-of-works-done-in-recent-3-months/">近三个月工作小结</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/01/15/summary-of-works-done-in-recent-3-months/">近三个月工作小结</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -513,15 +512,16 @@ ActionMailer::Base.smtp_settings = {
 
 
 
-  
+
+
 
 
 <time datetime="2011-01-15T00:00:00+08:00" pubdate data-updated="true">Jan 15<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/01/15/summary-of-works-done-in-recent-3-months/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/01/15/summary-of-works-done-in-recent-3-months/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -537,22 +537,21 @@ ActionMailer::Base.smtp_settings = {
 
 <p>综上所述，成绩平平，野心还是有的。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/01/14/varieties-of-issues/">各种问题记录一二</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/01/14/varieties-of-issues/">各种问题记录一二</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -561,15 +560,16 @@ ActionMailer::Base.smtp_settings = {
 
 
 
-  
+
+
 
 
 <time datetime="2011-01-14T00:00:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/01/14/varieties-of-issues/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/01/14/varieties-of-issues/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -611,7 +611,7 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
 
 <p>vboxvideo 用于 X11 的显卡驱动，可以方便添加一些 vesa 不支持的分辨率，比如 1680x1050。vboxsf 则是共享数据空间需要用到的。VirtualBox 支持共享数据空间（那个 VM 平台还不支持呢），可以将宿主机的任意文件夹以共享数据空间的形式加到客户机上去。在我这个例子中，就是 Windows 是宿主机，客户机则是 Arch Linux。我增加了个数据空间，<code>C:\User\yicai.cyj</code> 并给它起别名叫做 yicai.cyj，然后在客户机里头，我只需要</p>
 
-<pre><code>mount -t vboxsf yicai.cyj /media/win7home 
+<pre><code>mount -t vboxsf yicai.cyj /media/win7home
 </code></pre>
 
 <p>就可以了。<code>/media/win7home</code> 是客户机上的挂载点（mount point），如果不存在，<code>mkdir</code> 一下就可以了，名字任取，似乎必须在 /mnt/ 或者 /media/ 目录下。<code>yicai.cyj</code> 就是共享数据空间的别名。</p>
@@ -620,22 +620,21 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
 
 <p>这篇文章好像火锅，什么都放进去煮，吃出来都是海鲜川崎的味道。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2011/01/04/experiencing-kindle/">Kindle 使用记录一二</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2011/01/04/experiencing-kindle/">Kindle 使用记录一二</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -644,15 +643,16 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
 
 
 
-  
+
+
 
 
 <time datetime="2011-01-04T00:00:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time>
-        
-         | <a href="/octo/2011/01/04/experiencing-kindle/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2011/01/04/experiencing-kindle/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -671,22 +671,21 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
 
 <p>至此，中文小说基本可以看了。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
-  
+
+
     <article>
-      
+
   <header>
-    
-      <h1 class="entry-title"><a href="/octo/2010/12/31/2010-goes-by/">2010 过去了，五味杂陈</a></h1>
-    
-    
+
+      <h1 class="entry-title"><a href="/2012/2010/12/31/2010-goes-by/">2010 过去了，五味杂陈</a></h1>
+
+
       <p class="meta">
-        
 
 
 
@@ -695,15 +694,16 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
 
 
 
-  
+
+
 
 
 <time datetime="2010-12-31T00:00:00+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2010</time>
-        
-         | <a href="/octo/2010/12/31/2010-goes-by/#disqus_thread">Comments</a>
-        
+
+         | <a href="/2012/2010/12/31/2010-goes-by/#disqus_thread">Comments</a>
+
       </p>
-    
+
   </header>
 
 
@@ -763,48 +763,48 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
 
 <p>现在回头看看自己的目标，学车、搬家完成，其余凌乱。2011 还有 11 个小时，要做什么，就在这 11 个小时里头好好想想。</p>
 </div>
-  
-  
+
+
 
 
     </article>
-  
+
   <div class="pagination">
-    
-      <a class="prev" href="/octo/blog/page/5/">&larr; Older</a>
-    
-    <a href="/octo/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/octo/blog/page/3/">Newer &rarr;</a>
-    
+
+      <a class="prev" href="/2012/blog/page/5/">&larr; Older</a>
+
+    <a href="/2012/blog/archives">Blog Archives</a>
+
+    <a class="next" href="/2012/blog/page/3/">Newer &rarr;</a>
+
   </div>
 </div>
 <aside class="sidebar">
-  
+
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
+
       <li class="post">
-        <a href="/octo/2012/04/07/xiamen/">正月里去厦门（一）</a>
+        <a href="/2012/2012/04/07/xiamen/">正月里去厦门（一）</a>
       </li>
-    
+
       <li class="post">
-        <a href="/octo/2012/03/06/yet-another-site-moving/">再度搬家</a>
+        <a href="/2012/2012/03/06/yet-another-site-moving/">再度搬家</a>
       </li>
-    
+
       <li class="post">
-        <a href="/octo/2012/03/04/jokes/">莞尔</a>
+        <a href="/2012/2012/03/04/jokes/">莞尔</a>
       </li>
-    
+
       <li class="post">
-        <a href="/octo/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
+        <a href="/2012/2012/03/01/js-unit-testing/">用 QUnit 做 JavaScript 单元测试</a>
       </li>
-    
+
       <li class="post">
-        <a href="/octo/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
+        <a href="/2012/2012/02/28/move-onto-octopress/">搬家到 Octopress</a>
       </li>
-    
+
   </ul>
 </section>
 
@@ -813,15 +813,15 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
   <ul id="gh_repos">
     <li class="loading">Status updating&#8230;</li>
   </ul>
-  
+
   <a href="https://github.com/dotnil">@dotnil</a> on GitHub
-  
+
   <script type="text/javascript">
     $.domReady(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
-            jxhr.src = '/octo/javascripts/libs/jXHR.js';
+            jxhr.src = '/2012/javascripts/libs/jXHR.js';
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(jxhr, s);
         }
@@ -834,7 +834,7 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
         });
     });
   </script>
-  <script src="/octo/javascripts/github.js" type="text/javascript"> </script>
+  <script src="/2012/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -848,17 +848,17 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
       getTwitterFeed("dotnil", 4, false);
     });
   </script>
-  <script src="/octo/javascripts/twitter.js" type="text/javascript"> </script>
-  
+  <script src="/2012/javascripts/twitter.js" type="text/javascript"> </script>
+
     <a href="http://twitter.com/dotnil" class="twitter-follow-button" data-show-count="false">Follow @dotnil</a>
-  
+
 </section>
 
 
 
 
 
-  
+
 </aside>
 
     </div>
@@ -869,14 +869,14 @@ bluecloth (2.0.9, 2.0.7 x86-mingw32 x86-mswin32)
 </p>
 
 </footer>
-  
+
 
 <script type="text/javascript">
       var disqus_shortname = 'yicai';
-      
-        
+
+
         var disqus_script = 'count.js';
-      
+
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
